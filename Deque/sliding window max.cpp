@@ -45,7 +45,7 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k)
     //to analyse the first window of the array. //TC = O(k)
     for(int i=0; i<k; i++)
     {
-        while(dq.size() > 0 && nums[dq.back()] <= nums[i]) //if val in deque os < current el, pop them
+        while(dq.size() > 0 && nums[dq.back()] <= nums[i]) //if val in deque is < current el, pop them
         {
             dq.pop_back(); //to remove smaller values from deque
         }
