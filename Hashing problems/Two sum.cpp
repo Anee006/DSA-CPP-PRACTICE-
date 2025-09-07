@@ -1,4 +1,4 @@
-// # notes on sheet
+// # notes
 //2 SUM problem //Using Most optimised approach with TC: O(n) 
 // -Is a hashing problem (uses sets and maps) //Maps and sets, Time complexity ko constant kardete hai
 
