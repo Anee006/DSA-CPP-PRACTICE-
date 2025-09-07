@@ -1,5 +1,5 @@
+// # notes on sheet
 //2 SUM problem //Using Most optimised approach with TC: O(n) 
-//(notes on sheet)
 // -Is a hashing problem (uses sets and maps) //Maps and sets, Time complexity ko constant kardete hai
 
 //We could have also used 2-pointer approach for this problem whose TC would've been O(nlogn). But that approach is not the best.
