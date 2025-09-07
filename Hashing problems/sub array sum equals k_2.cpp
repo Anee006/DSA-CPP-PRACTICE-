@@ -1,4 +1,5 @@
-//SUBARRAY SUM EQUALS K problem (notes on sheet)
+// #notes
+//SUBARRAY SUM EQUALS K problem 
 //Using Hashing whose TC is O(n) and SC= O(n)
 
 //Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
