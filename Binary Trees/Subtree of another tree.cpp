@@ -4,6 +4,9 @@
 //subRoot and false otherwise.
 
 
+//Input: root = [3,4,5,1,2], subRoot = [4,1,2]
+//Output: true
+
 //LOGIC:
 //1. find the root of subtree (i.e subroot) in the main tree.
 //2. If subroot exists in the main tree then check for the rest of the part of the subroot i.e, check whether both subroots are identical or not
@@ -35,10 +38,9 @@ bool isIdentical(Node* root1, Node* root2)
         return root1 == root2;
     }
 
-    bool leftSame = isIdentical(root1->left, root2->left);
-    bool rightSame = isIdentical(root1->right, root2->right);
-
-    return leftSame && rightSame && root1->data == root2->data;
+    return root1->data == root2->data 
+            && isIdentical(root1->left, root2->left) 
+            && isIdentical(root1->right, root2->right);
 
 }
 
@@ -61,4 +63,25 @@ bool isSubtree(Node* root, Node* subRoot)
     //If either one of the left/right subtree returns true means we have found the subroot in the main root.
     return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     
+}
+
+int main()
+{
+    Node* root = new Node(3);
+    root->left = new Node(4);
+    root->right = new Node(5);
+    root->left->left = new Node(1);
+    root->left->right = new Node(2);
+    
+    Node* subRoot = new Node(4);
+    subRoot->left = new Node(1);
+    subRoot->right = new Node(2);
+
+    if(isSubtree(root, subRoot))
+    {
+        cout << "is subtree of another tree" << endl;
+    }
+    else cout << "Not a subtree of another tree\n";
+
+    return 0;
 }
