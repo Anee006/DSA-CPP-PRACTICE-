@@ -1,3 +1,4 @@
+// #newnotes
 //Kth LEVEL OF A BINARY TREE
 
 //Given the root of a binary tree and "k". Print all those nodes which occur at the Kth level of the binary tree.
@@ -34,14 +35,40 @@ class Node
         }
 };
 
+static int idx = -1;
 Node* buildTree(vector<int> preorder)
 {
+    idx++;
 
+    if(preorder[idx] == -1)
+    {
+        return NULL;
+    }
+
+    Node* root = new Node(preorder[idx]);
+
+    root->left = buildTree(preorder);
+    root->right = buildTree(preorder);
+
+    return root;
 }
 
 void KthLevel(Node* root, int k)
 {
+    if(root == NULL)  //if no valid left and right child of root exists, we simply return back
+    {
+        return;
+    }
 
+    if(k == 1)  //means we have reached the desired level we wanted to print
+    {
+        cout << root->data << " ";
+        return;
+    }
+
+    //if not found the level, go to left and right child
+    KthLevel(root->left , k-1);  //we reduce the value of k for each level by 1
+    KthLevel(root->right, k-1);
 }
 
 int main()
