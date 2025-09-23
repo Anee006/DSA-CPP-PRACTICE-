@@ -1,4 +1,5 @@
 //SAME TREE (LeetCode 100)
+//NOTE: NOT the same as isMirror Q
 
 //Given the roots of two binary trees p and q, write a function to check if they are the same or not.
 //NOTE: Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
