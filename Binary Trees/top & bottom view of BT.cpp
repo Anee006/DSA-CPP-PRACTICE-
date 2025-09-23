@@ -1,6 +1,6 @@
 // #newnotes
-//TOP VIEW OF BINARY TREE
 
+//TOP VIEW OF BINARY TREE
 //Given the root of  a binary tree. We need to print those nodes which are visible through a lens kept at the top of the binary tree.
 
 
@@ -62,6 +62,40 @@ void topView(Node* root)
     cout << endl;
 }
 
+//BOTTOM VIEW OF BINARY TREE 
+//print all the nodes that will be visible when viewing the tree from the bottom.
+
+void bottomView(Node* root)
+{
+    queue<pair<Node*, int>> q; //to store the value and its HD
+    map<int,int> m; //to store the HD and its corresponding value
+    q.push({root,0});
+
+    while(q.size() > 0)
+    {
+        Node* curr = q.front().first;
+        int currHD = q.front().second;
+        q.pop();
+
+        m[currHD] = curr->data;
+
+        if(curr->left != NULL)
+        {
+            q.push({curr->left, currHD-1});
+        }
+        if(curr->right != NULL)
+        {
+            q.push({curr->right, currHD + 1});
+        }
+    }
+
+    for(auto it: m)
+    {
+        cout << it.second << " ";
+    }
+    cout << endl;
+}
+
 static int idx = -1;
 Node* buildTree(vector<int>& preorder)
 {
@@ -84,6 +118,9 @@ int main()
 
     cout << "Top view of BT = ";
     topView(root);
+
+    cout << "\nBottom view of BT = ";
+    bottomView(root);
     
     return 0;
 }
