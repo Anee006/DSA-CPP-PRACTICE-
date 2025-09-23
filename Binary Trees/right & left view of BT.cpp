@@ -1,8 +1,5 @@
 //RIGHT SIDE VIEW and LEFT SIDE VIEW of BINARY TREE 
 
-//Input: root = [1,2,3,null,5,null,4]
-//Output: [1,3,4]
-
 #include <iostream>
 #include <queue>
 #include <vector>
