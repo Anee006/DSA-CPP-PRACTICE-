@@ -41,6 +41,8 @@ bool isSymmetric(Node* root)
 
     return isMirror(root->left, root->right); //to check if the left and right subtree are symmetric or not
 }
+//TC = O(n)
+//SC = O(n)
 
 //example of symmetric tree
 Node* buildTree()
