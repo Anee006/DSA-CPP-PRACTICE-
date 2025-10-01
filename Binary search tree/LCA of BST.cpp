@@ -1,3 +1,4 @@
+// #newnotes
 //LOWEST COMMON ANCESTOR OF BST (LeetCode 235)
 
 //Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
