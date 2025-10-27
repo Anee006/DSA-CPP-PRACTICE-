@@ -22,7 +22,7 @@ class Node
 class AVLTree
 {
     private:
-        Node* root;
+        Node* root; //this is a DUMMY node
 
         // to get height of a node
         int getHeight(Node* node)
