@@ -232,7 +232,7 @@ class RBTree
             {
                 curr = (val < curr->data) ? curr->left : curr->right;
             }
-            return curr;
+            return (curr != NIL) ? curr : NULL; //returns curr only if node is NOT a NULL value
         }
 };
 
@@ -260,7 +260,7 @@ int main()
 
     Node* result = tree.search(val);
 
-    if(result != NULL && result->data == val)
+    if(result)
     {
         cout << "Node " << val << " found in the tree!" << endl;
     }
