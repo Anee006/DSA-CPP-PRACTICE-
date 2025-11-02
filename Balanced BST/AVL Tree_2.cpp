@@ -24,6 +24,12 @@ class AVLTree
     private:
         Node* root;
 
+        //to count no. of each rotations
+        int LLcount = 0;
+        int RRcount = 0;
+        int LRcount = 0;
+        int RLcount = 0;
+
         int getHeight(Node* node)
         {
             if(node == NULL) return 0;
@@ -94,15 +100,22 @@ class AVLTree
 
             //LL case:
             if(BF > 1 && val < node->left->data)
+            {
+                LLcount++;
                 return rightRotate(node);
+            }   
 
             //RR case:
             if(BF < -1 && val > node->right->data)
+            {
+                RRcount++;
                 return leftRotate(node);
+            }
 
             //LR case:
             if(BF > 1 && val > node->left->data)
             {
+                LRcount++;
                 node->left = leftRotate(node->left);
                 return rightRotate(node);
             }
@@ -110,6 +123,7 @@ class AVLTree
             //RL case:
             if(BF < -1 && val < node->right->data)
             {
+                RLcount++;
                 node->right = rightRotate(node->right);
                 return leftRotate(node);
             }
@@ -181,15 +195,24 @@ class AVLTree
 
             // LL case:
             if(BF > 1 && getBalanceFactor(root->left) >= 0)
+            {
+                LLcount++;
                 return rightRotate(root);
+            }
+                
             
             // RR case:
             if(BF < -1 && getBalanceFactor(root->right) <= 0)
+            {
+                RRcount++;
                 return leftRotate(root);
+            }
+                
             
             // LR case:
             if(BF > 1 && getBalanceFactor(root->left) < 0)
             {
+                LRcount++;
                 root->left = leftRotate(root->left);
                 return rightRotate(root);
             }
@@ -197,6 +220,7 @@ class AVLTree
             // RL case:
             if(BF < -1 && getBalanceFactor(root->right) > 0)
             {
+                RLcount++;
                 root->right = rightRotate(root->right);
                 return leftRotate(root);
             }
@@ -259,6 +283,15 @@ class AVLTree
             preorder(root);
             cout << endl;
         }
+
+        void printNumberOfRotations()
+        {
+            cout << endl;
+            cout << "Number of LL Rotations: " << LLcount << endl;
+            cout << "Number of RR Rotations: " << RRcount << endl;
+            cout << "Number of LR Rotations: " << LRcount << endl;
+            cout << "Number of RL Rotations: " << RLcount << endl;
+        }
 };
 
 int main()
@@ -275,6 +308,7 @@ int main()
 
     tree.inorder(); // 5 10 20 30 40 50 60
     tree.preorder(); // 20 10 5 40 30 50 60 
+    tree.printNumberOfRotations();
 
     cout << "\n\nAfter deleting 60 and 30\n\n";
 
@@ -283,6 +317,7 @@ int main()
 
     tree.inorder(); // 5 10 20 40 50
     tree.preorder(); // 20 10 5 40 50
+    tree.printNumberOfRotations();
 
     return 0;
 }
