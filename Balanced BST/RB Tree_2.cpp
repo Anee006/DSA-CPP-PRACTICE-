@@ -1,4 +1,5 @@
-//search a node in RB Tree
+// search a node in RB Tree
+// to calculate height of RB tree
 
 
 #include <iostream>
@@ -168,6 +169,15 @@ class RBTree
             }
         }
 
+        //to calculate height of RB Tree
+        int heightHelper(Node* node)
+        {
+            if(node == NIL) return 0;
+            int leftHeight = heightHelper(node->left);
+            int rightHeight = heightHelper(node->right);
+            return 1 + max(leftHeight, rightHeight);
+        }
+
     public:
         RBTree()
         {
@@ -225,6 +235,11 @@ class RBTree
             cout << endl;
         }
 
+        int calcHeight()
+        {
+            return heightHelper(root);
+        }
+
         Node* search(int val)
         {
             Node* curr = root;
@@ -254,6 +269,8 @@ int main()
 
     cout << endl;
 
+    cout << "Heigth of Tree is: " << tree.calcHeight() << endl;
+    
     int val;
     cout << "Enter val to search: ";
     cin >> val;
