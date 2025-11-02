@@ -140,12 +140,14 @@ class RBTree
                     }
                     else //rotate and recolor
                     {
+                        // z is left child --> Right rotate parent
                         if(z == z->parent->left)
                         {
                             z = z->parent;
                             rightRotate(z);
                         }
 
+                        // z is right child --> Left rotate grandparent
                         z->parent->color = BLACK;
                         z->parent->parent->color = RED;
                         leftRotate(z->parent->parent);
