@@ -121,4 +121,5 @@ int main()
     H1.deleteNode();
     H1.print();
 
+    return 0;
 }
