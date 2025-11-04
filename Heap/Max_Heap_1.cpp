@@ -71,12 +71,12 @@ class MaxHeap
             int left = 2*i + 1;  //left child of i based on CBT indexing
             int right = 2*i + 2; //right child of i 
 
-            if(left < size && arr[left] > arr[largest])
+            if(left < size && arr[left] > arr[largest]) //to create min heap: if(left < size && arr[left] < arr[largest])
             {
                 largest = left;
             }
 
-            if(right < size && arr[right] > arr[largest])
+            if(right < size && arr[right] > arr[largest])  //to create min heap: if(right < size && arr[right] < arr[largest])
             {
                 largest = right;
             }
