@@ -1,4 +1,5 @@
 //to create Max Heap
+//(insertion and deletion)
 
 #include <iostream>
 using namespace std;
@@ -41,6 +42,53 @@ class MaxHeap
             cout << arr[i] << " is inserted into the heap\n";
         }
 
+        //to delete an el from heap
+        void deleteNode()
+        {
+            if(size == 0)
+            {
+                cout << "Heap underflow, no element present to delete\n";
+                return;
+            }
+
+            cout << arr[0] << " deleted from the heap\n"; //the element present at root (i.e, at 1st idx) is deleted always
+
+            arr[0] = arr[size-1]; //replace the element at root with the right-most element of last level
+
+            size--; //after deleting element, size decreases
+
+            if(size == 0) return; //if no element is left in heap
+
+            //to put the element at root at its correct position
+            Heapify(0);
+
+        }
+
+        //used to put an element at its correct position
+        void Heapify(int i) //i means the index
+        {
+            int largest = i;  //contains the largest val out of: parent, left and right
+            int left = 2*i + 1;  //left child of i based on CBT indexing
+            int right = 2*i + 2; //right child of i 
+
+            if(left < size && arr[left] > arr[largest])
+            {
+                largest = left;
+            }
+
+            if(right < size && arr[right] > arr[largest])
+            {
+                largest = right;
+            }
+
+            if(largest != i) //means "i" i.e, the parent has been replaced by some other larger val
+            {
+                swap(arr[i], arr[largest]);
+                Heapify(largest);  //to put it at its correct position
+            }
+        }
+
+
         //to print the element in heap
         void print()
         {
@@ -67,4 +115,10 @@ int main()
 
     cout << "\n--------------------------------\n";
     H1.print();
+
+    cout << "\n--------------------------------\n";
+
+    H1.deleteNode();
+    H1.print();
+
 }
