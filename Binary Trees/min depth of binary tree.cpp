@@ -44,6 +44,7 @@ int minDepth(Node* root)
     // If both children exist, we take the shorter path.
     return 1 + min(minDepth(root->left), minDepth(root->right));
 }
+//TC = O(n)
 
 int main()
 {
