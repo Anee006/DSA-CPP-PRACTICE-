@@ -1,3 +1,4 @@
+// #newnotes
 // FLOOD FILL (LeetCode 733)
 
 // You are given an image represented by an m x n grid of integers "image", where image[i][j] represents the pixel value of the image. 
@@ -12,3 +13,32 @@
 */
 
 // Return the modified image after performing the flood fill.
+
+
+// Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
+// Output: [[2,2,2],[2,2,0],[2,0,1]]
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color)
+{
+
+}
+
+int main()
+{
+    int sr = 1;
+    int sc = 1;
+    int color = 2;
+
+    vector<vector<int>> image = {
+        {1,1,1},
+        {1,1,0},
+        {1,0,1}
+    };
+
+    return 0;
+}
