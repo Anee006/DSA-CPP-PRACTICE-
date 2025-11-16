@@ -10,3 +10,27 @@
 // Input: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
 // Output: [0,2,1,3]
 // Another correct ordering is [0,1,2,3].
+
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+
+vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
+{
+
+}
+
+int main()
+{
+    int numCourses = 4;
+
+    vector<vector<int>> prerequisites = {
+        {1,0},
+        {2,0},
+        {3,1},
+        {3,2}
+    };
+
+    return 0;
+}
