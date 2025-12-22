@@ -76,12 +76,12 @@ int main()
     int E = edges.size();
     
     // sort edges by weight on the basis of the custom comparator
-    sort(edges.begin(), edges.end(), compare); 
+    sort(edges.begin(), edges.end(), compare); // TC = O(E log E)
 
     vector<int> parent(V); // parent[i] stores the parent of vertex i
     vector<int> rank(V, 0);
 
-    for(int i=0; i<V; i++)
+    for(int i=0; i<V; i++) // TC = O(V)
     {
         parent[i] = i; // Make each vertex its own parent
     }
@@ -117,3 +117,4 @@ int main()
     return 0;
 }
 
+// TC of Kruskal's = O(E log E)
