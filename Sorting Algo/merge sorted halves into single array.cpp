@@ -1,7 +1,7 @@
 // Given an integer array of which both first half and second half are sorted. Task is to merge two sorted halves of array into single sorted array.
 // (this is the merge step of merge sort algo).
 
-// Fisrt half is: arr[0....mid]
+// First half is: arr[0....mid]
 // Second half: arr[mid+1 ..... n-1]
 
 #include <iostream>
