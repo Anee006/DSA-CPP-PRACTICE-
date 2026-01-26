@@ -1,27 +1,28 @@
 // To print the total number of comparisons done in each of the sorting algorithm.
 // (selection sort, bubble sort, insertion sort, quick sort and merge sort).
-// using flag --> "a" for ascending and "d" for descending
+// using order flag --> "a" for ascending and "d" for descending
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-int bubbleSort(vector<int> arr) {
+int bubbleSort(vector<int> arr, char order) {
     int comparisons = 0;
     int n = arr.size();
 
     for(int i=0; i<n-1; i++) {
         for(int j=0; j<n-i-1; j++) {
             comparisons++;
-            if(arr[j] > arr[j+1]) {
-                swap(arr[j], arr[j+1]);
+
+            if(order == 'a' ? arr[j] > arr[j+1] : arr[j] < arr[j+1]) {
+                swap(arr[j] , arr[j+1]);
             }
         }
     }
     return comparisons;
 }
 
-int selectionSort(vector<int> arr) {
+int selectionSort(vector<int> arr, char order) {
     int comparisons = 0;
     int n = arr.size();
 
@@ -30,16 +31,18 @@ int selectionSort(vector<int> arr) {
 
         for(int j=i+1; j<n; j++) {
             comparisons++;
-            if(arr[j] < arr[minIdx]) {
+
+            if(order == 'a' ? arr[j] < arr[minIdx] : arr[j] > arr[minIdx]) {
                 minIdx = j;
             }
+            
         }
         swap(arr[i], arr[minIdx]);
     }
     return comparisons;
 }
 
-int insertionSort(vector<int> arr) {
+int insertionSort(vector<int> arr, char order) {
     int comparisons = 0;
     int n = arr.size();
 
@@ -49,7 +52,8 @@ int insertionSort(vector<int> arr) {
 
         while(prev >= 0) {
             comparisons++;
-            if(arr[prev] > curr) {
+
+            if(order == 'a' ? arr[prev] > curr : arr[prev] < curr) {
                 arr[prev+1] = arr[prev];
                 prev--;
             }
@@ -62,13 +66,14 @@ int insertionSort(vector<int> arr) {
 
 int quickComparisons; // to track no. of comparisons in quick sort
 
-int partition(vector<int>& arr, int low, int high) {
+int partition(vector<int>& arr, int low, int high, char order) {
     int pivot = arr[high]; // choosing last el as pivot
     int i = low-1;
 
     for(int j = low; j<high; j++) {
         quickComparisons++;
-        if(arr[j] < pivot) {
+
+        if(order == 'a' ? arr[j] < pivot : arr[j] > pivot) {
             i++;
             swap(arr[i], arr[j]);
         }
@@ -77,30 +82,30 @@ int partition(vector<int>& arr, int low, int high) {
     return i+1;
 }
 
-void quickSort(vector<int>& arr, int low, int high) {
+void quickSort(vector<int>& arr, int low, int high, char order) {
     if(low < high) {
-        int pivot = partition(arr, low, high);
-        quickSort(arr, low, pivot-1);
-        quickSort(arr, pivot+1, high);
+        int pivot = partition(arr, low, high, order);
+        quickSort(arr, low, pivot-1, order);
+        quickSort(arr, pivot+1, high, order);
     }
 }
 
-int quickSortWrapper(vector<int> arr) {
+int quickSortWrapper(vector<int> arr, char order) {
     quickComparisons = 0;
-    quickSort(arr, 0, arr.size()-1);
+    quickSort(arr, 0, arr.size()-1, order);
     return quickComparisons;
 }
 
 int mergeComparisons; // to track no. of comparisons in merge sort
 
-void merge(vector<int>& arr, int low, int mid, int high) {
+void merge(vector<int>& arr, int low, int mid, int high, char order) {
     vector<int> temp;
     int i=low, j = mid+1;
 
     while(i <= mid && j <= high) {
         mergeComparisons++;
 
-        if(arr[i] <= arr[j]) {
+        if(order == 'a' ? arr[i] <= arr[j] : arr[i] >= arr[j]) {
             temp.push_back(arr[i++]);
         }
         else {
@@ -115,67 +120,53 @@ void merge(vector<int>& arr, int low, int mid, int high) {
         temp.push_back(arr[j++]);
     }
 
-    for(int idx = 0; idx < temp.size(); idx++) {
-        arr[idx + low] = temp[idx];
+    for(int k = 0; k < temp.size(); k++) {
+        arr[k + low] = temp[k];
     }
 }
 
-void mergeSort(vector<int>& arr, int low, int high) {
+void mergeSort(vector<int>& arr, int low, int high, char order) {
     if(low < high) {
         int mid = low + (high-low)/2;
 
-        mergeSort(arr, low, mid);
-        mergeSort(arr, mid+1, high);
-        merge(arr, low, mid, high);
+        mergeSort(arr, low, mid, order);
+        mergeSort(arr, mid+1, high, order);
+        merge(arr, low, mid, high, order);
     }
 }
 
-int mergeSortWrapper(vector<int> arr) {
+int mergeSortWrapper(vector<int> arr, char order) {
     mergeComparisons = 0;
-    mergeSort(arr, 0, arr.size()-1);
+    mergeSort(arr, 0, arr.size()-1, order);
     return mergeComparisons;
 }
 
 int main() {
     vector<int> arr = {10, -1, 1, 233, 100};
 
-    // No. of comparisons when array is unsorted:
-    cout << "Selection Sort comparisons: "
-         << selectionSort(arr) << endl;
+    // No. of comparisons when array is sorted in asc order:
+    cout << "Selection Sort comparisons: " << selectionSort(arr, 'a') << endl;
 
-    cout << "Bubble Sort comparisons: "
-         << bubbleSort(arr) << endl;
+    cout << "Bubble Sort comparisons: " << bubbleSort(arr, 'a') << endl;
 
-    cout << "Insertion Sort comparisons: "
-         << insertionSort(arr) << endl;
+    cout << "Insertion Sort comparisons: " << insertionSort(arr, 'a') << endl;
 
-    cout << "Quick Sort comparisons: "
-         << quickSortWrapper(arr) << endl;
+    cout << "Quick Sort comparisons: " << quickSortWrapper(arr, 'a') << endl;
 
-    cout << "Merge Sort comparisons: "
-         << mergeSortWrapper(arr) << endl;
+    cout << "Merge Sort comparisons: " << mergeSortWrapper(arr, 'a') << endl;
 
-    // to sort the array:
-    quickSort(arr, 0, arr.size()-1);
+    cout << "\n-----------------------------------------------------------\n";
 
-    cout << "\nNo. of comparisons for sorted array: [ ";
-    for(int i : arr) cout << i << " ";
-    cout << "]";
+    // No. of comparisons when array is sorted in desc order:
+    cout << "Selection Sort comparisons: " << selectionSort(arr, 'd') << endl;
 
-    cout << "Selection Sort comparisons: "
-         << selectionSort(arr) << endl;
+    cout << "Bubble Sort comparisons: " << bubbleSort(arr, 'd') << endl;
 
-    cout << "Bubble Sort comparisons: "
-         << bubbleSort(arr) << endl;
+    cout << "Insertion Sort comparisons: " << insertionSort(arr, 'd') << endl;
 
-    cout << "Insertion Sort comparisons: "
-         << insertionSort(arr) << endl;
+    cout << "Quick Sort comparisons: " << quickSortWrapper(arr, 'd') << endl;
 
-    cout << "Quick Sort comparisons: "
-         << quickSortWrapper(arr) << endl;
-
-    cout << "Merge Sort comparisons: "
-         << mergeSortWrapper(arr) << endl;
+    cout << "Merge Sort comparisons: " << mergeSortWrapper(arr, 'd') << endl;
 
     return 0;
 }
