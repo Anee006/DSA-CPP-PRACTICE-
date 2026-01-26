@@ -138,6 +138,29 @@ int mergeSortWrapper(vector<int> arr) {
 int main() {
     vector<int> arr = {10, -1, 1, 233, 100};
 
+    // No. of comparisons when array is unsorted:
+    cout << "Selection Sort comparisons: "
+         << selectionSort(arr) << endl;
+
+    cout << "Bubble Sort comparisons: "
+         << bubbleSort(arr) << endl;
+
+    cout << "Insertion Sort comparisons: "
+         << insertionSort(arr) << endl;
+
+    cout << "Quick Sort comparisons: "
+         << quickSortWrapper(arr) << endl;
+
+    cout << "Merge Sort comparisons: "
+         << mergeSortWrapper(arr) << endl;
+
+    // to sort the array:
+    quickSort(arr, 0, arr.size()-1);
+
+    cout << "\nNo. of comparisons for sorted array: [ ";
+    for(int i : arr) cout << i << " ";
+    cout << "]";
+
     cout << "Selection Sort comparisons: "
          << selectionSort(arr) << endl;
 
