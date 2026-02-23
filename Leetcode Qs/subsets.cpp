@@ -59,5 +59,5 @@ int main()
     return 0;
 }
 
-//TC = O(n * 2^n) or can also write as: O(2^n)
+//TC = O(n * 2^n) or can also write as: O(2^n), as there are 2^n subsets possible for n elements.
 //SC= O(n)
