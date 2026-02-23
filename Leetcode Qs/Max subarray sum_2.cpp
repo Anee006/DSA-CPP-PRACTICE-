@@ -1,5 +1,7 @@
 //To print the sum of sub array which is max
-//Using KADANE'S ALGORITHM (most optimized approach)
+//Using KADANE'S ALGORITHM (most optimized approach) (greedy / dynamic programming approach)
+
+// TC = O(n)
 
 //Given array: {3,-4,5,4-1,7,-8}
 //Max possible subarray: 5,4,-1,7.  //Max possible sub array sum is: 15
