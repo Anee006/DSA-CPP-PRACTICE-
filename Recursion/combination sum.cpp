@@ -1,6 +1,6 @@
 // #notes
 //COMBINATION SUM PROBLEM
-//using recursion
+//using recursion (backtracking)
 
 //Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where 
 //the chosen numbers sum to target. You may return the combinations in any order
@@ -8,8 +8,7 @@
 //The same number may be chosen from candidates an unlimited number of times. 
 
 //Input: candidates = [2,3,5], target = 8
-//Output: [[2,2,2,2],[2,3,3],[3,5]]
-
+//Output: [[2,2,2],[2,3,3],[3,5]]
 
 
 #include <iostream>
