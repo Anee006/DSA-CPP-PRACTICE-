@@ -14,7 +14,7 @@
 
 //so there are only two paths possible which satsify all the given conditions: DRDDRR and DDRDRR
 
-//A cell has r rows and n columnns.
+//A cell has r rows and c columnns.
 //Condition for U is: (r-1,c)
 //Condition for D is: (r+1,c)
 //Condition for L is: (r,c-1)
