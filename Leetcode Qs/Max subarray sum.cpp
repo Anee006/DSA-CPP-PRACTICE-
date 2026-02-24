@@ -1,4 +1,4 @@
-//To print the sum of sub array which is max
+//To print the sum of sub array which is max (LeetCode 53)
 //Using KADANE'S ALGORITHM (most optimized approach) (greedy / dynamic programming approach)
 
 // TC = O(n)
@@ -17,21 +17,21 @@ using namespace std;
 
 int  main()
 {
-    int currentSum=0; 
-    int maxSum= INT_MIN;
-    int arr[]= {3,-4,5,4-1,7,-8};
-    int n= sizeof(arr)/ sizeof(int);
+    int currentSum = 0; 
+    int maxSum = INT_MIN;
+    int arr[] = {3,-4,5,4-1,7,-8};
+    int n = sizeof(arr)/ sizeof(int);
 
     for(int i=0; i<n; i++)
     {
         currentSum += arr[i];
-        maxSum= max(currentSum, maxSum);
+        maxSum = max(currentSum, maxSum);
 
-        if(currentSum<0)
-            currentSum=0; //reseting currentSum to 0 whenever the sum becomes -ve //we write it in end, so that if the array has only -ve numbers then also max sum is shown instead of 0.
+        if(currentSum < 0)
+            currentSum = 0; //reseting currentSum to 0 whenever the sum becomes -ve //we write it in end, so that if the array has only -ve numbers then also max sum is shown instead of 0.
     }
     
-    cout<<"Max Sub array sum is: "<<maxSum<<endl;
+    cout << "Max Sub array sum is: " << maxSum << endl;
     
     return 0;
 }
