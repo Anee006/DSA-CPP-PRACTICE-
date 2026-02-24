@@ -1,5 +1,5 @@
 // #notes
-//COUNT INVERSIONS problem 
+//COUNT INVERSIONS problem --> D&C approach
 //using the "merge" step of Merge Sort Algo.
 
 //Benefit of using merge sort here: we can count multiple inversions at a time.
