@@ -11,9 +11,9 @@ void printSubset(vector<int>& arr, vector<int>& ans, int i)
     {
         for(int val: ans)
         {
-            cout<<val<<" ";
+            cout << val << " ";
         }
-        cout<<endl;
+        cout << endl;
         return;
     }
 
@@ -32,7 +32,7 @@ void printSubset(vector<int>& arr, vector<int>& ans, int i)
 
 int main()
 {
-    vector <int> arr= {1,2,3};
+    vector <int> arr = {1,2,3};
     vector <int> ans; //to store ans
 
     printSubset(arr,ans,0);
