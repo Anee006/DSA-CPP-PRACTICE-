@@ -12,7 +12,7 @@
 using namespace std;
 
 //helper fn to calculate all subsets:
-void getAllSubsets(vector <int>& nums, vector<int>& ans, int i, vector<vector<int>>& allSubsets)
+void getAllSubsets(vector<int>& nums, vector<int>& ans, int i, vector<vector<int>>& allSubsets)
 {
     //base case:
     if( i == nums.size())
@@ -34,10 +34,10 @@ void getAllSubsets(vector <int>& nums, vector<int>& ans, int i, vector<vector<in
 
 
 //Given in Q:
-vector <vector<int>> subsets(vector <int>& nums)
+vector<vector<int>> subsets(vector<int>& nums)
 {
-    vector <int> ans;
-    vector <vector<int>> allSubsets;
+    vector<int> ans;
+    vector<vector<int>> allSubsets;
 
     getAllSubsets(nums, ans, 0, allSubsets);
     return allSubsets;
@@ -45,16 +45,16 @@ vector <vector<int>> subsets(vector <int>& nums)
 
 int main()
 {
-    vector <int> nums = {1,2,3};
-    vector <vector<int>> ans = subsets(nums);
+    vector<int> nums = {1,2,3};
+    vector<vector<int>> ans = subsets(nums);
 
     for(int i=0; i<ans.size(); i++)
     {
         for(int j=0; j<ans[i].size(); j++)
         {
-            cout<<ans[i][j]<<" ";
+            cout << ans[i][j] << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
     return 0;
 }
