@@ -30,7 +30,7 @@ using namespace std;
 void getAllSubsets(vector<int>& nums, vector<int>& ans, int i, vector<vector<int>>& allSubsets)
 {
     //base case
-    if(i== nums.size())
+    if(i == nums.size())
     {
         allSubsets.push_back({ans});
         return;
@@ -70,16 +70,16 @@ vector<vector<int>> subsetsWithDup(vector<int>& nums)
 
 int main()
 {
-    vector <int> nums = {1,2,2};
-    vector <vector<int>> ans = subsetsWithDup(nums);
+    vector<int> nums = {1,2,2};
+    vector<vector<int>> ans = subsetsWithDup(nums);
 
     for(int i=0; i<ans.size(); i++)
     {
         for(int j=0; j<ans[i].size(); j++)
         {
-            cout<<ans[i][j]<<" ";
+            cout << ans[i][j] << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
     return 0;
 }
