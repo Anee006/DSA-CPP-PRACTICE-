@@ -33,38 +33,38 @@
 #include <vector>
 using namespace std;
 
-void helper(vector <vector<int>> &maze, int r, int c, string path, vector <string> &ans)
+void helper(vector <vector<int>>& maze, int r, int c, string path, vector <string>& ans)
 {
-    int n=maze.size(); //size of given maze
+    int n = maze.size(); //size of given maze
 
-    if(r<0 ||c <0|| r>=n || c>=n || maze[r][c]==0 || maze[r][c]== -1) // the first four conditions impose the boundary conditions. 
+    if(r < 0 ||c < 0|| r >= n || c >= n || maze[r][c] == 0 || maze[r][c] == -1) // the first four conditions impose the boundary conditions. 
     {                                                                //the second last condition means we cannot go on cell having zero in it   
         return;                                                      ////the last condition imposes that we do not need to visit a cell again
     }
 
-    if(r==n-1 && c==n-1) //means we have reached the last cell of maze and found our ans
+    if(r == n-1 && c == n-1) //means we have reached the last cell of maze and found our ans
     {
         ans.push_back(path);
         return;
     }
 
 
-    maze [r][c]= -1; //means visited the cell //means visited = true //means the cell need not be visited again as it has already been visited.
+    maze [r][c] = -1; //means visited the cell //means visited = true //means the cell need not be visited again as it has already been visited.
 
-    helper(maze, r+1, c, path+ "D", ans); //for down
-    helper(maze, r-1, c, path+ "U", ans); //for up
-    helper(maze, r, c-1, path+ "L", ans); //for left
-    helper(maze, r, c+1, path+ "R", ans); //for right
+    helper(maze, r+1, c, path + "D", ans); //for down
+    helper(maze, r-1, c, path + "U", ans); //for up
+    helper(maze, r, c-1, path + "L", ans); //for left
+    helper(maze, r, c+1, path + "R", ans); //for right
 
-    maze [r][c]= 1; //unvisited the cell //This is backtracking step --> so that we can revisit a cell and find other solutions.
+    maze [r][c] = 1; //unvisited the cell //This is backtracking step --> so that we can revisit a cell and find other solutions.
 
     //backtracking always happens after recursive call
 }
 
-vector <string> findPath(vector <vector<int>> &maze) //creating a 2D vector for the maze
+vector <string> findPath(vector <vector<int>>& maze) //creating a 2D vector for the maze
 {
     vector <string> ans;
-    string path=""; 
+    string path =""; 
 
     helper(maze,0,0,path,ans);
 
@@ -78,7 +78,7 @@ int main()
     vector <string> ans = findPath (maze);
     for( string path: ans)
     {
-        cout<<path<<endl;
+        cout << path << endl;
     }
 
     return 0;
