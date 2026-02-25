@@ -37,7 +37,7 @@ i.e, original indices have been preserved.
 
 So when we calculate inversion count, we update: count[arr[i].second] += rightCount;
 Here:
-arr[i].second → original index
+arr[i].second -> original index
 So result goes to correct position
 */
 
@@ -75,20 +75,20 @@ void merge(vector<pair<int, int>>& arr, int low, int mid, int high, vector<int>&
         j++;
     }
 
-    for(int k = low; k <= high; k++) {
-        arr[k] = temp[k - low];
+    for(int k = 0; k < temp.size(); k++) {
+        arr[low + k] = temp[k];
     }
 }
 
 void mergeSort(vector<pair<int, int>>& arr, int low, int high, vector<int>& count) {
-    if(low >= high)
-        return;
+    if(low < high) {
+        int mid = low + (high - low)/2;
 
-    int mid = low + (high - low)/2;
-
-    mergeSort(arr, low, mid, count);
-    mergeSort(arr, mid + 1, high, count);
-    merge(arr, low, mid, high, count);
+        mergeSort(arr, low, mid, count);
+        mergeSort(arr, mid + 1, high, count);
+        merge(arr, low, mid, high, count);
+    }
+    
 }
 
 vector<int> countSmaller(vector<int>& nums) {
