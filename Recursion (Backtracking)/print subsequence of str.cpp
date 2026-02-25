@@ -7,13 +7,13 @@ using namespace std;
 
 void subSeq(string str, int idx, string newstring)
 {
-    if(idx==str.length())
+    if(idx == str.length())
     {
-        cout<<newstring<<endl;
+        cout << newstring<<endl;
         return;
     }
 
-    char current= str.at(idx);
+    char current = str.at(idx);
 
     //each char has two choices: to be in the new string or to not be in the new string.
 
@@ -27,7 +27,7 @@ void subSeq(string str, int idx, string newstring)
 
 int main()
 {
-    string str="abc";
+    string str = "abc";
     subSeq(str,0,"");
 
     return 0;
