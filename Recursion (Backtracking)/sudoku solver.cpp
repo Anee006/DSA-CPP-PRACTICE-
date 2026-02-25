@@ -41,12 +41,12 @@ bool isSafe(vector<vector<char>>& board, int row, int col, char digit)
     }
 
     //to check the nine, 3x3 sub grids that we have
-    int srow= (row/3) * 3; //to calculate starting row of grid
-    int scol= (col/3) * 3; //to calculate starting column of grid
+    int srow = (row/3) * 3; //to calculate starting row of grid
+    int scol = (col/3) * 3; //to calculate starting column of grid
 
-    for(int i=srow; i <= srow+2; i++) //TC of this for loop is: O(9) which is const TC. Bcoz only works on the 3*3 grid.
+    for(int i = srow; i <= srow+2; i++) //TC of this for loop is: O(9) which is const TC. Bcoz only works on the 3*3 grid.
     {
-        for(int j=scol; j <= scol+2; j++)
+        for(int j = scol; j <= scol+2; j++)
         {
             if(board[i][j] == digit) //means dig already exists in the grid
                 return false;
@@ -58,7 +58,7 @@ bool isSafe(vector<vector<char>>& board, int row, int col, char digit)
 //helper fn to solve sudoku
 bool sudokuSolver(vector<vector<char>>& board, int row, int col)
 {
-    if(row ==9)
+    if(row == 9)
     {
         return true; //means the sudoku is solved and our placement of digits is correct
     }
@@ -69,7 +69,6 @@ bool sudokuSolver(vector<vector<char>>& board, int row, int col)
     {
         nextRow = row+1;
         nextCol = 0;  //to go to the first cell of the next row
-
     }
 
     if(board[row][col] != '.') //means a digit already exists at that place
@@ -78,7 +77,7 @@ bool sudokuSolver(vector<vector<char>>& board, int row, int col)
     }
 
     //if digit does not already exist: place digit at correct place
-    for(char digit='1'; digit<='9'; digit++)
+    for(char digit = '1'; digit <= '9'; digit++)
     {
         if(isSafe(board, row, col, digit)) //means it is safe to place digit at that place
         {
@@ -115,9 +114,9 @@ int main()
     solveSudoku(board);
 
     //to display output:
-    for (const auto& row : board) {
+    for (auto& row : board) {
         cout << "[";
-        for (size_t i = 0; i < row.size(); ++i) {
+        for (int i = 0; i < row.size(); ++i) {
             cout << "\"" << row[i] << "\"";
             if (i < row.size() - 1) cout << ",";
         }
