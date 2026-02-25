@@ -16,11 +16,11 @@
 using namespace std;
 
 //helper fn
-int recBinarySearch(vector <int>& arr, int target, int st, int end)
+int recBinarySearch(vector<int>& arr, int target, int st, int end)
 {
     if(st <= end)
     {
-        int mid= st + (end-st)/2;
+        int mid = st + (end-st)/2;
 
         if(arr[mid] == target) return mid;
 
@@ -38,15 +38,15 @@ int recBinarySearch(vector <int>& arr, int target, int st, int end)
 }
 
 //this is given in Q
-int search(vector <int> & arr, int target)
+int search(vector<int>& arr, int target)
 {
     return recBinarySearch(arr, target, 0, arr.size()-1); //start=0 and end= n-1
 }
 
 int main()
 {
-    vector <int> arr = {-1,0,3,5,9,12};
-    cout<< search(arr,9) <<endl; //returns the idx at which the target is, if it exists in the array
+    vector<int> arr = {-1,0,3,5,9,12};
+    cout << search(arr,9) << endl; //returns the idx at which the target is, if it exists in the array
     return 0;
 }
 
