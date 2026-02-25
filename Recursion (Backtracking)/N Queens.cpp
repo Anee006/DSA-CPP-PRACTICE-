@@ -97,10 +97,10 @@ int main()
 
     // Print the result
     cout << "[";
-    for (size_t i = 0; i < ans.size(); i++) 
+    for (int i = 0; i < ans.size(); i++) 
     {
         cout << "[";
-        for (size_t j = 0; j < ans[i].size(); ++j) 
+        for (int j = 0; j < ans[i].size(); j++) 
         {
             cout << "\"" << ans[i][j] << "\"";
             if (j < ans[i].size() - 1) 
