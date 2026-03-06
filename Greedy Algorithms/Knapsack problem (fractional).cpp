@@ -38,6 +38,7 @@ double knapsack(int M, vector<Item>& items)
         {
             // take the fraction of the item
             totalProfit += item.ratio * M;
+            break; // once knapsack is full, we stop
         }
     }
     return totalProfit;
