@@ -1,4 +1,5 @@
 // LeetCode 349
+// Using Hash Set (optimal)
 
 // Given two integer arrays nums1 and nums2, return an array of their intersection. 
 // Each element in the result must be unique and you may return the result in any order.
@@ -14,12 +15,30 @@ Output: [9,4]
 Explanation: [4,9] is also accepted.
 */
 
+
+// LOGIC:
+// store el of nums1 in a set.
+// traverse nums2. If an el exists in the set --> add it to the result & remove it from the set (maintains uniqueness)
+
+
+
 #include <iostream>
 #include <vector>
+#include <unordered_set> // using unordered as order doesn't matter
 using namespace std;
 
 vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
 
+    unordered_set<int> s(nums1.begin(), nums1.end()); // add arr1 in the set
+    vector<int> result;
+
+    for(int el : nums2) {
+        if(s.count(el)) {
+            result.push_back(el);
+            s.erase(el);
+        }
+    }
+    return result;
 }
 
 int main() {
@@ -44,7 +63,7 @@ int main() {
         nums2.push_back(el);
     }
 
-    cout << "Intersection is: ";
+    cout << "\nIntersection is: ";
     vector<int> ans = intersection(nums1, nums2);
 
     for(int val : ans) cout << val << " ";
