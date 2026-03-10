@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
 void print_reverse(string str, int idx) //str is the string to be reversed and idx is the variable to store the index.
 {
     if(idx == 0) //base case
@@ -14,6 +15,7 @@ void print_reverse(string str, int idx) //str is the string to be reversed and i
     cout << str.at(idx); //to print the character at that particular index
     print_reverse(str, idx-1); //as we want to print in reverse order
 }
+
 int main()
 {
     string str = "abcd";
