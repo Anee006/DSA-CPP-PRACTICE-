@@ -1,4 +1,5 @@
 // LeetCode 974
+// using prefix sum + remainder 
 
 // Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
 // A subarray is a contiguous part of an array.
@@ -12,7 +13,7 @@ Explanation: There are 7 subarrays with a sum divisible by k = 5:
 */
 
 // LOGIC:
-// Use prefix sums. If 2 prefix sums have the same Count when divided by k, then subarray b/w them is divisible by k.
+// If 2 prefix sums have the same Count when divided by k, then subarray b/w them is divisible by k.
 // If (prefix[i] % k = prefix[j] % k) then (prefix[j] - prefix[i]) % k = 0
 // so subarray (i+1...j) has sum divisible by k
 
