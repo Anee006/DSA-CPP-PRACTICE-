@@ -38,3 +38,9 @@ int main()
 
     return 0;
 }
+
+// we can also use builtin fn to tell if a no. is present in an array or not (return true or false)
+/*
+vector<int> v = {1,2,3,4,5};
+cout << binary_search(v.begin(), v.end(), 4); --> here, if 4 is present it prints 1 else prints 0
+*/
