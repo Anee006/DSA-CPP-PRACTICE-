@@ -36,3 +36,9 @@ int main()
 
     return 0;
 }
+
+// can also use builtin fn to find LCM:
+/*
+int a=20, b=28;
+cout << lcm(a,b);
+*/
