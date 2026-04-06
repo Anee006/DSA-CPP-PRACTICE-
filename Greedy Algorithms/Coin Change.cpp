@@ -18,3 +18,5 @@ int main() {
 
     return 0;
 }
+
+// TC = O(nlog n + k), where n = number of coin types , k = number of coins used
