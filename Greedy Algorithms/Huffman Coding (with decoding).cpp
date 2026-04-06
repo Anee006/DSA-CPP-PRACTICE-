@@ -118,7 +118,7 @@ int main()
 
     string decoded = decode(root, encoded);
 
-    cout << "Hiffman Codes:\n";
+    cout << "Huffman Codes:\n";
     for(auto pair: huffmanCode)
     {
         cout << pair.first << " : " << pair.second << endl;
