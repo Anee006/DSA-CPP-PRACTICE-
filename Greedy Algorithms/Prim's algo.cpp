@@ -66,7 +66,7 @@ int main()
         totalWeight += weight;
         parent[u] = p;
 
-        // 3. Traverse adj list of u --> explore neighbors
+        // Traverse adj list of u --> explore neighbors
         for(auto edge: adj[u]) {
             int v = edge.first; // v is the adjacent node
             int wt = edge.second;
