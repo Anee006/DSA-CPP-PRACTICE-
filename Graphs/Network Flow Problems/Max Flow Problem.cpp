@@ -20,10 +20,8 @@
 #include <climits>
 using namespace std;
 
-#define V 6 // no. of vertices
-
 // BFS to find if path exists from src to sink
-bool bfs(vector<vector<int>>& residual, int s, int t, vector<int>& parent) {
+bool bfs(vector<vector<int>>& residual, int V, int s, int t, vector<int>& parent) {
     vector<bool> visited(V, false);
     queue<int> q;
 
@@ -48,14 +46,14 @@ bool bfs(vector<vector<int>>& residual, int s, int t, vector<int>& parent) {
 }
 
 // Ford-Fulkerson Algorithm
-int fordFulkerson(vector<vector<int>>& graph, int s, int t) {
+int fordFulkerson(vector<vector<int>>& graph, int V, int s, int t) {
     vector<vector<int>> residual = graph; // residual graph
     vector<int> parent(V);
 
     int maxFlow = 0;
 
     // while there exists an augmenting path
-    while(bfs(residual, s, t, parent)) {
+    while(bfs(residual, V, s, t, parent)) {
         int pathFlow = INT_MAX;
 
         // find min capacity in path
@@ -75,8 +73,10 @@ int fordFulkerson(vector<vector<int>>& graph, int s, int t) {
     return maxFlow;
 }
 
-
 int main() {
+
+    int V = 6;
+
     // adjacency matrix where if an edge exists, we write the edge capacity
     vector<vector<int>> graph = {
         {0, 11, 12, 0, 0, 0},
@@ -89,7 +89,7 @@ int main() {
 
     int source = 0, sink = 5;
 
-    cout << "Max Flow: " << fordFulkerson(graph, source, sink);
+    cout << "Max Flow: " << fordFulkerson(graph, V, source, sink);
 
     return 0;
 }
