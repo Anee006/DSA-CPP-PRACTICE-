@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    vector<pair<int, int>> activities = {{1,3}, {2,5}, {4,7}, {6,9}};
+    vector<pair<int, int>> activities = {{1,3}, {2,5}, {4,7}, {6,9}}; // each pair represents: (start_time, finish_time)
 
     // sort by finish time
     sort(activities.begin(), activities.end(), 
