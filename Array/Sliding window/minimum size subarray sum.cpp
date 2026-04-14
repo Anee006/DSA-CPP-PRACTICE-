@@ -18,10 +18,28 @@ Explanation: The subarray [4,3] has the minimal length under the problem constra
 #include <vector>
 using namespace std;
 
+int minSubArrayLen(int target, vector<int>& nums) {
+    int n = nums.size();
+    int l = 0, sum = 0, ans = n + 1;
+
+    for(int r = 0; r < n; r++) {
+        sum += nums[r];
+
+        while(sum >= target) {
+            ans = min(ans, r - l + 1);
+            sum -= nums[l];
+            l++;
+        }
+    }
+    return (ans == nums.size() + 1) ? 0 : ans; // to handle case when no valid subarray exists
+}
+
 int main() {
     int target = 7;
     vector<int> nums = {2,3,1,2,4,3};
 
+    cout << "Minimal length of subarray: " << minSubArrayLen(target, nums);
+    
     return 0;
 }
 
