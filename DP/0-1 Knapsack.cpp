@@ -19,7 +19,7 @@ void knapsack(int n, int W, vector<int>& wt, vector<int>& val) {
         }
     }
 
-    cout << "Max value: " << dp[n][W] << endl;
+    cout << "Max value (benefit): " << dp[n][W] << endl;
 
     // Backtrack to find the selected items --> the "x" vector
     vector<int> x(n, 0); // sol vector
@@ -43,11 +43,11 @@ void knapsack(int n, int W, vector<int>& wt, vector<int>& val) {
 }
 
 int main() {
-    int n = 3; // no. of items
-    int W = 50; // max capacity of knapsack
+    int n = 4; // no. of items
+    int W = 8; // max capacity of knapsack
 
-    vector<int> wt = {10, 20, 30};   // weight of each item in the knapsack
-    vector<int> val = {60, 100, 120};  // benefit of each item in the knapsack
+    vector<int> wt = {2, 3, 4, 5};   // weight of each item in the knapsack
+    vector<int> val = {1, 2, 5, 6};  // benefit of each item in the knapsack
 
     knapsack(n, W, wt, val);
     return 0;
