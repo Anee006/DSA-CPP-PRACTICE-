@@ -20,7 +20,7 @@ int coinChange(vector<int>& coins, int amount) {
 
     for(int i = 1; i <= amount; i++) {
         for(int c : coins) {
-            if(i - c >= 0 && dp[i-1] != INT_MAX) {
+            if(i - c >= 0 && dp[i-c] != INT_MAX) {
                 dp[i] = min(dp[i] , dp[i-c] + 1);
             }
         }
