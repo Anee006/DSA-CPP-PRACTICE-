@@ -23,7 +23,17 @@ Note that different sequences are counted as different combinations.
 using namespace std;
 
 int combinationSum4(vector<int>& nums, int target) {
+    vector<int> dp(target+1, 0);
+    dp[0] = 1; // base case
 
+    for(int i=1; i <= target; i++) {
+        for(int num : nums) {
+            if(i-num >= 0) {
+                dp[i] += dp[i-num];
+            }
+        }
+    }
+    return dp[target];
 }
 
 int main() {
@@ -33,3 +43,5 @@ int main() {
     cout << "Number of possible combinations: " << combinationSum4(nums, target);
     return 0;
 }
+
+// TC = O(n * target), SC = O(target)
