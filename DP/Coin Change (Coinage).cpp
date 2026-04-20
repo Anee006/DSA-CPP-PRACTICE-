@@ -25,7 +25,7 @@ int coinChange(vector<int>& coins, int amount) {
             }
         }
     }
-    return dp[amount];
+    return (dp[amount] == INT_MAX ? -1 : dp[amount]); // to handle the case when no combination is possible
 }
 
 int main() {
