@@ -23,13 +23,25 @@ Explanation: there are four ways to make up the amount:
 using namespace std;
 
 int change(vector<int>& coins, int amount) {
+    vector<int> dp(amount + 1, 0); // DP array
 
+    dp[0] = 1; // base case: there is only 1 way to make amount 0 --> choose nothing
+
+    // fill DP table
+    for(int c : coins) { // iterate over coins first
+        for(int i = c; i <= amount; i++) {
+            dp[i] += dp[i-c]; // add the no. of ways
+        }
+    }
+    return dp[amount]; // required ans
 }
 
 int main() {
     vector<int> coins = {1, 2, 5};
     int amount = 5;
 
-    cout << "Bumber of combinations: " << change(coins, amount);
+    cout << "Number of combinations: " << change(coins, amount);
     return 0;
 }
+
+// TC = O(n * amount), SC = O(amount)
