@@ -53,4 +53,4 @@ int main() {
     return 0;
 }
 
-// TC = O(n * W)
+// TC = O(n * W), SC = O(n * W)
