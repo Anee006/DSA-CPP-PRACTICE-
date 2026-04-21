@@ -24,7 +24,34 @@ coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167
 using namespace std;
 
 int maxCoins(vector<int>& nums) {
+    int n = nums.size();
 
+    // When we burst a balloon, coins = left * current * right.
+    // What if there is no left or right balloon? Instead of handling edge cases again and again: add 1 at both ends
+    vector<int> arr(n+2);
+    arr[0] = arr[n+1] = 1;  // pad array: [1, 3, 1, 5, 8, 1]  --> add 1
+
+
+    for(int i=0; i<n; i++) {
+        arr[i+1] = nums[i];  // shift elements by +1 index
+    }
+
+    // dp[i][j] --> max coins we can get from range(i,j). i and j are NOT included.
+    vector<vector<int>> dp(n+2, vector<int>(n+2, 0));
+
+    for(int len = 2; len <= n+1; len++) {
+        for(int i=0; i + len <= n + 1; i++) {
+            int j = i + len;
+
+            // try every k as last balloon
+            for(int k = i+1; k < j; k++) {
+                int coins = dp[i][k] + dp[k][j] + arr[i] * arr[k] * arr[j];
+
+                dp[i][j] = max(dp[i][j], coins);
+            }
+        }
+    }
+    return dp[0][n+1];
 }
 
 int main() {
