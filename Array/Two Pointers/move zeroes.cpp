@@ -1,5 +1,5 @@
 // LeetCode 283
-// using 2 pointers (i --> traverses array, j --> keeps track of pos where next non-zero el should be placed)
+// using 2 pointers (i and j)
 
 // Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
@@ -11,7 +11,15 @@
 using namespace std;
 
 void moveZeroes(vector<int>& nums) {
-        
+    int j = 0; // position to place next non-zero el
+
+    // move all non-zero el forward
+    for(int i = 0; i < nums.size(); i++) {
+        if(nums[i] != 0) {
+            swap(nums[i], nums[j]);
+            j++;
+        }
+    }
 }
 
 int main() {
@@ -23,3 +31,5 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n), SC = O(1)
