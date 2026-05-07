@@ -6,33 +6,36 @@
 
 // Given a string s="Ac3?e3c&a", return true if it is a palindrome, or false otherwise.
 
-// TC of code= O(n)
+// TC of code= O(n), SC = O(1)
 
 #include <iostream>
 #include <string>
 using namespace std;
 
 //to check is a char is alphanumeric or not
+/*
 bool isAlphaNum(char ch) {
-    if( (ch >='0' && ch <='9') || (tolower(ch) >= 'a' && tolower(ch) <= 'z')) // converted both uppercase & lowercase to lowercase and then checking
+    if((ch >='0' && ch <='9') || (tolower(ch) >= 'a' && tolower(ch) <= 'z')) // converted both uppercase & lowercase to lowercase and then checking
         return true;
 
     return false; // else case
 }
-// NOTE: can also use isalnum() here instead of creating this fn, which is a built-in fn to check if a char is alphanumeric 
+*/
+// NOTE: can also use isalnum() here instead of creating this fn, which is a built-in fn 
 
 bool isPalindrome(string s) {
     int st = 0;
     int end = s.length()-1;
 
     while(st < end) {
-        if(!isAlphaNum(s[st]))  // checking for start case
+        // to check if a char is alphanumeric (using inbuilt fn)
+        if(!isalnum(s[st]))  // checking for start case
         {
             st++; // move pointer forward
             continue; // as we want to check it continuously
         }
 
-        if(!isAlphaNum(s[end]))  // checking for end case
+        if(!isalnum(s[end]))  // checking for end case
         {
             end--;
             continue;
