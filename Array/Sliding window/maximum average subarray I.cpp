@@ -1,4 +1,5 @@
 // LeetCode 643
+// Using Fixed Sliding Window (size = k)
 
 // You are given an integer array nums consisting of n elements, and an integer k.
 // Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value.
@@ -12,7 +13,22 @@
 using namespace std;
 
 double findMaxAverage(vector<int>& nums, int k) {
-        
+    double windowSum = 0;
+
+    // find sum of 1st window of size k
+    for(int i=0; i<k; i++) {
+        windowSum += nums[i];
+    }
+
+    double maxSum = windowSum;
+
+    // slide the window
+    for(int i = k; i < nums.size(); i++) {
+
+        windowSum += nums[i] - nums[i-k]; // add next el & remove prev el
+        maxSum = max(maxSum, windowSum);
+    }
+    return maxSum/k; // to find max avg
 }
 
 int main() {
@@ -22,3 +38,5 @@ int main() {
     cout << "Maximum average is: " << findMaxAverage(nums, k);
     return 0;
 }
+
+// TC = O(n), SC = O(1)
