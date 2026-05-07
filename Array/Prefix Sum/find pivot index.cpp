@@ -23,7 +23,21 @@
 using namespace std;
 
 int pivotIndex(vector<int>& nums) {
-        
+    int totalSum = 0;
+
+    // find total sum of arr
+    for(int num : nums) totalSum += num;
+
+    int leftSum = 0;
+
+    for(int i = 0; i < nums.size(); i++) {
+        int rightSum = totalSum - leftSum - nums[i];
+
+        if(leftSum == rightSum) return i; // found pivot idx
+
+        leftSum += nums[i]; // update left sum
+    }
+    return -1; // no pivot idx exists
 }
 
 int main() {
@@ -32,3 +46,5 @@ int main() {
     cout << "Pivot index: " << pivotIndex(nums);
     return 0;
 }
+
+// TC = O(n) , SC = O(1)
