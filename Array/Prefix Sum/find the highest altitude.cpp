@@ -16,7 +16,15 @@
 using namespace std;
 
 int largestAltitude(vector<int>& gain) {
-        
+    int currAltitude = 0; // starting altitude
+    int maxAltitude = 0; // highest altitude seen so far
+
+    for(int i=0; i < gain.size(); i++) {
+        currAltitude += gain[i]; // update current altitude
+
+        maxAltitude = max(maxAltitude, currAltitude); // update max altitude
+    }
+    return maxAltitude;
 }
 
 int main() {
@@ -25,3 +33,5 @@ int main() {
     cout << "Highest altitude reached: " << largestAltitude(gain);
     return 0;
 }
+
+// TC = O(n) , SC = O(1)
