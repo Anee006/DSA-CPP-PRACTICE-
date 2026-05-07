@@ -1,4 +1,3 @@
-// #notes
 // LeetCode 11
 // using Brute Force approach: We find out all possible containers and find the amt of water each container can store. Then we find the max amt.
 // TC: O(n^2). "Gives TLE".
