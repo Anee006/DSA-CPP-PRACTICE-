@@ -1,4 +1,5 @@
 // #notes
+// LeetCode 50
 // to create pow(x,n) , which calculates x raised to power n  (x^n)
 
 // We'll use BINARY EXPONENTIATION for this as its time complexity is less.
