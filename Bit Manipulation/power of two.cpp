@@ -7,6 +7,8 @@
 using namespace std;
 
 bool isPowerOfTwo(int n) {
+    if(n <= 0) return false; // edge case
+    
     return ((n & (n-1)) == 0); // if True --> n is a power of 2 
 }
 
