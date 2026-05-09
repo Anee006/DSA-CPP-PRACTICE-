@@ -10,8 +10,9 @@
 // Explanation: Possible partition [1,1],[2,2],[3,3],[4,4].
 
 // LOGIC:
-// use hash table "m" to count freq of each no. Only when X is divisor of gcd of all m[i], it satisfy's given req.
-// find gcd of the occurence of all numbers and check whether it is >= 2.
+// Count frequency of each card.
+// Compute GCD of all frequencies.
+// If final GCD > 1 --> possible. Else --> not possible.
 
 #include <iostream>
 #include <vector>
