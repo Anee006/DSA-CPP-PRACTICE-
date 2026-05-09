@@ -9,18 +9,45 @@
 // Output: true
 // Explanation: Possible partition [1,1],[2,2],[3,3],[4,4].
 
+// LOGIC:
+// use hash table "m" to count freq of each no. Only when X is divisor of gcd of all m[i], it satisfy's given req.
+// find gcd of the occurence of all numbers and check whether it is >= 2.
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 using namespace std;
 
 bool hasGroupsSizeX(vector<int>& deck) {
-        
+    unordered_map<int, int> m;
+    
+    for(int card : deck) {
+        m[card]++; // find freq of each card
+    }
+
+    int g = 0;
+
+    // find gcd of all freq
+    for(auto it : m) {
+        g = __gcd(g, it.second);
+    }
+    
+    return (g > 1); // valid only if gcd > 1
 }
 
 int main() {
     vector<int> deck = {1,2,3,4,4,3,2,1};
     
-    cout << hasGroupsSizeX(deck);
+    if(hasGroupsSizeX(deck)) cout << "True";
+    else cout << "False";
+
     return 0;
 }
+
+// TC:
+// Counting frequencies: O(n) , n = number om = distinct card valuesf cards
+// GCD over frequencies: O(mlogn) , m = distinct card values
+// overall TC = O(n) 
+
+// SC = O(m)
