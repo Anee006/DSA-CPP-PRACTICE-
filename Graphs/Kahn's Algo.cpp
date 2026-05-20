@@ -70,8 +70,15 @@ public:
             }
         }
 
+        // check for cycle
+        if(result.size() != V) {
+            cout <<"Cycle exists. Topological sort not possible";
+            return;
+        }
+
         cout << "Topological Sorted Order:\n";
         for(int val : result) cout << val << " ";
+        cout << endl;
     }
 };
 
@@ -89,3 +96,5 @@ int main() {
 
     return 0;
 }
+
+// TC = O(V + E)
