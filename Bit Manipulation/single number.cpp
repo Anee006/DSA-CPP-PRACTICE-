@@ -7,7 +7,7 @@
 // Output: 4
 
 // LOGIC:
-// use BITWISE XOR operator.
+// use BITWISE XOR operator
 // Rules of BITWISE XOR:
 // 0^0 = 0  //same, so cancels
 // 1^1 = 0  //same, so cancels
@@ -41,3 +41,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
