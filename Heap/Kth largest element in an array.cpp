@@ -10,12 +10,27 @@
 // 1st largest el = 6
 // 2nd largest el = 5 --> ANS
 
+// LOGIC:
+// use min heap of size k to solve without using sorting.
+// keep the largest k elements seen so far in a min-heap.
+// if heap size exceeds k --> remove the smallest el from the heap.
+// in the end, the el at root of the heap is the kth largest el.
+
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 int findKthLargest(vector<int>& nums, int k) {
-        
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+
+    for(int num : nums) {
+        minHeap.push(num);
+
+        if(minHeap.size() > k ) minHeap.pop();
+    }
+    
+    return minHeap.top();
 }
 
 int main() {
