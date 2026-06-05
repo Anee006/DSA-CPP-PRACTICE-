@@ -50,5 +50,5 @@ int main() {
     return 0;
 }
 
-// TC = O(n + m log m)
+// TC = O(n + m log m) , m = number of distinct elements
 // SC = O(m)
