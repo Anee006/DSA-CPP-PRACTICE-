@@ -51,3 +51,4 @@ int main() {
 }
 
 // TC = O(n + m log m)
+// SC = O(n)
