@@ -12,7 +12,7 @@
 #include <vector>
 using namespace std;
 
-int maxArea(vector <int>& height) {
+int maxArea(vector<int>& height) {
     int n = height.size(); 
     int lp = 0; //left pointer
     int rp = n-1; //right pointer
