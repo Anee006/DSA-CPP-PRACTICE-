@@ -31,7 +31,7 @@
 #include <vector>
 using namespace std;
 
-void mergeArrays(vector <int>& A, int m, vector<int>& B, int n) {
+void mergeArrays(vector<int>& A, int m, vector<int>& B, int n) {
     int idx = m + n - 1;
     int i = m-1;
     int j = n-1;
