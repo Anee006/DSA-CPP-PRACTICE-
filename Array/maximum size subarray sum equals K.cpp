@@ -1,4 +1,4 @@
-// Longest Sum with subarray Sum N. (LeetCode 325)
+// Maximum size subarray sum equals K (LeetCode 325)
 // using hashing (prefix sum + hashmap)
 
 // Find the length of the longest subarray whose sum equals k.
