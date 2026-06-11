@@ -1,23 +1,23 @@
 // #newnotes
-//INORDER PREDECESSOR AND INORDER SUCCESSOR IN A BST
+// INORDER PREDECESSOR AND INORDER SUCCESSOR IN A BST
 
-//Given a key, return its IP and IS , where IP = Inorder Predecessor and IS = Inorder Successor.
-//Key might be a value which may not exist in the BST.
-//Assume that the IP and IS for a key will always exist in the BST.
+// Given a key, return its IP and IS , where IP = Inorder Predecessor and IS = Inorder Successor.
+// Key might be a value which may not exist in the BST.
+// Assume that the IP and IS for a key will always exist in the BST.
 
-//IP --> the node just before the key in the inorder traversal of the BST
-//IS --> the node just after the key in the inorder traversal of the BST
+// IP --> the node just before the key in the inorder traversal of the BST
+// IS --> the node just after the key in the inorder traversal of the BST
 
-//LOGIC:
-//Find the key in the BST following inorder manner. Assume that we will get IP and IS while searching for the key.
-//Three cases are possible when searching for a key in a BST:
-//Case 1: key < curr->val --> search for key in LST
-//in case 1, when we are searching for the key in the LST, the root may be a potential candidate for IS.
+// LOGIC:
+// Find the key in the BST following inorder manner. Assume that we will get IP and IS while searching for the key.
+// Three cases are possible when searching for a key in a BST:
+// Case 1: key < curr->val --> search for key in LST
+// in case 1, when we are searching for the key in the LST, the root may be a potential candidate for IS.
 
-//Case 2: key > curr->val -->search for key in RST. 
-//in case 2, when we are searching for the key in the RST, the root may be a potential candidate for IP.
+// Case 2: key > curr->val -->search for key in RST. 
+// in case 2, when we are searching for the key in the RST, the root may be a potential candidate for IP.
 
-//Case 3: key == curr->val
+// Case 3: key == curr->val
 
 #include <iostream>
 #include <vector>
@@ -45,12 +45,12 @@ Node* rightMostInLeftSubTree(Node* root)
     while(root != NULL)
     {
         ans = root;
-        root = root->right; //to get the right-most
+        root = root->right; // to get the right-most
     }
     return ans;
 }
 
-//to get the IS
+// to get the IS
 Node* leftMostInRightSubtree(Node* root)
 {
     Node* ans;
@@ -58,57 +58,57 @@ Node* leftMostInRightSubtree(Node* root)
     while(root != NULL)
     {
         ans = root;
-        root = root->left; //to get the left-most
+        root = root->left; // to get the left-most
     }
     return ans;
 }
 
-//returns the IP and IS of the key after storing it in a vector
+// returns the IP and IS of the key after storing it in a vector
 vector<int> getInorderPreAndSuc(Node* root, int key)
 {
     Node* curr = root;
-    Node* pred = NULL; //to store the IP
-    Node* succ = NULL; //to store the IS
+    Node* pred = NULL; // to store the IP
+    Node* succ = NULL; // to store the IS
 
     while(curr != NULL)
     {
-        //case 1:
-        if(key < curr->data) //search in LST
+        // case 1:
+        if(key < curr->data) // search in LST
         {
-            succ = curr; //current node may be a potential IS for the key, hence storing it.
+            succ = curr; // current node may be a potential IS for the key, hence storing it.
             curr = curr->left;
         }
 
-        //case 2:
-        else if(key > curr->data) //search in RST
+        // case 2:
+        else if(key > curr->data) // search in RST
         {
-            pred = curr; //curr may be a potential IP, hence storing it
+            pred = curr; // curr may be a potential IP, hence storing it
             curr = curr->right;
         }
 
-        //case 3:
+        // case 3:
         else
         {
             if(curr->left != NULL)
             {
-                //find the IP
+                // find the IP
 
                 pred = rightMostInLeftSubTree(curr->left);
             }
 
             if(curr->right != NULL)
             {
-                //find the IS
+                // find the IS
 
                 succ = leftMostInRightSubtree(curr->right);
             }
             break;
         }
     }
-    return {pred->data, succ->data}; //returning a vector of IP and IS
+    return {pred->data, succ->data}; // returning a vector of IP and IS
 }
-//TC = O(h), h is the height of the BST
-//SC = O(1)
+// TC = O(h), h is the height of the BST
+// SC = O(1)
 
 int main()
 {
