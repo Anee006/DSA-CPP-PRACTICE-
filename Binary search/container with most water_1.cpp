@@ -14,7 +14,7 @@
 #include <vector>
 using namespace std;
 
-int maxArea(vector <int>& height) {
+int maxArea(vector<int>& height) {
     int maxWater = 0; 
     int n = height.size(); 
 
@@ -32,7 +32,7 @@ int maxArea(vector <int>& height) {
 }
 
 int main() {
-    vector <int> height = {1,8,6,2,5,4,8,3,7};
+    vector<int> height = {1,8,6,2,5,4,8,3,7};
     cout << "Max water that can be stored is: " << maxArea(height) << endl;
 
     return 0;
