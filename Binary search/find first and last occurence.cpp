@@ -20,11 +20,11 @@ int firstOccurrence(vector<int>& arr, int target) {
         if(arr[mid] == target) {
             ans = mid;
             high = mid-1; // search left --> to find the 1st occurrence
-        } else if(arr[mid] < target) {
-            low = mid+1; // search right
-        } else {
-            high = mid-1; // search left
-        }
+        } 
+
+        else if(arr[mid] < target) low = mid+1; // search right
+
+        else high = mid-1; // search left
     }
     return ans;
 }
@@ -40,11 +40,11 @@ int lastOccurrence(vector<int>& arr, int target) {
         if(arr[mid] == target) {
             ans = mid;
             low = mid + 1; // search right --> to find the last occurrence
-        } else if(arr[mid] < target) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
         }
+
+        else if(arr[mid] < target) low = mid + 1;
+            
+        else high = mid - 1;
     }
     return ans;
 }
