@@ -1,10 +1,10 @@
-// PATH SUM (LeetCode 112)
+// LeetCode 112
 
-//Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up 
-//all the values along the path equals targetSum.
+// Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up 
+// all the values along the path equals targetSum.
 
-//Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
-//Output: true (5 + 4 + 11 + 2 = 22)
+// Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+// Output: true (5 + 4 + 11 + 2 = 22)
 
 #include <iostream>
 using namespace std;
@@ -23,26 +23,22 @@ class Node
         }
 };
 
-bool hasPathSum(Node* root, int targetSum)
-{
-    if(root == NULL) return false; //if tree is empty no path exists
+bool hasPathSum(Node* root, int targetSum) {
+    if(root == NULL) return false; // if tree is empty no path exists
 
-    //check if it's a leaf node
-    if(root->left == NULL && root->right == NULL)
-    {
-        return root->data == targetSum; //returns true if path exists else returns false
+    // check if it's a leaf node
+    if(root->left == NULL && root->right == NULL) {
+        return root->data == targetSum; // returns true if path exists else returns false
     }
 
-    //check left and right subtrees with remaining sum
+    // check left and right subtrees with remaining sum
 
     int remainingSum = targetSum - root->data;
 
     return hasPathSum(root->left, remainingSum) || hasPathSum(root->right, remainingSum);
 }
-//TC = O(n)
 
-int main()
-{
+int main() {
     Node* root = new Node(5);
     root->left = new Node(4);
     root->right = new Node(8);
@@ -58,3 +54,5 @@ int main()
 
     return 0;
 }
+
+// TC = O(n)
