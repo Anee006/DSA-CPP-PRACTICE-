@@ -1,5 +1,5 @@
 // #newnotes
-// FLOOD FILL (LeetCode 733)
+// LeetCode 733
 // using DFS of graphs
 
 // You are given an image represented by an m x n grid of integers "image", where image[i][j] represents the pixel value of the image. 
@@ -29,16 +29,13 @@
 using namespace std;
 
 // to change color of starting node and its neighbor using DFS
-void DFS(vector<vector<int>>& image, int i, int j, int newColor, int orgColor) // sr = i and sc = j here
-{
+void DFS(vector<vector<int>>& image, int i, int j, int newColor, int orgColor) { // sr = i and sc = j here
 
     // base case:
-    // (image[i][j] == newColor) --> if cell color is already changed with new color then do not visit that cell again. This is to avoid getting stuck in a loop.
+    // (image[i][j] == newColor) --> if cell color is already changed with new color then do not visit that cell again --> to avoid getting stuck in a loop.
     // (image[i][j] != orgColor) --> if cell color does not match the color of the starting cell i.e, original color, then do not change its color.
-    if(i < 0 || j < 0 || i >= image.size() || j >=image[0].size() || image[i][j] == newColor || image[i][j] != orgColor)
-    {
-        return;
-    }
+
+    if(i < 0 || j < 0 || i >= image.size() || j >=image[0].size() || image[i][j] == newColor || image[i][j] != orgColor) return;
     
     image[i][j] = newColor; // change color of starting node to new color
 
@@ -47,18 +44,15 @@ void DFS(vector<vector<int>>& image, int i, int j, int newColor, int orgColor) /
     DFS(image, i, j+1, newColor, orgColor); // right
     DFS(image, i+1, j, newColor, orgColor); // bottom
     DFS(image, i, j-1, newColor, orgColor); // left
-
 }
 
-vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color)
-{
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
     DFS(image, sr, sc, color, image[sr][sc]); // color --> newColor and (image[sr][sc]) --> original color of starting node
 
     return image;
 }
 
-int main()
-{
+int main() {
     int sr = 1; // starting row
     int sc = 1; // starting column
     int color = 2;
@@ -73,10 +67,8 @@ int main()
 
     cout << "Updated image:\n";
 
-    for(int i=0; i<image.size(); i++) // for rows
-    {
-        for(int j=0; j<image[0].size(); j++) // for cols
-        {
+    for(int i=0; i<image.size(); i++) { // for rows
+        for(int j=0; j<image[0].size(); j++) { // for cols
             cout << image[i][j] << " ";
         }
         cout << endl;
@@ -85,3 +77,5 @@ int main()
 
     return 0;
 }
+
+// TC = O(m x n) where, m = no. of rows , n = no. of cols
