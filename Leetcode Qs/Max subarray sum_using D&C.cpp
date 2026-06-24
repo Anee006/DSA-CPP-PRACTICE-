@@ -1,8 +1,8 @@
-//To print the sum of sub array which is max (LeetCode 53)
-//Using Divide & Conquer Approach --> TC = O(n logn) 
+// LeetCode 53
+// Using Divide & Conquer Approach  
 
-//Given array: {3,-4,5,4-1,7,-8}
-//Max possible subarray: 5,4,-1,7.  //Max possible sub array sum is: 15
+// Given array: {3,-4,5,4-1,7,-8}
+// Max possible subarray: 5,4,-1,7.  // Max possible sub array sum is: 15
 
 #include <iostream>
 #include <algorithm>
@@ -45,9 +45,7 @@ int maxSubArray(int arr[], int left, int right) {
     return max(max(leftMax, rightMax), crossMax);
 }
 
-
-int main()
-{
+int main() {
     int arr[] = {3,-4,5,4-1,7,-8};
     int n = sizeof(arr)/ sizeof(int);
 
@@ -55,3 +53,5 @@ int main()
 
     return 0;
 }
+
+// TC = O(n logn)
