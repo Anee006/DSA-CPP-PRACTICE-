@@ -1,4 +1,4 @@
-// BRUTE FORCE APPROACH
+// using BRUTE FORCE APPROACH
 // For the given array = {2,7,11,15}, return the pair with the target sum of 9.
 
 #include <iostream>
