@@ -5,8 +5,6 @@
 // We'll use BINARY EXPONENTIATION for this as its time complexity is less.
 // If we use loop here i.e, if we run a loop n times and multiply x to itself, its time complexity is O(n), so it gives Time limit exceeded error.
 
-// in binary exponentiation, we run a loop on the binary form of our power. so time complexity comes as O(log n).
-
 #include <iostream>
 using namespace std;
 
@@ -44,3 +42,5 @@ int main() {
     cout << pow(3,5);
     return 0;
 }
+
+// TC = O(log n).
