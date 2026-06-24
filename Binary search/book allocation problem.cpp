@@ -15,7 +15,7 @@
 #include <vector>
 using namespace std;
 
-//to check if our mid is valid
+// to check if our mid is valid
 bool isValid(vector<int>& arr, int n, int m, int maxAllowedPages) {
     int stu = 1; // at first we have only 1 student
     int pages = 0; // we have 0 pages to allocate
@@ -25,8 +25,7 @@ bool isValid(vector<int>& arr, int n, int m, int maxAllowedPages) {
 
         if(pages + arr[i] <= maxAllowedPages) pages += arr[i]; // means can add more pages
 
-        else
-        {
+        else {
             stu++; // need to bring a new student
             pages = arr[i];
         }
@@ -47,7 +46,7 @@ int allocateBooks(vector<int>& arr, int n, int m) {
     while(st <= end) {
         int mid= st + (end-st)/2;
 
-        if(isValid(arr,n,m,mid)) { //if returns true means ans is valid
+        if(isValid(arr,n,m,mid)) { // if returns true means ans is valid
             ans = mid;
             end = mid-1; // we have to search in left whenever ans is valid, to find an even smaller ans than the current one
         }
@@ -57,11 +56,10 @@ int allocateBooks(vector<int>& arr, int n, int m) {
     return ans; // the req min of the max no of pages allocated
 }
 
-int main()
-{
-    vector<int> arr= {2,1,3,4}; //2,1,3,4 represent the no. of pages
-    int n = 4; //we have 4 books
-    int m = 2; //we need to allocate it to 2 students
+int main() {
+    vector<int> arr = {2,1,3,4}; // 2,1,3,4 represent the no. of pages
+    int n = 4; // 4 books
+    int m = 2; // need to allocate 4 books to 2 students
 
     cout << allocateBooks(arr,n,m) << endl;
 
