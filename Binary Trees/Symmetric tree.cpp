@@ -1,6 +1,6 @@
-//  SYMMETRIC TREE (LeetCode 101)
+// LeetCode 101
 
-//Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+// Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
 
 #include <iostream>
 #include <vector>
@@ -20,33 +20,25 @@ class Node
         }
 };
 
-bool isMirror(Node* p, Node* q)
-{
+bool isMirror(Node* p, Node* q) {
     if(p == NULL && q == NULL) return true;  // if both are NULL means are symmetric
 
-    if(p == NULL || q == NULL) return false;  //if only one is NULL means not symmetric
+    if(p == NULL || q == NULL) return false;  // if only one is NULL means not symmetric
 
     return (p->data == q->data) && 
             isMirror(p->left , q->right) &&
             isMirror(p->right, q->left);
 }
 
-//to check if tree is symmetric 
-bool isSymmetric(Node* root)
-{
-    if(root == NULL)   //base case
-    {
-        return true;  
-    }
+// to check if tree is symmetric 
+bool isSymmetric(Node* root) {
+    if(root == NULL) return true; // base case
 
-    return isMirror(root->left, root->right); //to check if the left and right subtree are symmetric or not
+    return isMirror(root->left, root->right); // to check if the left and right subtree are symmetric or not
 }
-//TC = O(n)
-//SC = O(n)
 
-//example of symmetric tree
-Node* buildTree()
-{
+// example of symmetric tree
+Node* buildTree() {
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(2);
@@ -58,9 +50,8 @@ Node* buildTree()
     return root;
 }
 
-//example of non-symmetric tree
-Node* buildAnotherTree()
-{
+// example of non-symmetric tree
+Node* buildAnotherTree() {
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
@@ -70,31 +61,23 @@ Node* buildAnotherTree()
     return root;
 }
 
-int main()
-{
+int main() {
     Node* root = buildTree();
 
-    if(isSymmetric(root))
-    {
-        cout << "Tree is symmetric" << endl;
-    }
-    else
-    {
-        cout << "Tree is not symmetric" << endl;
-    }
+    if(isSymmetric(root)) cout << "Tree is symmetric" << endl;
+
+    else cout << "Tree is not symmetric" << endl;
 
     cout << endl;
 
     Node* root2 = buildAnotherTree();
 
-    if(isSymmetric(root2))
-    {
-        cout << "Tree is symmetric" << endl;
-    }
-    else
-    {
-        cout << "Tree is not symmetric" << endl;
-    }
-    return 0;
+    if(isSymmetric(root2)) cout << "Tree is symmetric" << endl;
     
+    else cout << "Tree is not symmetric" << endl;
+    
+    return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
