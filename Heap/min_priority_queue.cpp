@@ -1,12 +1,11 @@
-//to create min priority queue
+// to create min priority queue
 
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    priority_queue<int, vector<int>, greater<int> > p; //min heap
+int main() {
+    priority_queue<int, vector<int>, greater<int> > p; // min heap
 
     p.push(10);
     p.push(20);
@@ -16,9 +15,8 @@ int main()
 
     cout << "Min element: " << p.top() << endl;
 
-    //to print elements:
-    while(!p.empty())
-    {
+    // to print elements:
+    while(!p.empty()) {
         cout << p.top() << " ";
         p.pop();
     }
