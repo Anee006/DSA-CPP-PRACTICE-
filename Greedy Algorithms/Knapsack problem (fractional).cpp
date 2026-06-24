@@ -5,37 +5,31 @@
 #include <algorithm>
 using namespace std;
 
-struct Item
-{
+struct Item {
     int profit, weight;
     double ratio;
 };
 
 // Comparator function to sort items by profit/weight ratio
-bool compare(Item a, Item b)
-{
+bool compare(Item a, Item b) {
     return a.ratio > b.ratio; // to sort in desc order
 }
 
-double knapsack(int M, vector<Item>& items)
-{
+double knapsack(int M, vector<Item>& items) {
     // Sort items by profit/weight ratio in decreasing order
     sort(items.begin(), items.end(), compare);
 
     double totalProfit = 0.0;
 
-    for(auto item : items)
-    {
+    for(auto item : items) {
         if(M == 0) break; 
 
-        if(item.weight <= M)
-        {
+        if(item.weight <= M) {
             // take the whole item
             totalProfit += item.profit;
             M -= item.weight; // update knapsack capacity
         }
-        else
-        {
+        else {
             // take the fraction of the item
             totalProfit += item.ratio * M;
             break; // once knapsack is full, we stop
@@ -44,8 +38,7 @@ double knapsack(int M, vector<Item>& items)
     return totalProfit;
 }
 
-int main()
-{
+int main() {
     int n = 7; // no. of items in knapsack
 
     int M = 15; // knapsack capacity
@@ -61,8 +54,7 @@ int main()
     };
 
     // calc profit/weight ratio
-    for(auto &item: items)
-    {
+    for(auto &item: items) {
         item.ratio = (double)item.profit / item.weight;
     }
 
