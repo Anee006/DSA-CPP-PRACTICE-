@@ -41,3 +41,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n * log(k)) where, n = no. of elements and k = req kth largest element
+// SC = O(k)
