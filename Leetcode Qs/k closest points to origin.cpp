@@ -1,4 +1,4 @@
-// K Closest Points to Origin (LeetCode 973)
+// LeetCode 973
 
 // List of points have been given on 2D Plane. Calculate K closest points to the origin (0,0) (Consider
 // euclidean distance to find the distance between two points). 
@@ -22,7 +22,6 @@ vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
     vector<vector<int>> result(points.begin(), points.begin() + k);
     return result;
 }
-// TC = O(nlogn)
 
 int main() {
     vector<vector<int>> points = {{3,3}, {5,-1}, {-2, 4}};
@@ -34,3 +33,5 @@ int main() {
 
     return 0;
 }
+
+// TC = O(nlogn)
