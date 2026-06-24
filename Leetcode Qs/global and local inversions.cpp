@@ -1,4 +1,5 @@
-// Finding global and local inv using Divide and conquer --> TC = O(n logn)
+// Leetcode 775
+// Finding global and local inv using Divide and conquer 
 
 // Given an array ARR of size N which is a permutation of numbers from 0 to N-1. 
 // Global Inversion: A pair (i, j) such that: i < j AND ARR[i] > ARR[j].
@@ -70,8 +71,11 @@ int main() {
     return 0;
 }
 
+// TC = O(n logn)
+
 /*
 TO SOLVE SAME PROBLEM IN O(N) TC:
 "Global inversions = Local inversions, iff no element is more than 1 position away from its index"
 Meaning: | arr[i] - i | <= 1  --> gives O(N) TC
 */
+
