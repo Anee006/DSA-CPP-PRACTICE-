@@ -1,9 +1,10 @@
-//ZIG-ZAG LEVEL ORDER TRAVERSAL  OR  SPIRAL ORDER TRAVERSAL  (LeetCode 103)
+// LeetCode 103
+// ZIG-ZAG LEVEL ORDER TRAVERSAL  OR  SPIRAL ORDER TRAVERSAL  
 
-//Given the root of a binary tree, return the zigzag level order traversal of its nodes' values. 
-//(i.e., from left to right, then right to left for the next level and alternate between)
+// Given the root of a binary tree, return the zigzag level order traversal of its nodes' values. 
+// (i.e., from left to right, then right to left for the next level and alternate between)
 
-//Using BFS (iterative) level order approach.
+// Using BFS (iterative) level order approach.
 
 #include <iostream>
 #include <vector>
@@ -24,28 +25,25 @@ class Node
         }
 };
 
-vector<vector<int>> zigzagLevelOrder(Node* root)
-{
-    vector<vector<int>> result;  //to store the zigzag level order
+vector<vector<int>> zigzagLevelOrder(Node* root) {
+    vector<vector<int>> result;  // to store the zigzag level order
 
-    if(root == NULL) return result; //base case
+    if(root == NULL) return result; // base case
 
     queue <Node*> q;
     q.push(root);
 
-    bool leftToRight = true; //direction flag  //initially we start from left to right, then we reverse the direction to right to left.
+    bool leftToRight = true; // direction flag  // initially we start from left to right, then we reverse the direction to right to left.
 
-    while(q.size() > 0)
-    {
+    while(q.size() > 0) {
         int size = q.size();
-        vector<int> level(size);  //to store the nodes that belong to the same level
+        vector<int> level(size);  // to store the nodes that belong to the same level
 
-        for(int i=0; i<size; i++)
-        {
+        for(int i=0; i<size; i++) {
             Node* curr = q.front();
             q.pop();
 
-            //find position to fill the node
+            // find position to fill the node
             int idx = leftToRight ? i : (size-1-i);
             level[idx] = curr->data;
 
@@ -53,13 +51,12 @@ vector<vector<int>> zigzagLevelOrder(Node* root)
             if(curr->right != NULL) q.push(curr->right);
         }
         result.push_back(level);
-        leftToRight = !leftToRight; //to flip the direction for the next level
+        leftToRight = !leftToRight; // to flip the direction for the next level
     }
     return result;
 }
 
-int main()
-{
+int main() {
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
@@ -70,20 +67,15 @@ int main()
 
     vector<vector<int>> ans = zigzagLevelOrder(root);
 
-
     cout << "Zigzag Level Order Traversal:\n";
 
-    for(auto level: ans)
-    {
-        for(int x: level)
-        {
-            cout << x << " ";
-        }
+    for(auto level: ans) {
+        for(int x: level) cout << x << " ";
         cout << endl;
     }
 
     return 0;
 }
 
-//TC = O(n)
-//SC = O(n)
+// TC = O(n)
+// SC = O(n)
