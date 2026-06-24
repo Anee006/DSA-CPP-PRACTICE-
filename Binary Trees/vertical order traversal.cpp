@@ -1,11 +1,10 @@
-//VERTICAL ORDER TRAVERSAL (LeetCode 987)
+// LeetCode 987
 
-//Given the root of a binary tree, calculate the vertical order traversal of the binary tree.
+// Given the root of a binary tree, calculate the vertical order traversal of the binary tree.
+// For each node at position (row, col), its left and right children will be at positions (row + 1, col - 1) and (row + 1, col + 1) respectively. 
+// The root of the tree is at (0, 0).
 
-//For each node at position (row, col), its left and right children will be at positions (row + 1, col - 1) and (row + 1, col + 1) respectively. 
-//The root of the tree is at (0, 0).
-
-//There may be multiple nodes in the same row and same column. In such a case, sort these nodes by their values.
+// There may be multiple nodes in the same row and same column. In such a case, sort these nodes by their values.
 
 #include <iostream>
 #include <map>
@@ -27,46 +26,38 @@ class Node
         }
 };
 
-void verticalOrder(Node* root)
-{
-    if(root == NULL) return; //base case
+void verticalOrder(Node* root) {
+    if(root == NULL) return; // base case
 
-    map<int, vector<int>> m;  //to store the HD and the nodes that have the same HD in form of a vector
-    queue<pair<Node*, int>> q; //to store the val at node and its Horizontal distance
+    map<int, vector<int>> m;  // to store the HD and the nodes that have the same HD in form of a vector
+    queue<pair<Node*, int>> q; // to store the val at node and its Horizontal distance
 
     q.push({root,0});
 
-    while(q.size() > 0)
-    {
-        Node* curr = q.front().first;  //to get the node val
-        int currHD = q.front().second; //to get the HD
+    while(q.size() > 0) {
+        Node* curr = q.front().first;  // to get the node val
+        int currHD = q.front().second; // to get the HD
         q.pop();
 
-        m[currHD].push_back(curr->data); //pushing the nodes having same HD into the vector<int>
+        m[currHD].push_back(curr->data); // pushing the nodes having same HD into the vector<int>
 
-        if(curr->left != NULL)
-        {
+        if(curr->left != NULL) {
             q.push({curr->left, currHD-1});
         }
-        if(curr->right != NULL)
-        {
+
+        if(curr->right != NULL) {
             q.push({curr->right, currHD+1});
         }
     }
 
-    //printing the result:
-    for(auto it: m)
-    {
-        for(int x: it.second) //to print the value stored in vector 
-        {
-            cout << x << " ";
-        }
+    // printing the result:
+    for(auto it: m) {
+        for(int x: it.second) cout << x << " "; // to print the value stored in vector 
         cout << endl;
     }
 }
 
-int main()
-{
+int main() {
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
@@ -81,3 +72,6 @@ int main()
     
     return 0;
 }
+
+// TC = O(n log n)
+// SC = O(n)
