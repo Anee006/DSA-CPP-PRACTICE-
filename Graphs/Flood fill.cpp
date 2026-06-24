@@ -79,3 +79,4 @@ int main() {
 }
 
 // TC = O(m x n) where, m = no. of rows , n = no. of cols
+// SC = O(m x n)
