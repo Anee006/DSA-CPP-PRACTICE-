@@ -1,5 +1,5 @@
 // #newnotes
-//VALIDATE BST (LeetCode 98)
+// LeetCode 98
 
 /*
 Given the root of a binary tree, determine if it is a valid binary search tree (BST).
@@ -10,12 +10,11 @@ A valid BST is defined as follows:
 - Both the left and right subtrees must also be binary search trees.
 */
 
-//LOGIC:
-//check that for a node its left subtree contains val only < node->val and its right subtree contains val only > node->val.
-//i.e, leftMax < node->val < rightMax, where leftMax is the max val in the LST and rightMax is the max val in the RST.
-
-//for a node check if it lies within the (min,max) range for that node. If it does, then it's a valid node and can check for lst & rst.
-//else it is an invalid node hence BST is invalid, return false.
+// LOGIC:
+// check that for a node its left subtree contains val only < node->val and its right subtree contains val only > node->val.
+// i.e, leftMax < node->val < rightMax, where leftMax is the max val in the LST and rightMax is the max val in the RST.
+// for a node check if it lies within the (min,max) range for that node. If it does, then it's a valid node and can check for lst & rst.
+// else it is an invalid node hence BST is invalid, return false.
 
 #include <iostream>
 #include <vector>
@@ -35,38 +34,31 @@ class Node
         }
 };
 
-//helper fn
-bool helper(Node* root, Node* min , Node* max) //here, min and max will be based on the nodes of the bst
-{
-    if(root == NULL) return true; //a null node is a valid BST
+// helper fn
+bool helper(Node* root, Node* min , Node* max) { // here, min and max will be based on the nodes of the bst
+    if(root == NULL) return true; // a null node is a valid BST
 
     // we'd assumed the min and max value to be +infinity and -infinity. Here we consider (min,max) as NULL
 
-    if(min != NULL && root->data <= min->data)  //compare root with the min allowed val
-    {
-        return false; //if root->data becomes greater than the min value, invalid bst
-    }
+    // compare root with the min allowed val
+    if(min != NULL && root->data <= min->data) return false; // if root->data becomes greater than the min value, invalid bst
 
-    if(max != NULL && root->data >= max->data) //compare root with the max allowed val
-    {
-        return false;
-    }
+    // compare root with the max allowed val
+    if(max != NULL && root->data >= max->data) return false; 
+        
 
-    return helper(root->left, min, root) &&   //for LST, min val remains same but max val becomes equal to the parent
-            helper(root->right, root, max);   //for RST, max val remains same but min val becomes equal to the parent
+    return helper(root->left, min, root) &&   // for LST, min val remains same but max val becomes equal to the parent
+            helper(root->right, root, max);   // for RST, max val remains same but min val becomes equal to the parent
 
-    //Note: both in the above return statement should return true for it to be a valid BST
-}
-//TC = O(n)
-
-bool isValidBST(Node* root)
-{
-    return helper(root, NULL, NULL); //min = NULL and max = NULL
+    // Note: both in the above return statement should return true for it to be a valid BST
 }
 
-int main()
-{
-    //valid BST example
+bool isValidBST(Node* root) {
+    return helper(root, NULL, NULL); // min = NULL and max = NULL
+}
+
+int main() {
+    // valid BST example
     Node* root1 = new Node(2);
     root1->left = new Node(1);
     root1->right = new Node(3);
@@ -77,7 +69,7 @@ int main()
 
     cout << endl;
 
-    //invalid BST example
+    // invalid BST example
     Node* root2 = new Node(5);
     root2->left = new Node(1);
     root2->right = new Node(4);
@@ -90,3 +82,5 @@ int main()
 
     return 0;
 }
+
+// TC = O(n)
