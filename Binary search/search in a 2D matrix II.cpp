@@ -21,7 +21,7 @@
 #include <vector>
 using namespace std;
 
-bool searchMatrix(vector<vector<int>>& matrix, int target) { // TC= O(log m)
+bool searchMatrix(vector<vector<int>>& matrix, int target) { 
     int m = matrix.size(); // to find no. of rows
     int n = matrix[0].size(); // to find no. of cols
 
@@ -32,7 +32,7 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) { // TC= O(log m)
         
         else if(target < matrix[row][col]) col--; // go left, that is decrease col by one
         
-        else row++;// go one row down i.e, increase row by one
+        else row++; // go one row down i.e, increase row by one
     }
     return false;
 }
