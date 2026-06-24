@@ -52,7 +52,7 @@ bool searchInRow(vector<vector<int>>& matrix, int target, int row) {
 }
 
 bool searchMatrix(vector<vector<int>>& matrix, int target) {
-    //Apply binary search on all rows
+    // Apply binary search on all rows
 
     int m = matrix.size(); // to find no. of rows
     int n = matrix[0].size(); // to find no. of cols
@@ -62,11 +62,11 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int midRow = startRow + (endRow-startRow)/2;
 
         if(target >= matrix[midRow][0] && target <= matrix[midRow][n-1]) {
-            //means we have found the target row -> apply binary search on this row
+            // means we have found the target row -> apply binary search on this row
             return searchInRow(matrix, target, midRow);
 
         }
-        else if(target >= matrix[midRow][n-1]) { //means we have to go one row down (i.e to the right side)
+        else if(target >= matrix[midRow][n-1]) { // means we have to go one row down (i.e to the right side)
             startRow = midRow + 1;
         }
         else { // means we have to go one row up (i.e to the left side)
@@ -79,7 +79,7 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
 int main() {
     vector<vector<int>> matrix= {{1,3,5,7}, {10,11,16,20}, {23,30,34,60}};
     
-    cout << searchMatrix(matrix, 34) << endl; // target=34
+    cout << searchMatrix(matrix, 34) << endl; // target = 34
 
     return 0;
 }
