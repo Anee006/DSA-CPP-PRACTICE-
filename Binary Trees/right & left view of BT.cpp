@@ -1,4 +1,4 @@
-//RIGHT SIDE VIEW and LEFT SIDE VIEW of BINARY TREE 
+// RIGHT SIDE VIEW and LEFT SIDE VIEW of BINARY TREE 
 
 #include <iostream>
 #include <queue>
@@ -19,80 +19,59 @@ class Node
         }
 };
 
-//imagine yourself standing on the left side of tree, return the values of the nodes you can see ordered from top to bottom.
-void leftView(Node* root)
-{
+// imagine yourself standing on the left side of tree, return the values of the nodes you can see ordered from top to bottom.
+void leftView(Node* root) {
     queue <Node*> q;
     q.push(root);
 
     cout << "Left side view = [ ";
     
-    while(q.size() > 0)
-    {
+    while(q.size() > 0) {
         int n = q.size();
 
-        for(int i=0; i<n; i++)
-        {
+        for(int i=0; i<n; i++) {
             Node* curr = q.front();
             q.pop();
 
-            if(i == 0)
-            {
-                cout << curr->data << " ";
-            }
+            if(i == 0) cout << curr->data << " ";
 
-            if(curr->left != NULL)
-            {
-                q.push(curr->left);
-            }
-            if(curr->right != NULL)
-            {
-                q.push(curr->right);
-            }
+            if(curr->left != NULL) q.push(curr->left);
+            
+            if(curr->right != NULL) q.push(curr->right);
         }        
     }
     cout << "]" << endl;
 }
+// TC = O(n) , SC = O(n)
 
-//imagine yourself standing on the right side of tree, return the values of the nodes you can see ordered from top to bottom.
-void rightView(Node* root)
-{
+// imagine yourself standing on the right side of tree, return the values of the nodes you can see ordered from top to bottom.
+void rightView(Node* root) {
     queue <Node*> q;
     q.push(root);
 
     cout << "Right side view = [ ";
 
-    while(q.size() > 0)
-    {
+    while(q.size() > 0) {
         int n = q.size();
 
-        for(int i=0; i<n; i++)
-        {
+        for(int i=0; i<n; i++) {
             Node* curr = q.front();
             q.pop();
 
-            if(i == n-1)
-            {
-                cout << curr->data << " ";
-            }
+            if(i == n-1) cout << curr->data << " ";
 
-            if(curr->left != NULL)
-            {
-                q.push(curr->left);
-            }
-            if(curr->right != NULL)
-            {
-                q.push(curr->right);
-            }
+            if(curr->left != NULL) q.push(curr->left);
+            
+            if(curr->right != NULL) q.push(curr->right);
         }
     }
-
     cout << "]" << endl;
 }
+// TC = O(n) , SC = O(n)
 
 static int idx = -1;
-Node* buildTree(vector <int>& preorder)
-{
+
+Node* buildTree(vector <int>& preorder) {
     idx++;
     Node* root = new Node(preorder[idx]);
 
@@ -104,8 +83,7 @@ Node* buildTree(vector <int>& preorder)
     return root;
 }
 
-int main()
-{
+int main() {
     vector<int> preorder = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
 
     Node* root = buildTree(preorder);
@@ -115,5 +93,4 @@ int main()
     rightView(root);
 
     return 0;
-
 }
