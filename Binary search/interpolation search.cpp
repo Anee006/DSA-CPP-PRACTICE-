@@ -8,14 +8,14 @@
 using namespace std;
 
 int interpolationSearch(int arr[], int n, int key) {
-    int low =0, high = n-1;
+    int low = 0, high = n-1;
 
     while(low <= high && key >= arr[low] && key <= arr[high]) {
 
-        //estimate position using this formula:
+        // estimate position using this formula:
         int pos = low + ((key - arr[low]) * (high - low) / (arr[high] - arr[low]));
 
-        //if estimated position was correct --> idx is found
+        // if estimated position was correct --> idx is found
         if(arr[pos] == key) return pos;
 
         if(arr[pos] < key ) low = pos + 1; // move right
