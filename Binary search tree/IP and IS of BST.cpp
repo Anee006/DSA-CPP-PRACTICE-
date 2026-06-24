@@ -37,13 +37,11 @@ class Node
         }
 };
 
-//to get the IP
-Node* rightMostInLeftSubTree(Node* root)
-{
+// to get the IP
+Node* rightMostInLeftSubTree(Node* root) {
     Node* ans;
 
-    while(root != NULL)
-    {
+    while(root != NULL) {
         ans = root;
         root = root->right; // to get the right-most
     }
@@ -51,12 +49,10 @@ Node* rightMostInLeftSubTree(Node* root)
 }
 
 // to get the IS
-Node* leftMostInRightSubtree(Node* root)
-{
+Node* leftMostInRightSubtree(Node* root) {
     Node* ans;
 
-    while(root != NULL)
-    {
+    while(root != NULL) {
         ans = root;
         root = root->left; // to get the left-most
     }
@@ -64,40 +60,33 @@ Node* leftMostInRightSubtree(Node* root)
 }
 
 // returns the IP and IS of the key after storing it in a vector
-vector<int> getInorderPreAndSuc(Node* root, int key)
-{
+vector<int> getInorderPreAndSuc(Node* root, int key) {
     Node* curr = root;
     Node* pred = NULL; // to store the IP
     Node* succ = NULL; // to store the IS
 
-    while(curr != NULL)
-    {
+    while(curr != NULL) {
         // case 1:
-        if(key < curr->data) // search in LST
-        {
+        if(key < curr->data) { // search in LST
             succ = curr; // current node may be a potential IS for the key, hence storing it.
             curr = curr->left;
         }
 
         // case 2:
-        else if(key > curr->data) // search in RST
-        {
+        else if(key > curr->data) { // search in RST
             pred = curr; // curr may be a potential IP, hence storing it
             curr = curr->right;
         }
 
         // case 3:
-        else
-        {
-            if(curr->left != NULL)
-            {
+        else {
+            if(curr->left != NULL) {
                 // find the IP
 
                 pred = rightMostInLeftSubTree(curr->left);
             }
 
-            if(curr->right != NULL)
-            {
+            if(curr->right != NULL) {
                 // find the IS
 
                 succ = leftMostInRightSubtree(curr->right);
@@ -110,8 +99,7 @@ vector<int> getInorderPreAndSuc(Node* root, int key)
 // TC = O(h), h is the height of the BST
 // SC = O(1)
 
-int main()
-{
+int main() {
     Node* root = new Node(6);
     root->left = new Node(4);
     root->right = new Node(8);

@@ -30,29 +30,24 @@ class Node
 };
 
 int prevOrder = 0; // to track the order of each node in the bst
-int kthSmallest(Node* root, int k)
-{
+
+int kthSmallest(Node* root, int k) {
     if(root == NULL) return -1;  // to indicate kth smallest is not yet found
 
     // left
-    if(root->left)
-    {
+    if(root->left) {
         int leftAns =  kthSmallest(root->left, k);
         if(leftAns != -1) return leftAns; // means we have found the kth smallest el
 
     }
 
     // root
-    if(prevOrder + 1 == k) // doing (prevOrder+1) bcoz we need 1-based indexing
-    {
-        return root->data;
-    }
+    if(prevOrder + 1 == k) return root->data; // doing (prevOrder+1) bcoz we need 1-based indexing
 
     prevOrder = prevOrder + 1; // updation
 
     // right
-    if(root->right)
-    {
+    if(root->right) {
         int rightAns = kthSmallest(root->right, k);
         if(rightAns != -1) return rightAns;
     }
@@ -61,8 +56,7 @@ int kthSmallest(Node* root, int k)
 }
 // TC = O(n)
 
-int main()
-{
+int main() {
     Node* root = new Node(5);
     root->left = new Node(3);
     root->right = new Node(6);

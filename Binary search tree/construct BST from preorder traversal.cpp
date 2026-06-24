@@ -32,8 +32,8 @@ class Node
         }
 };
 
-//helper
-Node* buildBST(vector<int>& preorder, int& i, int upperBound){ // used &i here bcoz we want to the same i value to get updated each time
+// helper
+Node* buildBST(vector<int>& preorder, int& i, int upperBound) { // used &i here bcoz we want to the same i value to get updated each time
     if(i >= preorder.size() || preorder[i] > upperBound) return NULL; // base case
     // i >= preorder.size() is when we have build the entire bst
     // preorder[i] > upperBound is when upperbound conditon becomes invalid

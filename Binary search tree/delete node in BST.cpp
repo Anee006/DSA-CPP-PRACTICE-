@@ -61,17 +61,17 @@ Node* getInorderSuccessor(Node* root) {
 Node* deleteNode(Node* root, int key) { // key is the node we have to delete
     if(root == NULL) return NULL;
 
-    if(key < root->data) { //go to lst to search for the node to be deleted
+    if(key < root->data) { // go to lst to search for the node to be deleted
         root->left = deleteNode(root->left, key);
     }
 
-    else if(key > root->data) { //go to rst
+    else if(key > root->data) { // go to rst
         root->right = deleteNode(root->right, key);
     }
 
-    else  { //when root->data == key. This is where actual deletion happens
+    else  { // when root->data == key. This is where actual deletion happens
 
-        //Case 1 --> node to be deleted has 0 child nodes
+        // Case 1 --> node to be deleted has 0 child nodes
         if(root->left == NULL) {
             Node* temp = root->right; // temp can either have a null value or a valid value stored in it.
             delete root; // delete the node
