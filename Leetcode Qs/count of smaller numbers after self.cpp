@@ -1,4 +1,4 @@
-// Count of Smaller Numbers After Self (LeetCode 315)
+// LeetCode 315
 // using Divide and Conquer Approach (uses modified Merge Sort)
 
 // Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].
@@ -21,9 +21,6 @@ Output: [0]
 // While merging: If an element from the left half is greater than an element from the right half, then all remaining elements in the right half are smaller.
 // We count how many elements from the right side move before each left element.
 
-#include <iostream>
-#include <vector>
-using namespace std;
 
 // we use vector<pair<int,int>>& arr  --> to store: {value, original_index}
 /*
@@ -115,3 +112,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n log n)
+// SC = O(n)
