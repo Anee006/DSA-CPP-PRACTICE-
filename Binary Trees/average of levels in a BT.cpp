@@ -1,13 +1,10 @@
-//AVERAGE OF LEVELS IN A BT (LeetCode 637)
+// LeetCode 637
 
-//Given the root of a binary tree, return the average value of the nodes on each level in the form of an array
+// Given the root of a binary tree, return the average value of the nodes on each level in the form of an array
 
-//Approach:
-//Use level order traversal. For each level: count the no. of nodes, sum their values and find avg.
+// LOGIC:
+// Use level order traversal. For each level: count the no. of nodes, sum their values and find avg.
 // average = sum / count
-
-
-//TC = O(n)
 
 #include <iostream>
 #include <vector>
@@ -28,35 +25,27 @@ class Node
         }
 };
 
-vector<double> averageOfLevels(Node* root)
-{
+vector<double> averageOfLevels(Node* root) {
     vector<double> result;
 
-    if(root == NULL) //base
-    {
-        return result;
-    }
+    if(root == NULL) return result; // base
 
     queue <Node*> q;
     q.push(root);
 
-    while(q.size() > 0)
-    {
+    while(q.size() > 0) {
         int levelSize = q.size();
-        long long levelSum = 0; //use long long to prevent overflow  //to calc sum of nodes in each level
+        long long levelSum = 0; // use long long to prevent overflow  // to calc sum of nodes in each level
 
-        for(int i=0; i<levelSize; i++)
-        {
+        for(int i = 0; i < levelSize; i++) {
             Node* curr = q.front();
             q.pop();
 
             levelSum += curr->data;
 
-            if(curr->left)
-                q.push(curr->left);
+            if(curr->left) q.push(curr->left);
 
-            if(curr->right)
-                q.push(curr->right);
+            if(curr->right) q.push(curr->right);
         }
 
         double avg = (double) levelSum / levelSize;
@@ -65,9 +54,7 @@ vector<double> averageOfLevels(Node* root)
     return result;
 }
 
-
-int main()
-{
+int main(){
     Node* root = new Node(3);
     root->left = new Node(9);
     root->right = new Node(20);
@@ -77,10 +64,9 @@ int main()
     vector <double> ans = averageOfLevels(root);
     cout << "Average of each level:\n";
 
-    for(auto val : ans)
-    {
-        cout << val << " ";
-    }
+    for(auto val : ans) cout << val << " ";
 
     return 0;
 }
+
+// TC = O(n)
