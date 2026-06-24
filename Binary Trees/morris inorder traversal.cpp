@@ -1,8 +1,8 @@
 // #newnotes
 
-//MORRIS INORDER TRAVERSAL
+// MORRIS INORDER TRAVERSAL
 
-//Used to print inorder traversal using iterative approach
+// Used to print inorder traversal using iterative approach
 
 #include <iostream>
 #include <vector>
@@ -22,37 +22,32 @@ class Node
         }
 };
 
-vector<int> inOrder(Node* root)
-{
+vector<int> inOrder(Node* root) {
     vector<int> ans;
     Node* curr = root;
 
-    while(curr != NULL)
-    {
-        if(curr->left == NULL)
-        {
+    while(curr != NULL) {
+        if(curr->left == NULL) {
             ans.push_back(curr->data);
             curr = curr->right;
         }
-        else
-        {
-            //find the Inorder Predecessor
+
+        else {
+            // find the Inorder Predecessor
             Node* IP = curr->left;
 
-            while(IP->right != NULL && IP->right != curr)
-            {
-                IP = IP->right; //to find the right most node in the left subtree
+            while(IP->right != NULL && IP->right != curr) {
+                IP = IP->right; // to find the right most node in the left subtree
             }
 
-            //if the temporary thread is not created
-            if(IP->right == NULL)
-            {
+            // if the temporary thread is not created
+            if(IP->right == NULL) {
                 IP->right = curr;
                 curr = curr->left;
             }
-            else
-            {
-                //to delete the existing connection or thread
+             
+            else {
+                // to delete the existing connection or thread
                 IP->right = NULL;
                 ans.push_back(curr->data);
                 curr = curr->right;
@@ -62,8 +57,7 @@ vector<int> inOrder(Node* root)
     return ans;
 }
 
-int main()
-{
+int main() {
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
@@ -72,13 +66,10 @@ int main()
 
     vector<int> ans = inOrder(root);
 
-    for(int val: ans)
-    {
-        cout << val << " ";
-    }
+    for(int val: ans) cout << val << " ";
     cout << endl;
 
     return 0;
 }
 
-//TC = O(n)
+// TC = O(n)
