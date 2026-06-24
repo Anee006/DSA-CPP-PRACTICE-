@@ -1,7 +1,7 @@
 // #newnotes
-// INVERT BINARY TREE (LeetCode 226)
+// LeetCode 226
 
-//Given the root of a binary tree, invert the tree, and return its root.
+// Given the root of a binary tree, invert the tree, and return its root.
 
 #include <iostream>
 #include <queue>
@@ -21,47 +21,40 @@ class Node
         }
 };
 
-Node* invertTree(Node* root)
-{
+Node* invertTree(Node* root) {
     if(root == NULL) return NULL;
 
-    //invert both subtrees 
+    // invert both subtrees 
     Node* leftInvert = invertTree(root->left);
     Node* rightInvert = invertTree(root->right);
 
-    //swap left and right pointers
+    // swap left and right pointers
     root->left = rightInvert;
     root->right = leftInvert;
 
     return root;
 }
-//TC = O(n)
 
-void levelOrder(Node* root)
-{
+
+void levelOrder(Node* root) {
     if(root == NULL) return;
 
     queue <Node*> q;
     q.push(root);
     q.push(NULL);
 
-    while(q.size() > 0)
-    {
+    while(q.size() > 0) {
         Node* curr = q.front();
         q.pop();
 
-        if(curr == NULL)
-        {
-            if(!q.empty())
-            {
+        if(curr == NULL) {
+            if(!q.empty()) {
                 cout << endl;
                 q.push(NULL);
                 continue;
             }
-            else
-            {
-                break;
-            }
+
+            else break;
         }
 
         cout << curr->data << " ";
@@ -71,8 +64,7 @@ void levelOrder(Node* root)
     }
 }
 
-int main()
-{
+int main() {
     Node* root = new Node(4);
     root->left = new Node(2);
     root->right = new Node(7);
@@ -92,3 +84,5 @@ int main()
 
     return 0;
 }
+
+// TC = O(n)
