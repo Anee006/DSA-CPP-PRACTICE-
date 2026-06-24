@@ -7,8 +7,7 @@
 #include <climits>
 using namespace std;
 
-int main()
-{
+int main() {
     int V = 6; // no. of vertices
 
     // Adjacency list: each entry stores (neighbor, weight)
@@ -72,7 +71,7 @@ int main()
             int wt = edge.second;
 
             if(!visited[v]) {
-                pq.push({wt, v, u});  //parent[v] = u
+                pq.push({wt, v, u});  // parent[v] = u
             }
         }
     }
@@ -80,9 +79,8 @@ int main()
     cout << "Total MST weight = " << totalWeight << endl;
 
     cout << "\nEdges in MST:\n";
-    for(int i = 1; i < V; i++) {
-        cout << parent[i] << " - " << i << endl;
-    }
+    for(int i = 1; i < V; i++) cout << parent[i] << " - " << i << endl;
+
     return 0;
 }
 
