@@ -1,4 +1,4 @@
-// COURSE SCHEDULE II (LeetCode 210)
+// LeetCode 210
 // Using Topological sorting
 
 // There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
@@ -21,94 +21,72 @@
 using namespace std;
 
 // to detect cycle in directed graph using DFS
-bool hasCycleDFS(int src, vector<bool>& vis, vector<bool>& recPath, vector<vector<int>>& prerequisites)
-{
+bool hasCycleDFS(int src, vector<bool>& vis, vector<bool>& recPath, vector<vector<int>>& prerequisites) {
     vis[src] = true;
     recPath[src] = true;
 
     // loop through all the edges of the graph
-    for(int i=0; i<prerequisites.size(); i++)
-    {
+    for(int i = 0; i < prerequisites.size(); i++) {
         int v = prerequisites[i][0]; // for an edge: u---->v
         int u = prerequisites[i][1];
 
-        if(u == src)
-        {
-            if(!vis[v]) // if neigh "v" is not visited
-            {
-                if(hasCycleDFS(v, vis, recPath, prerequisites))
-                {
-                    return true;
-                }
+        if(u == src) {
+            if(!vis[v]) { // if neigh "v" is not visited
+                if(hasCycleDFS(v, vis, recPath, prerequisites)) return true;
             }
-            else if(recPath[v]) // condition for "back edge" --> cycle is present
-            {
-                return true;
-            }
+
+            // condition for "back edge" --> cycle is present
+            else if(recPath[v]) return true;
         }
     }
-
     recPath[src] = false;
     return false;
 }
 
 // to get the topologically sorted order
-void topoSort(int src, vector<bool>& vis, stack<int>& s, vector<vector<int>>& prerequisites)
-{
+void topoSort(int src, vector<bool>& vis, stack<int>& s, vector<vector<int>>& prerequisites) {
     vis[src] = true;
 
     // visit all neighbors 
-    for(int i=0; i<prerequisites.size(); i++)
-    {
+    for(int i = 0; i < prerequisites.size(); i++) {
         int v = prerequisites[i][0];
         int u = prerequisites[i][1];
 
-        if(u == src)
-        {
-            if(!vis[v])
-            {
+        if(u == src) {
+            if(!vis[v]) {
                 topoSort(v, vis, s, prerequisites);
             }
         }
     }
-
     s.push(src); // push "src" to stack
 }
 
-vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
-{
+vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
     vector<bool> vis(numCourses, false);
     vector<bool> recPath(numCourses, false);
     vector<int> ans; // stores the req ans
 
     // visit all vertices
-    for(int i=0; i<numCourses; i++)
-    {
-        if(!vis[i])
-        {
-            if(hasCycleDFS(i, vis, recPath, prerequisites)) // means cycle is present --> return empty vector
-            {
-                return ans; // returns an empty vector
-            }
+    for(int i = 0; i < numCourses; i++) {
+        if(!vis[i]) {
+
+            // if cycle is present --> return empty vector
+            if(hasCycleDFS(i, vis, recPath, prerequisites)) return ans; // returns an empty vector
         }
     }
 
     // If reached till here means no cycle is present --> perform Topological Sorting
+
     stack<int> s;
     vis.assign(numCourses, false); // reinitialise "vis" vector with "false" val, to perform topo sort
 
     // visit all vertices
-    for(int i=0; i<numCourses; i++)
-    {
-        if(!vis[i])
-        {
-            topoSort(i, vis, s, prerequisites);
-        }
+    for(int i = 0; i < numCourses; i++) {
+        if(!vis[i]) topoSort(i, vis, s, prerequisites);
     }
 
     // push stack elements into the "ans" vector to get the topo sorted order
-    while(s.size() > 0)
-    {
+    while(s.size() > 0) {
         ans.push_back(s.top());
         s.pop();
     }
@@ -116,8 +94,7 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
     return ans;
 }
 
-int main()
-{
+int main() {
     int numCourses = 4;
 
     vector<vector<int>> prerequisites = {
@@ -130,11 +107,10 @@ int main()
     vector<int> ans = findOrder(numCourses, prerequisites);
 
     cout << "Topologically sorted order : ";
-    for(int val : ans)
-    {
-        cout << val << " ";   // 0 2 1 3 
-    }
+    for(int val : ans) cout << val << " ";   // 0 2 1 3 
     cout << endl;
 
     return 0;
 }
+
+// TC = O(V * E) where V = numCourses , E = number of prerequisite pairs
