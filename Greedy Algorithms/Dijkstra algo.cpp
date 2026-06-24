@@ -10,24 +10,20 @@
 #include <climits>
 using namespace std;
 
-class Edge
-{
+class Edge {
 public:
     int v; // to store neighbors
     int w; // to store weights
 
-    Edge(int v, int w)
-    {
+    Edge(int v, int w) {
         this->v = v;
         this->w = w;
     }
 };
 
 // reconstruct the path from src to 'v'
-void printPath(int v, vector<int>& parent)
-{
-    if(parent[v] == -1) // is a 'src' node
-    {
+void printPath(int v, vector<int>& parent) {
+    if(parent[v] == -1) { // is a 'src' node
         cout << v;
         return;
     }        
@@ -36,8 +32,7 @@ void printPath(int v, vector<int>& parent)
     cout << " -> " << v;
 }
 
-void dijkstra(int src, vector<vector<Edge>> g, int V)
-{
+void dijkstra(int src, vector<vector<Edge>> g, int V) {
     vector<int> dist(V, INT_MAX); // stores the shortest dis from src to each vertex. Initially, each dis is infinity.
     dist[src] = 0; // distance of src = 0
 
@@ -48,17 +43,14 @@ void dijkstra(int src, vector<vector<Edge>> g, int V)
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > pq; // stores <dis[u], u>.
     pq.push({0, src});
 
-    while(pq.size() > 0)
-    {
+    while(pq.size() > 0) {
         int u = pq.top().second;  // to extract vertex
         pq.pop();
 
         // loop through neighbors of u
-        for(Edge e : g[u])
-        {
+        for(Edge e : g[u]) {
             // edge relaxation step:
-            if(dist[u] + e.w < dist[e.v])
-            {
+            if(dist[u] + e.w < dist[e.v]) {
                 dist[e.v] = dist[u] + e.w;
                 parent[e.v] = u; // track the prev vertex
                 pq.push({dist[e.v], e.v});
@@ -67,8 +59,7 @@ void dijkstra(int src, vector<vector<Edge>> g, int V)
     }
 
     // shortest distance from src to each vertex
-    for(int i=0; i<V; i++)
-    {
+    for(int i=0; i<V; i++) {
         cout << "Shortest distance to " << i << " = " << dist[i] << " , Path: ";
         printPath(i, parent);
         cout << endl;
@@ -76,8 +67,7 @@ void dijkstra(int src, vector<vector<Edge>> g, int V)
     cout << endl;
 }
 
-int main()
-{
+int main() {
     int V = 6; // no. of vertices
     vector<vector<Edge>> g(V);
 
@@ -95,9 +85,8 @@ int main()
     g[4].push_back(Edge(3,2));
     g[4].push_back(Edge(5,5));
 
-    
-
     dijkstra(0, g, V); // starting vertex = 0
+    
     return 0;
 }
 
