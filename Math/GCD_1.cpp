@@ -1,41 +1,26 @@
-//To find the GCD or HCF of two numbers
-//(without Euclid's algo )
+// To find the GCD or HCF of two numbers
+// (without Euclid's algo )
 
 #include <iostream>
 using namespace std;
 
-int GCD(int a, int b)
-{
-    int gcd = 1; //as 1 is divisble by any no. so if we fail to find any common divisor then 1 wil become the gcd
+int GCD(int a, int b) {
+    int gcd = 1; // as 1 is divisble by any no. so if we fail to find any common divisor then 1 wil become the gcd
 
-    //base case
-    if(a == 0)    //if any one of the two number becomes 0, then the other no. becomes the gcd
-    {
-        gcd = b;
-    }
+    // base case
+    if(a == 0)  gcd = b;   // if any one of the two number becomes 0, then the other no. becomes the gcd
 
-    if(b == 0)
-    {
-        gcd = a;
-    }
+    if(b == 0) gcd = a;
+    
+    if(a == b) gcd = a; // or we can also write: gcd=b, as both are same
 
-    if(a == b)
-    {
-        gcd = a; //or we can also write: gcd=b, as both are same
-    }
-
-    for(int i=1; i<= min(a,b); i++)
-    {
-        if(a % i ==0 && b % i ==0) //means if a number is divisble by both it can become the gcd
-        {
-            gcd = i;
-        }
+    for(int i=1; i <= min(a,b); i++) {
+        if(a % i == 0 && b % i == 0) gcd = i; // means if a number is divisble by both it can become the gcd
     }
     return gcd;
 }
 
-int main()
-{
+int main() {
     int a = 20, b = 28;
 
     cout << "GCD = " << GCD(a,b) << endl;
