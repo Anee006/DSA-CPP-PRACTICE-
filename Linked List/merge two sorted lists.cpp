@@ -18,15 +18,15 @@ using namespace std;
 
 class Node
 {
-    public:
-        int data;
-        Node* next;
+public:
+    int data;
+    Node* next;
 
-        Node(int val)
-        {
-            data = val;
-            next = NULL;
-        }
+    Node(int val)
+    {
+        data = val;
+        next = NULL;
+    }
 };
 
 // to merge two linked lists using their heads:

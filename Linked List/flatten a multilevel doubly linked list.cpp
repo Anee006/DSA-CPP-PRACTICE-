@@ -17,19 +17,19 @@ using namespace std;
 
 class Node
 {
-    public:
-        int data;
-        Node* next;
-        Node* prev;
-        Node* child; // child ptr
+public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node* child; // child ptr
 
-        Node(int val)
-        {
-            data = val;
-            next = NULL;
-            prev = NULL;
-            child = NULL;
-        }
+    Node(int val)
+    {
+        data = val;
+        next = NULL;
+        prev = NULL;
+        child = NULL;
+    }
 };
 
 // to flatten the multilevel list;

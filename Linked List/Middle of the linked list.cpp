@@ -35,70 +35,70 @@ using namespace std;
 
 class Node
 {
-    public:
-        int data;
-        Node* next;
+public:
+    int data;
+    Node* next;
 
-        Node(int val)
-        {
-            data = val;
-            next = NULL;
-        }
+    Node(int val)
+    {
+        data = val;
+        next = NULL;
+    }
 };
 
 class List
 {
-    public:
-        Node* head;
-        Node* tail;
+public:
+    Node* head;
+    Node* tail;
 
-        List() {
-            head = tail = NULL;
+    List() {
+        head = tail = NULL;
+    }
+
+    // push_back
+    void push_back(int val) {
+        Node* newNode = new Node(val);
+
+        if(head == NULL) {
+            head = tail = newNode;
+            return;
         }
 
-        // push_back
-        void push_back(int val) {
-            Node* newNode = new Node(val);
-
-            if(head == NULL) {
-                head = tail = newNode;
-                return;
-            }
-
-            else {
-                tail->next = newNode;
-                tail = newNode;
-            }
+        else {
+            tail->next = newNode;
+            tail = newNode;
         }
+    }
 
-        void printLL() {
-            Node* temp = head;
+    void printLL() {
+        Node* temp = head;
 
-            while(temp != NULL) {
-                cout<< temp->data <<" -> ";
-                temp = temp->next;
-            }
-            cout << "NULL" << endl;
+        while(temp != NULL) {
+            cout<< temp->data <<" -> ";
+            temp = temp->next;
         }
+        cout << "NULL" << endl;
+    }
 };
 
 // to calculate middle of linked list
 class Middle
 {
-    public:
-        // to find middle node
-        Node* middleNode(Node* head) {
-            Node* slow = head; // slow ptr
-            Node* fast = head; // fast ptr
+public:
+    // to find middle node
+    Node* middleNode(Node* head) {
+        Node* slow = head; // slow ptr
+        Node* fast = head; // fast ptr
 
-            // using && here bcoz we want to ensure that neither our fast should be NULL nor its next should be NULL
-            while(fast != NULL && fast->next != NULL) { 
-                slow = slow->next; // slow is updated by +1
-                fast = fast->next->next; // fast is updated by +2
-            }
-
-            return slow; // after coming out of loop, slow now points to the middle of the list.
+        // using && here bcoz we want to ensure that neither our fast should be NULL nor its next should be NULL
+        while(fast != NULL && fast->next != NULL) { 
+            slow = slow->next; // slow is updated by +1
+            fast = fast->next->next; // fast is updated by +2
         }
+
+        return slow; // after coming out of loop, slow now points to the middle of the list.
+    }
 };
 
 int main() {

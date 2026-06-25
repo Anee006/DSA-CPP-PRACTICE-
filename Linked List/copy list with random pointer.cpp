@@ -15,17 +15,17 @@ using namespace std;
 
 class Node
 {
-    public:
-        int data;
-        Node* next;
-        Node* random;
+public:
+    int data;
+    Node* next;
+    Node* random;
 
-        Node(int val)
-        {
-            data = val;
-            next = NULL;
-            random = NULL; // random node
-        }
+    Node(int val)
+    {
+        data = val;
+        next = NULL;
+        random = NULL; // random node
+    }
 };
 
 // to make deep copy of original list
