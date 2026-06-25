@@ -29,6 +29,8 @@ int main() {
 }
 
 // TC = O(min(a, b))
+// SC = O(1)
+
 
 // can also find GCD using builtin fn:
 /*

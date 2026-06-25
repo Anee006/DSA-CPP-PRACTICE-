@@ -25,3 +25,4 @@ int main() {
 }
 
 // TC = O(log(min(a, b)))
+// SC = O(1)
