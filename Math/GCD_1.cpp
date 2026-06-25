@@ -28,6 +28,8 @@ int main() {
     return 0;
 }
 
+// TC = O(min(a, b))
+
 // can also find GCD using builtin fn:
 /*
 int a = 20, b = 28;
