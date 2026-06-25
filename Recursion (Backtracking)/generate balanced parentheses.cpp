@@ -1,4 +1,4 @@
-// Generate Parentheses (LeetCode 22)
+// LeetCode 22
 
 // Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
@@ -32,13 +32,9 @@ void generate(int n, int open, int close, string curr, vector<string>& ans) {
         return;
     }
 
-    if(open < n) {
-        generate(n, open+1, close, curr + "(", ans); // add "("
-    }
+    if(open < n) generate(n, open+1, close, curr + "(", ans); // add "("
     
-    if(close < open) {
-        generate(n, open, close+1, curr + ")", ans); // add ")"
-    }
+    if(close < open) generate(n, open, close+1, curr + ")", ans); // add ")"
 }
 
 vector<string> generateParentheses(int n) {
