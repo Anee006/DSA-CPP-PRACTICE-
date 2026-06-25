@@ -18,8 +18,6 @@ Output: false
 Explanation: There is no cycle in the linked list.
 */
 
-// TC = O(n)
-// SC = O(1)
  
 #include <iostream>
 using namespace std;
