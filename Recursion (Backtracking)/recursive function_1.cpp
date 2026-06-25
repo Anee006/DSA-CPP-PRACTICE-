@@ -5,14 +5,6 @@ using namespace std;
 
 int factorial (int);
 
-// factorial is the recursive function.
-// process of a function calling itself repeatedly till base condition is reached is called recursion.
-int factorial (int x) {                          
-    if(x == 1 || x == 0) return 1; // base condition
-
-    return x * factorial(x-1);
-}
-
 int main() {
     int n;
     cout << "Enter a number: ";
@@ -21,3 +13,10 @@ int main() {
     return 0;
 }
 
+// factorial is the recursive function.
+// process of a function calling itself repeatedly till base condition is reached is called recursion.
+int factorial (int x) {                          
+    if(x == 1 || x == 0) return 1; // base condition
+
+    return x * factorial(x-1);
+}
