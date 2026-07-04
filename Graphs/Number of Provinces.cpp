@@ -10,22 +10,27 @@
 // Given an n x n matrix isConnected where isConnected[i][j] = 1 if the ith city and the jth city are directly connected, and isConnected[i][j] = 0 otherwise.
 // Return the total number of provinces.
 
+/*
+Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+Output: 2
+*/
+
 // LOGIC
 // is similar to the "no. of islands Q".
-// each city acts as a node or vertex of the graph.
-// connections exist only along the row.
+// each city acts as a node or vertex of the graph. 
+// So, n x n means there are "n" cities
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-void DFS(int city, vector<vector<bool>>& vis, vector<vector<int>>& isConnected, int n) { // no req of no. of cols here
-    vis[city][city] = true; // mark current city as visited
+void DFS(int i, vector<bool>& vis, vector<vector<int>>& isConnected) { 
+    vis[i] = true; // mark current city as visited
 
     // visit all neighbors of current city
-    for(int v = 0; v < n; v++) {
-        if(isConnected[city][v] == 1 && !vis[v][v]) { // if city & neighbor are connected and neighbor is not visited
-            DFS(v, vis, isConnected, n);
+    for(int v = 0; v < isConnected[i].size(); v++) {
+        if(isConnected[i][v] == 1 && !vis[v]) { // if city & neighbor are connected and neighbor is not visited
+            DFS(v, vis, isConnected);
         }
     }
 }
@@ -34,11 +39,11 @@ int numOfProvinces(vector<vector<int>>& isConnected) {
     int n = isConnected.size();  // for rows
     int provinces = 0;
 
-    vector<vector<bool>> vis(n, vector<bool>(n, false));
+    vector<bool> vis(n, false);
 
     for(int i=0; i<n; i++) {
-        if(!vis[i][i]) {
-            DFS(i, vis, isConnected, n);
+        if(!vis[i]) {
+            DFS(i, vis, isConnected);
             provinces++;  // One DFS call = one full province explored
         }
     }
@@ -46,7 +51,7 @@ int numOfProvinces(vector<vector<int>>& isConnected) {
 }
 
 int main() {
-    vector<vector<int>> isConnected = {
+    vector<vector<int>> isConnected = { // n = 3 here (3 x 3 matrix)
         {1,1,0},
         {1,1,0},
         {0,0,1}
