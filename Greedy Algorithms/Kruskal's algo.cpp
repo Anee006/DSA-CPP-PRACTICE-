@@ -1,4 +1,4 @@
-// Kruskal’s Algorithm for Minimum Spanning Tree 
+// Kruskal’s Algorithm for Minimum Spanning Tree using DSU
 
 #include <iostream>
 #include <vector>
