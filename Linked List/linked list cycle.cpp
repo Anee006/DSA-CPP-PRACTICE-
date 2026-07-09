@@ -62,12 +62,12 @@ int main() {
     third->next = fourth;
 
     // creating a cycle from fourth to second node (as given in Q)
-    fourth ->next = second;
+    fourth->next = second;
 
     // checking for cycle:
-    if(hasCycle(head)) cout << "Cycle detected in linked list" <<endl;
+    if(hasCycle(head)) cout << "Cycle detected in linked list" << endl;
     
-    else cout << "No cycle detected in the list" <<endl;
+    else cout << "No cycle detected in the list" << endl;
 
     //-------------------------------------------------------------------------------
     Node* Head = new Node(1);
@@ -78,9 +78,9 @@ int main() {
     two->next = three;
 
     // checking for cycle:
-    if(hasCycle(Head)) cout << "Cycle detected in linked list" <<endl;
+    if(hasCycle(Head)) cout << "Cycle detected in linked list" << endl;
     
-    else cout << "No cycle detected in the list" <<endl;
+    else cout << "No cycle detected in the list" << endl;
     
     return 0;
 }
