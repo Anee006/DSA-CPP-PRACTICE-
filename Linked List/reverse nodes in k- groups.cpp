@@ -1,3 +1,4 @@
+// #notes
 // Leetcode 25
 // using recursion
 
@@ -61,6 +62,7 @@ Node* reverseKGroup(Node* head, int k) {
 // to print the reversed list:
 void print(Node* head) {
     Node* temp = head;
+    
     while(temp != NULL) {
         cout << temp->data << " -> ";
         temp = temp->next;
