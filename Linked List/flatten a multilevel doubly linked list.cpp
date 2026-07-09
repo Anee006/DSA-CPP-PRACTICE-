@@ -39,6 +39,7 @@ Node* flatten(Node* head) {
     Node*curr = head; // to access each node of doubly linked list
 
     while(curr != NULL) {
+
         if(curr->child != NULL) { // means a valid child node exists
             // to flatten the child nodes
             Node* next = curr->next; // points to the node after curr
@@ -65,7 +66,7 @@ Node* flatten(Node* head) {
 void printFlattenedList(Node* head) {
     Node* curr = head;
 
-    while (curr) {
+    while(curr) {
         cout << curr->data << " -> ";
         curr = curr->next;
     }
