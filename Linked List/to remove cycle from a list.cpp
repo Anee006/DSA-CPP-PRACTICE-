@@ -41,23 +41,23 @@ Node* detectCycle(Node* head) {
     Node* slow = head; // slow ptr
     Node* fast = head; // fast ptr
 
-    while (fast != NULL && fast->next != NULL) {
+    while(fast != NULL && fast->next != NULL) {
         slow = slow->next;
         fast = fast->next->next; // to detect if cycle is present
 
-        if (slow == fast) { // means cycle is present
+        if(slow == fast) { // means cycle is present
             slow = head; // to find start of the cycle
 
             // If the cycle starts at head
-            if (slow == fast) {
-                while (fast->next != slow) fast = fast->next;
+            if(slow == fast) {
+                while(fast->next != slow) fast = fast->next;
 
                 fast->next = NULL; // Break the cycle
                 return slow;
             }
 
             // If cycle starts somewhere else
-            while (slow->next != fast->next) {
+            while(slow->next != fast->next) {
                 slow = slow->next;
                 fast = fast->next;
             }
