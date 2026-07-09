@@ -3,8 +3,8 @@
 
 // Given the head of a singly linked list, reverse the list, and return the reversed list.
 
-// Input: head = [1,2,3,4,5]
-// Output: [5,4,3,2,1]
+// Input: head = [1,2,3]
+// Output: [3,2,1]
 
 #include <iostream>
 using namespace std;
@@ -22,61 +22,58 @@ public:
     }
 };
 
-class List
-{
+class List {
 public:
     Node* head;
     Node* tail;
 
-public:
-List() {
-    head = tail = NULL;
-}
-
-// push_back
-void push_back(int val) {
-    Node* newNode = new Node(val);
-
-    if(head == NULL) {
-        head = tail = newNode;
-        return;
+    List() {
+        head = tail = NULL;
     }
 
-    else {
-        tail->next = newNode;
-        tail = newNode;
-    }
-}
+    // push_back
+    void push_back(int val) {
+        Node* newNode = new Node(val);
 
-void printLL() {
-    Node* temp = head;
+        if(head == NULL) {
+            head = tail = newNode;
+            return;
+        }
 
-    while(temp != NULL) {
-        cout << temp->data <<" -> ";
-        temp = temp->next;
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
     }
-    cout << "NULL" << endl;
-}
+
+    void printLL() {
+        Node* temp = head;
+
+        while(temp != NULL) {
+            cout << temp->data <<" -> ";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
 };
 
 class Reverse {
 public:
+    // to reverse a linked list
+    Node* reverseList(Node* head) { 
+        // initialising pointers:
+        Node* prev = NULL; // prev ptr
+        Node* curr = head; // current ptr // to track the current node we are in
+        Node* next = NULL; // next ptr
 
-// to reverse a linked list
-Node* reverseList(Node* head) { // only the head is given to reverse the list
-    // initialising pointers:
-    Node* prev = NULL; // prev ptr
-    Node* curr = head; // current ptr // to track the current node we are in
-    Node* next = NULL; // next ptr
-
-    while(curr != NULL) {
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
+        while(curr != NULL) {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev; // in the end, the node at which the prev points to is the node which needs to become the new head
     }
-    return prev; // in the end, the node at which the prev points to is the node which needs to become the new head
-}
 };
 
 // to display the reversed list:
@@ -103,11 +100,9 @@ int main() {
     Reverse obj;
     Node* newHead = obj.reverseList(l1.head); // l1.head gives the head of the original list
 
-    l1.head = newHead; // updating the list's head
-
     cout << "\nReversed list: " << endl;
-    l1.printLL(); // can also write: displayReverse(newHead)
-   
+    displayReverse(newHead);
+
     return 0;
 }
 
