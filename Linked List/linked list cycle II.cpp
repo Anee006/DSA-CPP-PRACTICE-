@@ -1,3 +1,4 @@
+// #notes
 // Leetcode 142
 // using slow-fast pointer approach
 
