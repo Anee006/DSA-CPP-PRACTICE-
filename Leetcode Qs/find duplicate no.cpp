@@ -24,7 +24,7 @@ int findDuplicate(vector<int>& arr) {
     do { // using do-while loop here, as we can't check condition in the beginning, since both are at same location
         slow = arr[slow]; // increasing slow ptr by +1
         fast = arr[arr[fast]]; // increasing fast ptr by +2
-    } while(slow!=fast);
+    } while(slow != fast);
 
     slow = arr[0]; // re-initialise slow to the beginning
 
