@@ -29,8 +29,6 @@ public:
     }
 };
 
-// to merge two linked lists using their heads:
-
 Node* mergeTwoLists(Node* h1, Node* h2) { // here h1 and h2 are the heads of list1 and list2 respectively
     // base case:
     if(h1 == NULL || h2 == NULL) { // if either one of the two becomes NULL then, we'll return the remaining elememts of the other list
