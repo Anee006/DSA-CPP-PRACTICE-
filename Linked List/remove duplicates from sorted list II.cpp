@@ -28,6 +28,34 @@ public:
     }
 };
 
+Node* deleteDuplicates(Node* head) {
+    if(head == NULL) return head;
+
+    Node* dummy = new Node(0); // create a dummy node with val = 0
+    dummy->next = head;
+
+    Node* prev = dummy;
+    Node* curr = head;
+
+    while(curr != NULL) {
+        // if is a duplicate
+        if(curr->next != NULL && curr->val == curr->next->val) {
+            int duplicate = curr->val; // current node is a duplicate 
+
+            while(curr != NULL && curr->val == duplicate) {
+                curr = curr->next; // skip all duplicates (remove them)
+            }
+            prev->next = curr;
+        }
+
+        else {
+            prev = curr;
+            curr = curr->next;
+        }
+    }
+    return dummy->next;
+}
+
 void printList(Node* head) {
     Node* temp = head;
 
@@ -38,7 +66,6 @@ void printList(Node* head) {
     cout << "NULL\n";
 }
 
-// [1,2,3,3,4,4,5]
 int main() {
     Node* head = new Node(1);
     head->next = new Node(2);
@@ -50,6 +77,11 @@ int main() {
 
     cout << "Original List:\n";
     printList(head);
+
+    Node* newHead = deleteDuplicates(head);
+
+    cout << "\nModified List:\n";
+    printList(newHead);
 
     return 0;
 }
