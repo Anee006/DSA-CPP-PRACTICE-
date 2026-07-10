@@ -11,7 +11,7 @@
 // LOGIC:
 // Move prev to the node just before left node
 // Move curr to the next node i.e, curr = prev->next
-// But instead of running until curr == NULL, only run: (right - left + 1) times
+// Instead of running until curr == NULL, only run: (right - left + 1) times. This gives us the no. of nodes to reverse, so loop runs only that many times
 // Then use the exact same logic as was used to reverse an entire linked list
 
 #include <iostream>
