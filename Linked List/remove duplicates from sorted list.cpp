@@ -43,8 +43,30 @@ Node* deleteDuplicates(Node* head) {
     return head;
 }
 
-// 1,1,2,3,3
+void printList(Node* head) {
+    Node* temp = head;
+
+    while(temp != NULL) {
+        cout << temp->val << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL\n";
+}
+
 int main() {
+    Node* head = new Node(1);
+    head->next = new Node(1);
+    head->next->next = new Node(2);
+    head->next->next->next = new Node(3);
+    head->next->next->next->next = new Node(3);
+    
+    cout << "Original List:\n";
+    printList(head);
+
+    Node* newHead = deleteDuplicates(head);
+    cout << "\nModified List:\n";
+    printList(newHead);
+
     return 0;
 }
 
