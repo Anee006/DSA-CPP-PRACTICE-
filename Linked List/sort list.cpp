@@ -26,8 +26,53 @@ public:
     }
 };
 
+// to merge 2 sorted lists
+Node* merge(Node* l1, Node* l2) {
+    Node dummy(0);
+    Node* tail = &dummy;
+
+    while(l1 != NULL && l2 != NULL) {
+        if(l1->data < l2->data) {
+            tail->next = l1;
+            l1 = l1->next;
+        }
+
+        else {
+            tail->next = l2;
+            l2 = l2->next;
+        }
+
+        tail = tail->next;
+    }
+
+    if(l1 != NULL) tail->next = l1;
+
+    if(l2 != NULL) tail->next = l2;
+
+    return dummy.next;
+}
+
 Node* sortList(Node* head) {
-        
+    if(head == NULL || head->next == NULL) return head; // base case
+
+    // find middle of the list
+    Node* slow = head;
+    Node* fast = head->next; // initialised with head->next as we have to apply merge sort (helps avoid infinite recursion)
+
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    // split into two halves
+    Node* second = slow->next; // start of 2nd half // 2nd half will start from the node next to where slow is pointing 
+    slow->next = NULL; // end of 1st half
+
+    // sort each half
+    Node* left = sortList(head);
+    Node* right = sortList(second);
+
+    return merge(left, right); // merge the two sorted halves
 }
 
 void printList(Node* head) {
@@ -56,3 +101,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n log n) where n = no. of nodes
+// SC = O(log n) , due to recursion call stack
