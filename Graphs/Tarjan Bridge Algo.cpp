@@ -11,8 +11,8 @@ using namespace std;
 class Graph {
     int V;
     vector<vector<int>> adj;
-    vector<int> disc; // discovery time
-    vector<int> low; // lowest discovery time
+    vector<int> disc; // discovery time --> the 1st time when we visit a node
+    vector<int> low; // lowest discovery time --> out of all the nodes that we can reach from u--v, we store the one with the lowest disc time
     vector<bool> visited;
     int timer;
 
