@@ -44,7 +44,7 @@ vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
     stack<int> s; // to find the next greater el
 
     // reverse loop to calculate next greater el for each of nums2 element:
-    for(int i = nums2.size()-1; i>=0; i--) {
+    for(int i = nums2.size()-1; i >= 0; i--) {
         while(s.size() > 0 && s.top() <= nums2[i]) s.pop();
 
         if(s.empty()) m[nums2[i]] = -1; // storing val in the map
