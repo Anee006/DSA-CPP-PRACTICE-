@@ -26,8 +26,57 @@ public:
         adj[u].push_back(v);
     }
 
-    void kosaraju() {
+    // perform topological sort
+    void topoSort(int curr, vector<bool>& vis, stack<int>& s) {
+        vis[curr] = true;
 
+        for(int neigh : adj[curr]) {
+            if(!vis[neigh]) topoSort(neigh, vis, s);
+        }
+
+        s.push(curr);
+    }
+
+    void dfs(int curr, vector<bool>& vis, vector<vector<int>>& transpose) {
+        vis[curr] = true;
+        cout << curr << " ";
+
+        for(int neigh : transpose[curr]) {
+            if(!vis[neigh]) {
+                dfs(neigh, vis, transpose);
+            }
+        }
+    }
+
+    void kosaraju() {
+        stack<int> s;
+        vector<bool> vis(V, false);
+
+        for(int i=0; i<V; i++) {
+            if(!vis[i]) topoSort(i, vis, s);
+        }
+
+        // transpose the graph
+        vector<vector<int>> transpose(V);
+
+        for(int u=0; u<V; u++) { // edge is u --> v
+            vis[u] = false; // reassign vis vector so that we can use it again
+
+            for(int v : adj[u]) {
+                transpose[v].push_back(u); // Now edge is v --> u
+            }
+        }
+
+        // perform dfs on the transpose graph
+        while(s.size() > 0) {
+            int curr = s.top();
+            s.pop();
+
+            if(!vis[curr]) {
+                dfs(curr, vis, transpose);
+                cout << endl;
+            }
+        }
     }
 };
 
@@ -44,3 +93,5 @@ int main() {
 
     return 0;
 }
+
+// TC = O(V + E)
