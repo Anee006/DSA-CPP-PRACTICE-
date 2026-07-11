@@ -65,7 +65,7 @@ int getCelebrity(vector<vector<int>>& arr) {
 
     for(int i=0; i<n; i++) {
         // check for these conditions: arr[i][celebrity] = 1, arr[celebrity][i] = 0.
-        if( (i != celebrity) && (arr[i][celebrity] == 0 || arr[celebrity][i] == 1)) { //need to also include (i != celebrity)
+        if((i != celebrity) && (arr[i][celebrity] == 0 || arr[celebrity][i] == 1)) { 
             return -1; // means is not a celebrity
         }
     }
