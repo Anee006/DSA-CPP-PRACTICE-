@@ -30,7 +30,7 @@ public:
         for(int i = 0; i < adj[u].size(); i++) {
             int v = adj[u][i];
 
-            if(dt[v] == -1) { // v is not visited
+            if(dt[v] == -1) { // v is unvisited
                 dfs(v, u, adj, bridges);
                 low[u] = min(low[u], low[v]); // update low
 
@@ -39,7 +39,7 @@ public:
                 }
             }
 
-            else if(v!= parent) {
+            else if(v != parent) {
                 low[u] = min(low[u], dt[v]);
             }
         }
