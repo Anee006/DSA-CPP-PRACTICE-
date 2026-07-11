@@ -32,7 +32,7 @@ minStack.getMin(); // return -2
 */
 
 // LOGIC:
-// create stack <pair<int, int>>. 
+// create stack<pair<int, int>>. 
 // the minValue gets updated each time we find a val which is smaller than the current el. 
 
 #include <iostream>
@@ -40,20 +40,18 @@ minStack.getMin(); // return -2
 #include <utility>
 using namespace std;
 
-class MinStack
-{
+class MinStack {
 public:
-stack <pair<int,int>> s; // the first int i.e "val" stores the values normally in the stack, the second int stores "minValue" in the stack.
+    stack<pair<int, int>> s; // the first int i.e "val" stores the values normally in the stack, the second int stores "minValue" in the stack.
+
     MinStack() {}
 
     void push(int val) {
-        if(s.empty()) { // if stack is empty
-            s.push({val, val}); // current el will be the minValue in the beginning since, its the first el of stack
-        }
+        if(s.empty()) s.push({val, val}); // current el will be the minValue in the beginning since, its the first el of stack
 
         else {
-            // s.top().second means the "minValue" that we had stored in the pair. //the value at top gives us the current minValue present in the stack.
-            int minValue = min(val, s.top().second); 
+            // s.top().second means the "minValue" that we had stored in the pair. 
+            int minValue = min(val, s.top().second); // the value at top gives us the current minValue present in the stack.
             // whichever of the two values- the current el or the minValue we had stores, is smaller, that value becomes the new minValue.
 
             s.push({val, minValue});
@@ -74,11 +72,14 @@ stack <pair<int,int>> s; // the first int i.e "val" stores the values normally i
 };
 
 int main() {
-    MinStack * obj = new MinStack();
-    obj ->push(-2);
-    obj ->push(-0);
-    obj ->push(-3);
+    MinStack* obj = new MinStack();
+
+    obj->push(-2);
+    obj->push(-0);
+    obj->push(-3);
+
     int minElement = obj->getMin();
+    
     obj->pop();
     int top = obj->top();
     int min = obj->getMin();
