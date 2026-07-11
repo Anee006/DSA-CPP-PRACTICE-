@@ -34,8 +34,8 @@ using namespace std;
 
 int largestRectangleArea(vector<int>& heights) {
     int n = heights.size();
-    vector <int> left(n,0); // left vector is created to store the index of left smaller val for each heights[i]
-    vector<int> right(n,0); // right vector is created to store the index of right smaller val for each heights[i]
+    vector<int> left(n, 0); // left vector is created to store the index of left smaller val for each heights[i]
+    vector<int> right(n, 0); // right vector is created to store the index of right smaller val for each heights[i]
 
     stack<int> s;
 
