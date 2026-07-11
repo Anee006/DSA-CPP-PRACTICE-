@@ -38,6 +38,18 @@ void printList(Node* head) {
 }
 
 Node* removeElements(Node* head, int val) {
+    Node* dummy = new Node(0); 
+    dummy->next = head;
+
+    Node* curr = dummy;
+
+    while(curr->next != NULL) {
+        if(curr->next->val == val) { 
+            curr->next = curr->next->next; // skip the elements that have to be removed
+        }
+        else curr = curr->next;
+    }
+    return dummy->next;
 }
 
 
@@ -57,9 +69,12 @@ int main() {
     int val = 6;
     Node* newHead = removeElements(head, val);
 
-    cout << "Modified List:\n";
+    cout << "\nModified List:\n";
     printList(newHead);
 
     return 0;
 }
+
+// TC = O(n) where n = no. of nodes
+// SC = O(1)
 
