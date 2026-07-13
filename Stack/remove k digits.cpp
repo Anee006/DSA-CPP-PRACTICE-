@@ -73,3 +73,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n) , where n = length of the string
+// SC = O(n)
