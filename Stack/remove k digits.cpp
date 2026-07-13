@@ -27,10 +27,42 @@ Explanation: Remove the leading 1 and the number is 200. Note that the output mu
 
 #include <iostream>
 #include <stack>
+#include <algorithm>
 using namespace std;
 
 string removeKdigits(string num, int k) {
-        
+    stack<char> s;
+
+    for(char digit : num) {
+        while(!s.empty() && k > 0 && s.top() > digit) {
+            s.pop();
+            k--;
+        }
+        s.push(digit);
+    }
+
+    while(k > 0) { // is k is still left, remove from the end
+        s.pop();
+        k--;
+    }
+
+    string ans = ""; // build ans from the stack
+
+    while(!s.empty()) {
+        ans += s.top();
+        s.pop();
+    }
+
+    reverse(ans.begin(), ans.end());
+
+    int i = 0;
+    while(i < ans.size() && ans[i] == '0') i++; // remove leading zeroes
+
+    ans = ans.substr(i);
+
+    if(ans.empty()) return "0";
+
+    return ans;
 }
 
 int main() {
