@@ -17,13 +17,34 @@ Input: temperatures = [30,40,50,60]
 Output: [1,1,1,0]
 */
 
+// LOGIC:
+// Find the next day that has a higher temp. We need to find the 1st greater temp (similar to next greater Q).
+// In the stack, store indices (not temp), because the req ans is difference of indices.
+
+// STEPS:
+// For each day, while: (stack is not empty) && (current temp > stack.top()) --> resolve ans --> pop --> push current idx 
+
 #include <iostream>
 #include <stack>
 #include <vector>
 using namespace std;
 
 vector<int> dailyTemperatures(vector<int>& temperatures) {
-        
+    int n = temperatures.size();
+    vector<int> ans(n, 0);
+
+    stack<int> s;
+
+    for(int i=0; i<n; i++) {
+        while(!s.empty() && temperatures[i] > temperatures[s.top()]) { // if found a higher temp than curr, store its idx and pop it
+            int idx = s.top();
+            s.pop();
+
+            ans[idx] = i - idx;
+        }
+        s.push(i);
+    }
+    return ans;
 }
 
 int main() {
@@ -34,3 +55,8 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n) , where n = number of days
+// SC = O(n)
+
+// NOTE: whenever we need first future element satisfying some condition --> use monotonic stack
