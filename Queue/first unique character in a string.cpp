@@ -43,7 +43,7 @@ int firstUniqueChar(string s) {
         m[s[i]]++; // to update the freq of char
 
         // to remove the repeating values 
-        while(q.size() > 0 && m[s[q.front()]] > 1) { //s[q.front()] is the char and m[s[q.front()]] is its freq
+        while(q.size() > 0 && m[s[q.front()]] > 1) { // s[q.front()] is the char and m[s[q.front()]] is its freq
             q.pop();
         }
     }
