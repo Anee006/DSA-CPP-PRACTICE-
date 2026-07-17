@@ -1,4 +1,5 @@
-// calculate total money that will be accumulated if you start with rs. 1 and double it everyday, for n number of days; using recursion.
+// calculate total money that will be accumulated if you start with rs. 1 and double it everyday, for n number of days, using recursion.
+
 #include <iostream>
 using namespace std;
 
@@ -16,5 +17,5 @@ int main() {
 int money(int n) {
     if(n == 1) return 1; // on 1st day, we will only have 1 rs.
     
-    return money(n-1) * 2;  // money on day n = money on the previous day *2.
+    return money(n-1) * 2;  // money on day n = money on the previous day * 2.
 }

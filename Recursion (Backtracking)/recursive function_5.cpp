@@ -5,8 +5,8 @@
 #include <string>
 using namespace std;
 
-void move_X(string str,int idx, int count, string newString) { // "count" tracks the no. of 'x' on the given string
-    if(idx == str.length()) {// base case
+void move_X(string str, int idx, int count, string newString) { // "count" tracks the no. of 'x' on the given string
+    if(idx == str.length()) { // base case
         for(int i = 0; i < count; i++) {
             newString = newString + 'x'; // adding x to the end of the string "count" no. of times
         }
@@ -15,6 +15,7 @@ void move_X(string str,int idx, int count, string newString) { // "count" tracks
     }
 
     char current = str.at(idx);
+    
     if(current == 'x') {
         count++;
         move_X(str, idx+1, count, newString);
