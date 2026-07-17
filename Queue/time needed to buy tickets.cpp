@@ -21,11 +21,27 @@ Continuing this process, the queue becomes [1,1] at 5 seconds.
 Continuing this process, the queue becomes [1] at 6 seconds. The kth person has bought all their tickets, so return 6.
 */
 
+// LOGIC:
+// Find: How many times will each person buy before person k finishes?
+// Before person "k" finishes:
+// - Everyone before or at k can buy at most tickets[k] tickets.
+// - Everyone after k can buy at most tickets[k] - 1 tickets, bcoz process stops when k buys their last ticket.
+// For indices i <= k: contribution = min(tickets[i], tickets[k]), bcoz they can buy in the same round as k.
+// For indices i > k: contribution = min(tickets[i], tickets[k]-1), bcoz k finishes before they get their final chance.
+
 #include <iostream>
 #include <queue>
 using namespace std;
 
 int timeRequiredToBuy(vector<int>& tickets, int k) {
+    int time = 0;
+
+    for(int i = 0; i < tickets.size(); i++) {
+        if(i <= k) time += min(tickets[i], tickets[k]);
+
+        else time += min(tickets[i], tickets[k] - 1);
+    }
+    return time;
 }
 
 int main() {
@@ -36,3 +52,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
