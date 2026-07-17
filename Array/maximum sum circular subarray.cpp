@@ -28,10 +28,33 @@ Explanation: Subarray [5,5] has maximum sum 5 + 5 = 10.
 using namespace std;
 
 int maxSubarraySumCircular(vector<int>& nums) {
+    int totalSum = nums[0];
+
+    int currMax = nums[0];
+    int maxSum = nums[0];
+    int currMin = nums[0];
+    int minSum = nums[0];
+
+    for(int i = 1; i< nums.size(); i++) {
+        totalSum += nums[i];
+
+        // Kadane algo for finding max subarray
+        currMax = max(nums[i], currMax + nums[i]);
+        maxSum = max(maxSum, currMax);
+
+        // Kadane algo for finding min subarray (modified)
+        currMin = min(nums[i], currMin + nums[i]);
+        minSum = min(minSum, currMin);
+
+        if(maxSum < 0) return maxSum;
+    }
+    return max(maxSum, totalSum - minSum);
 }
 
 int main() {
     vector<int> nums = {1, -2, 3, -2};
+
+    cout << maxSubarraySumCircular(nums);
 
     return 0;
 }
