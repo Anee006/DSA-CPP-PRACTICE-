@@ -24,7 +24,7 @@ void getAllCombinations(vector<int>& arr, int idx, int target, vector<vector<int
     if(idx == arr.size() || target < 0) return;
 
     if(target == 0) { // means found all combinations
-        if(s.find(combination) == s.end()) {// means the combination does not exist in the set already
+        if(s.find(combination) == s.end()) { // means the combination does not exist in the set already
             ans.push_back(combination);
             s.insert(combination);
         }
@@ -34,18 +34,18 @@ void getAllCombinations(vector<int>& arr, int idx, int target, vector<vector<int
     combination.push_back(arr[idx]); // inserting el first and then taking choice
 
     // to take a single choice for an element:
-    getAllCombinations(arr, idx+1, target - arr[idx], ans, combination); // for a single choice we'll update the idx ansd subtract the el from the target
+    getAllCombinations(arr, idx+1, target - arr[idx], ans, combination); // for a single choice, update the idx and subtract the el from the target
 
     // to take multiple choice for an element:
-    getAllCombinations(arr, idx, target - arr[idx], ans, combination); // for multiple choice we'll not update the idx as we want to inc same el again and again
+    getAllCombinations(arr, idx, target - arr[idx], ans, combination); // for multiple choice don't update the idx 
 
     combination.pop_back(); // bactracking step: to remove the element we last inserted so that it can be excluded from the combination
 
-    // to take exclude element: 
+    // to exclude element: 
     getAllCombinations(arr, idx+1, target, ans, combination); // for exclusion, target remains same
 }
 
-vector<vector <int>> combinationSum(vector<int>& arr, int target) {
+vector<vector<int>> combinationSum(vector<int>& arr, int target) {
     vector<vector<int>> ans; // to return all combinations as a vector
     vector<int> combination;
 
