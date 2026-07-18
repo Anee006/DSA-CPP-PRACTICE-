@@ -18,17 +18,16 @@
 // if n=0, means there are no elements in the array, hence array is sorted
 // if n=1, means a single element is there in the array. A single el is always sorted, hence array is also sorted. 
 
-// NOTE: for n=1; n-1 and n-2 does not exist hence, it would give error. Hence it becomes necessary to include n=1 in the base case.
+// NOTE: for n=1, n-1 and n-2 does not exist hence, it would give error. Hence it becomes necessary to include n=1 in the base case.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
 bool isSorted(vector<int> arr, int n) {
-    // base case:
-    if(n == 0 || n == 1) return true;
+    if(n == 0 || n == 1) return true; // base case
 
-    return arr[n-1] >= arr[n-2] && isSorted(arr,n-1); 
+    return arr[n-1] >= arr[n-2] && isSorted(arr, n-1); 
     // arr[n-1] >= arr[n-2] is written first here out of the two conditions since, it is more logical to check if the el where we are at is greater 
     // or not than its previous el. If not, then there is no need to make the recursive call again, bcoz the array is unsorted.
     
@@ -45,7 +44,7 @@ int main() {
 }
 
 // TC = total calls * work done in each call
-// TC = n * O(1)        ,[in each call, const work is done]
+// TC = n * O(1)  , (in each call, const work is done)
 // TC = O(n)
 
-// SC = O(n)   ,[considering worst case scenario, height of call stack will be n]
+// SC = O(n)  , (considering worst case scenario, height of call stack will be n)
