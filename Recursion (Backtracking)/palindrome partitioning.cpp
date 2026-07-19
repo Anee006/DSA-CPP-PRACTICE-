@@ -18,7 +18,7 @@
 // so include that as well in ans. The remaining part is also a palindrome so our ans = [aba, a, b, c, aba]. 
 // We can also split last "aba" further like - [aba, a, b, c, a, b, a].
 
-// for a string 's', we can find the part using, " part = s.substr(0,i+1) ". 
+// for a string 's', we can find the part using, " part = s.substr(0, i+1) ". 
 // Where 0 is from where the part starts and i+1 is the size of the part. and " s.substr(i+1) " is the remaining part of the string 
 // (the right half), after the cut is made.
 
@@ -56,7 +56,7 @@ void getAllParts(string s, vector<string>& partitions, vector<vector<string>>& a
 
 vector<vector<string>> partition(string s) {
     vector<vector<string>> ans;
-    vector <string> partitions;
+    vector<string> partitions;
 
     getAllParts(s, partitions, ans);
 
