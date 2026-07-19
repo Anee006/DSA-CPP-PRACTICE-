@@ -45,5 +45,15 @@ vector<int> grayCode(int n) {
     return ans;
 }
 
+int main() {
+    int n = 2;
+
+    vector<int> ans = grayCode(n);
+
+    for(int val : ans) cout << val << " ";
+
+    return 0;
+}
+
 // TC = O(2^n)
 // SC = O(2^n)
