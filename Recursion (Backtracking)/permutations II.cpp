@@ -15,6 +15,25 @@
 using namespace std;
 
 void solve(vector<int>& nums, int idx, vector<vector<int>>& ans) {
+    if(idx == nums.size()) { // base case
+        ans.push_back(nums);
+        return;
+    }
+
+    unordered_set<int> used; // stores values already used at this position (helps to avoid duplicates)
+
+    for(int i = idx; i < nums.size(); i++) {
+        // if this value has already been placed at position idx, skip it to avoid duplicate permutation
+        if(used.count(nums[i])) continue;
+
+        used.insert(nums[i]);
+
+        swap(nums[idx], nums[i]); // choice
+
+        solve(nums, idx + 1, ans);
+
+        swap(nums[idx], nums[i]); // backtracking step
+    }
 
 }
 
@@ -41,5 +60,5 @@ int main() {
     return 0;
 }
 
-// TC = 
-// SC = 
+// TC = O(n x n!) --> occurs when all elements are distinct (worst-case)
+// SC = O(n)  (due to recursion stack)
