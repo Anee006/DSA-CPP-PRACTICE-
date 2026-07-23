@@ -29,8 +29,54 @@ public:
     }
 };
 
+Node* reverse(Node* head) {
+    Node* prev = NULL;
+    Node* curr = head;
+
+    while(curr != NULL) {
+        Node* next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+
+void reorderList(Node* head) {
+    if(head == NULL || head->next == NULL) return;
+
+    // find middle of list
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    // split list
+    Node* second = slow->next;
+    slow->next = NULL;
+
+    second = reverse(second); // reverse 2nd half
+
+    // merge the 2 halves alternately
+    Node* first = head;
+
+    while(second != NULL) {
+        Node* next1 = first->next;
+        Node* next2 = second->next;
+
+        first->next = second; // link 1st node to 2nd node
+        second->next = next1; // link 2nd node to next node of 1st half
+
+        first = next1;
+        second = next2;
+    }
+}
+
 void printList(Node* head) {
-    Node* temp = NULL;
+    Node* temp = head;
 
     while(temp != NULL) {
         cout << temp->data << " -> ";
@@ -47,6 +93,11 @@ int main() {
     head->next->next->next->next = new Node(5);
 
     cout << "Original List:\n";
+    printList(head);
+
+    reorderList(head);
+
+    cout << "Modified List:\n";
     printList(head);
 
     return 0;
