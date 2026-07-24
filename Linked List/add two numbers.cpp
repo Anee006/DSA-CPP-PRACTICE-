@@ -33,7 +33,31 @@ public:
 };
 
 Node* addTwoNumbers(Node* l1, Node* l2) {
+    Node* dummy = new Node(0); // serves as the start of the result linked list
+    Node* tail = dummy; // points to the last node in the ans
 
+    int carry = 0;
+
+    while(l1 || l2 || carry) { // loop runs till l1 has nodes OR l2 has nodes OR carry exists
+        int sum = carry;
+
+        if(l1) { // add current digit from 1st list, if present
+            sum += l1->data;
+            l1 = l1->next;
+        }
+
+        if(l2) { // add current digit from 2nd list, if present
+            sum += l2->data;
+            l2 = l2->next;
+        }
+
+        carry = sum / 10; // new carry for next position
+        int digit = sum % 10; // to store current digit
+
+        tail->next = new Node(digit); // create new node
+        tail = tail->next;
+    }
+    return dummy->next; // points to the head of the resulting linked list
 }
 
 void printList(Node* head) {
