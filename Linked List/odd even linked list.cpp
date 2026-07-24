@@ -32,7 +32,22 @@ public:
 };
 
 Node* oddEvenList(Node* head) {
+    if(head == NULL || head->next == NULL) return head;
 
+    Node* odd = head; // 1st odd node
+    Node* even = head->next; // 1st even node
+    Node* evenHead = even; // save head of even list
+
+    while(even != NULL && even->next != NULL) {
+        odd->next = even->next; // connect curr odd to next odd node
+        odd = odd->next;
+
+        even->next = odd->next; // connect curr even to next even node
+        even = even->next;
+    }
+    odd->next = evenHead; // attach even list after odd list
+
+    return head;
 }
 
 void printList(Node* head) {
