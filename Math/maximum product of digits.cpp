@@ -21,22 +21,25 @@ The maximum product is 8.
 // If the largest digit appears more than once, both max1 and max2 will become that digit, 
 // allowing the same digit value to be used twice (from different occurrences).
 
-// Initialize max1 = -1 and max2 = -1.
-// while n > 0:
-// Extract each digit from n using: digit = n % 10
-// If digit >= max1
-// max2 = max1 (if the largest digit appears more than once, both max1 and max2 will become that digit)
-// max1 = digit (this is the largest digit)
-// Else if digit > max2
-// max2 = digit (this is the second largest digit)
-// Remove the last digit using: n /= 10
-// Return max1 * max2 (required max product).
-
 #include <iostream>
 using namespace std;
 
 int maxProduct(int n) {
+    int max1 = -1, max2 = -1;
 
+    while(n > 0) {
+        int digit = n % 10; // extract each (last) digit from n 
+
+        if(digit >= max1) {
+            max2 = max1; // if the largest digit appears more than once, both max1 and max2 will become that digit
+            max1 = digit; // this is the largest digit
+        }
+
+        else if(digit > max2) max2 = digit; // this is the 2nd largest digit
+
+        n /= 10; // remove the last digit using
+    }
+    return max1 * max2;
 }
 
 int main() {
