@@ -35,11 +35,33 @@ public:
 
 struct Compare {
     bool operator() (Node* a, Node* b) {
-        return a->data > b->data;
+        return a->data > b->data; 
+        // If a->val is greater than b->val, a should come after b, giving a min heap where the smallest value is always at the top
     }
 };
 
 Node* mergeKLists(vector<Node*>& lists) {
+    priority_queue<Node*, vector<Node*>, Compare> pq; // min heap
+
+    for(Node* head : lists) { // push head of every non-empty list into the heap
+        if(head != NULL) pq.push(head);
+    }
+
+    Node* dummy = new Node(0); // dummy node
+    Node* tail = dummy;
+
+    while ((!pq.empty())) {
+        Node* smallest = pq.top(); 
+        pq.pop(); // remove smallest node from heap
+
+        tail->next = smallest; // attach to ans
+        tail = tail->next;
+
+        if(smallest->next != NULL) { // if that node has a next node, insert next node into heap
+            pq.push(smallest->next); 
+        }
+    }
+    return dummy->next;
 }
 
 void printList(Node* head) {
@@ -49,6 +71,7 @@ void printList(Node* head) {
         cout << temp->data << " -> ";
         temp = temp->next;
     }
+    cout << "NULL\n";
 }
 
 int main() {
@@ -74,3 +97,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(N log K) , where N = total number of nodes across all lists , K = number of linked lists
+// SC = O(K)
