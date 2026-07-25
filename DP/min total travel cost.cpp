@@ -2,9 +2,9 @@
 // A user is traveling from City A to City D, passing through intermediate stops: A → B → C → D
 // At each segment, the app offers multiple ride options (bike, auto, cab), each with different costs.
 // Segment Bike Auto Cab
-// A → B   50 70 100
-// B → C   60 80 120
-// C → D   70 90 150
+// A → B   50   70   100
+// B → C   60   80   120
+// C → D   70   90   150
 
 // You cannot choose the same ride type consecutively (e.g., no Bike → Bike).
 // Find the "minimum total cost to travel from A to D" following the constraint.
