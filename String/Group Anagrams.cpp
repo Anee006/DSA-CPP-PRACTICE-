@@ -22,9 +22,25 @@ The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to fo
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
 using namespace std;
 
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    unordered_map<string, vector<string>> m; // {sorted str, list of anagrams}
+
+    for(string s : strs) {
+        string key = s; // create a copy
+        sort(key.begin(), key.end()); // sort the copy
+
+        m[key].push_back(s); // store original string under sorted key
+    }
+
+    vector<vector<string>> ans;
+
+    for(auto it : m) ans.push_back(it.second);
+
+    return ans;
 }
 
 int main() {
@@ -39,3 +55,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n * klogk)
+// SC = O(n * k)
