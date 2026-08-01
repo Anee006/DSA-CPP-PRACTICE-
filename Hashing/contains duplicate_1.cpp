@@ -10,7 +10,7 @@ Explanation: The element 1 occurs at the indices 0 and 3.
 */
 
 // LOGIC:
-// if curr no. is already in the set -> found the duplicate -> return true. Otherwise, insert it into set.
+// If curr no. is already in the set -> found the duplicate -> return true. Otherwise, insert it into set.
 // If loop is finished without finding any duplicates, return false
 
 #include <iostream>
@@ -19,6 +19,14 @@ Explanation: The element 1 occurs at the indices 0 and 3.
 using namespace std;
 
 bool containsDuplicate(vector<int>& nums) {
+    unordered_set<int> s;
+
+    for(int num : nums) {
+        if(s.count(num)) return true; // found duplicate
+
+        s.insert(num);
+    }
+    return false;
 }
 
 int main() {
