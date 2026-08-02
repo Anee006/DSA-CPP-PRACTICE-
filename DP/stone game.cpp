@@ -34,6 +34,23 @@ This demonstrated that taking the first 5 was a winning move for Alice, so we re
 using namespace std;
 
 bool stoneGame(vector<int>& piles) {
+    int n = piles.size();
+
+    vector<vector<int>> dp(n, vector<int>(n)); // max score diff the current player can achieve over the opponent using piles from i to j
+
+    for(int i = 0; i < n; i++) dp[i][i] = piles[i]; // base case
+
+    for(int len = 2; len <= n; len++) {
+        for(int i = 0; i + len - 1 < n; i++) {
+            int j = i + len - 1;
+
+            int left = piles[i] - dp[i+1][j]; // if curr player chooses left
+            int right = piles[j] - dp[i][j-1]; // if curr player chooses right
+
+            dp[i][j] = max(left, right);
+        }
+    }
+    return dp[0][n-1] > 0;
 }
 
 int main() {
