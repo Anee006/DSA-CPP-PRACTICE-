@@ -16,7 +16,21 @@
 using namespace std;
 
 int singleNumber(vector<int>& nums) {
+    int ans = 0;
 
+    for(int i = 0; i < 32; i++) {
+        int count = 0;
+
+        for(int num : nums) { // count how many nums have the current bit set
+            if((num >> i) & 1) count++;
+        }
+
+        if(count % 3 != 0) { // bits belonging to the req single number will have remainder = 1
+            ans |= (1 << i); // set that bit in the ans
+
+        }
+    }
+    return ans;
 }
 
 int main() {
@@ -26,4 +40,9 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
+
+
 
