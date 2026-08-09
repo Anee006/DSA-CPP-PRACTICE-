@@ -25,6 +25,21 @@ Explanation:
 using namespace std;
 
 string longestCommonPrefix(vector<string>& strs) {
+    if(strs.empty()) return "";
+
+    string prefix = strs[0]; // start with 1st string as the prefix
+
+    // compare prefix with every other string
+    for(int i = 1; i < strs.size(); i++) {
+        // keep reducing prefix until it matches beginning of strs[i]
+        // find() tells where prefix occurs in strs[i]
+        while(strs[i].find(prefix) != 0) { // means "prefix is not currently a prefix of this string"
+            prefix.pop_back();
+
+            if(prefix.empty()) return ""; // no common prefix
+        }
+    }
+    return prefix;
 }
 
 int main() {
@@ -34,3 +49,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(N * M) where, where N = number of strings, M = length of the shortest string
+// SC = O(M)
