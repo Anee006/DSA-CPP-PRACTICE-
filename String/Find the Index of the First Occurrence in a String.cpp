@@ -18,6 +18,22 @@ The first occurrence is at index 0, so we return 0.
 using namespace std;
 
 int strStr(string haystack, string needle) {
+    int n = haystack.size();
+    int m = needle.size();
+
+    if(m == 0) return 0; // empty needle is considered to be at idx 0
+
+    if(m > n) return -1; // needle cannot fit inside haystack
+
+    // "i" represents where search is starting in "haystack". "j" represents which char of "needle" is being currently checked
+    for(int i = 0; i <= n-m; i++) { // try every possible starting position
+        int j = 0;
+
+        while(j < m && haystack[i+j] == needle[j]) j++; // compare characters
+
+        if(j == m) return i; // entire needle matched
+    }
+    return -1;
 }
 
 int main() {
@@ -28,3 +44,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n x m) , where n = length of haystack, m = length of needle
+// SC = O(1)
