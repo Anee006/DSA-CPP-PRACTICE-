@@ -22,13 +22,27 @@ Output: 1
 using namespace std;
 
 int searchInsert(vector<int>& nums, int target) {
+    int left = 0;
+    int right = nums.size();
+
+    while(left < right) {
+        int mid = left + (right-left) / 2;
+
+        if(nums[mid] < target) left = mid + 1; // target must be in right half
+
+        else right = mid; // nums[mid] could be the ans
+    }
+    return left; // left represents the 1st position where the value is greater than or equal to target
 }
 
 int main() {
     vector<int> nums = {1, 3, 5, 6};
-    int target = 5;
+    int target = 2;
 
     cout << searchInsert(nums, target);
 
     return 0;
 }
+
+// TC = O(log n) , where n = no. of elements
+// SC = O(1)
