@@ -24,6 +24,21 @@ Note that the subarrays [2,3,1,2,3,1] and [3,1,2,3,1,2] are also good.
 using namespace std;
 
 int maxSubarrayLength(vector<int>& nums, int k) {
+    int ans = 0, left = 0;
+
+    unordered_map<int, int> freq;
+
+    for(int right = 0; right < nums.size(); right++) {
+        freq[nums[right]]++;
+
+        while(freq[nums[right]] > k)  { // shrink window if freq exceeds k (move left forward)
+            freq[nums[left]]--;
+            left++;
+        }
+
+        ans = max(ans, right - left + 1); // (right - left + 1) means current window is good
+    }
+    return ans;
 }
 
 int main() {
@@ -34,3 +49,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
