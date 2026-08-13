@@ -22,7 +22,30 @@ Output: [-1,-1]
 #include <vector>
 using namespace std;
 
+int binarySearch(vector<int>& nums, int target, bool findFirst) {
+    int left = 0, right = nums.size() - 1;
+    int ans = -1;
+
+    while(left <= right) {
+        int mid = left + (right - left)/2;
+
+        if(nums[mid] == target) {
+            ans = mid; // found the target
+
+            if(findFirst) right = mid - 1; // finding 1st occurrence --> continue going left
+
+            else left = mid + 1; // finding last occurrence --> continue going right
+        }
+
+        else if(nums[mid] < target) left = mid + 1; // move right
+
+        else right = mid - 1; // move left
+    }
+    return ans;
+}
+
 vector<int> searchRange(vector<int>& nums, int target) {
+    return {binarySearch(nums, target, true), binarySearch(nums, target, false)};
 }
 
 int main() {
@@ -31,7 +54,7 @@ int main() {
 
     vector<int> ans = searchRange(nums, target);
 
-    for(int val : ans) cout << val << "\t";
+    for(int val : ans) cout << val << "  ";
 
     return 0;
 }
