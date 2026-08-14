@@ -15,13 +15,27 @@ The following substring "bcba" has a length of 4 and contains at most two occurr
 using namespace std;
 
 int maximumLengthSubstring(string s) {
+    unordered_map<char, int> freq; // {char, freq of char}
+    
+    int left = 0, maxLen = 0;
+
+    for(int right = 0; right < s.size(); right++) {
+        freq[s[right]]++; // increase count of char at idx right
+
+        while(freq[s[right]] > 2) { // if a char occurs more than twice, shrink it from left
+            freq[s[left]]--; // decrease the freq
+            left++; // shrink window from left
+        }
+
+        maxLen = max(maxLen, right - left + 1); // (right - left + 1) is window length
+    }
+    return maxLen;
 }
 
 int main() {
     string s = "bcbbbcba";
 
     cout << maximumLengthSubstring(s);
-
     return 0;
 }
 
