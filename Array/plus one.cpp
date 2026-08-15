@@ -14,6 +14,9 @@ Output: [1,0, 0]
 Explanation: The array represents the integer 99. Incrementing by one gives 99 + 1 = 100. Thus, the result should be [1,0, 0].
 */
 
+// LOGIC: 
+// If curr digit < 9 then inc. it by 1, else if curr dig is 9, make it 0 and move left.
+
 #include <iostream>
 #include <vector>
 using namespace std;
