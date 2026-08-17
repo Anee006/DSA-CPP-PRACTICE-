@@ -30,6 +30,17 @@ Reverse each row
 using namespace std;
 
 void rotate(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+
+    // transpose the matrix (swap elements across the main diagonal)
+    for(int i = 0; i < n; i++) {
+        for(int j = i + 1; j < n; j++) {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+
+    // reverse each row (horizontally flip each row)
+    for(int i = 0; i < n; i++) reverse(matrix[i].begin(), matrix[i].end());
 }
 
 int main() {
@@ -46,3 +57,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n^2)
+// SC = O(1)
