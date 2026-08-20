@@ -17,7 +17,22 @@ Explanation: "For" is present as substring in "GeeksForGeeks" from index 5 (0 ba
 using namespace std;
 
 int firstOccurence(string& txt, string& pat) {
+    int n = txt.length();
+    int m = pat.length();
 
+    if(m == 0) return 0; // empty pattern is found at idx = 0
+
+    if(m > n) return -1; // pattern longer than txt is invalid
+
+    for(int i = 0; i < n-m; i++) {
+        int j = 0; // slides over pat
+
+        while(j < m && txt[i+j] == pat[j]) j++; // check char match
+
+        if(j == m) return i; // if full pat is matched
+    }
+
+    return -1;
 }
 
 int main() {
@@ -29,4 +44,5 @@ int main() {
     return 0;
 }
 
-
+// TC = O((N - M + 1) x M)
+// SC = O(1)
