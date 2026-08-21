@@ -16,6 +16,16 @@
 using namespace std;
 
 vector<vector<int>> generate(int numRows) {
+    vector<vector<int>> triangle(numRows);
+
+    for(int i = 0; i < numRows; i++) {
+        triangle[i].resize(i+1, 1); // row i has (i + 1) elements, initialized with 1
+
+        for(int j = 1; j < i; j++) { // fill inner elements from index 1 to i - 1
+            triangle[i][j] = triangle[i-1][j-1] + triangle[i-1][j];
+        }
+    }
+    return triangle;
 }
 
 int main() {
@@ -23,12 +33,15 @@ int main() {
 
     vector<vector<int>> ans = generate(numRows);
 
-    for(int i = 0; i < ans.size(); i++) {
+    for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < ans[i].size(); j++) {
-            cout << ans[i][j] << endl;
+            cout << ans[i][j] << " ";
         }
         cout << endl;
     }
-
+    
     return 0;
 }
+
+// TC = O(numRows ^ 2)
+// SC = O(1)
