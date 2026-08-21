@@ -17,6 +17,13 @@ Explanation: There are 3 substrings from the given string. They are "11", "101",
 using namespace std;
 
 int binarySubstring(string& s) {
+    long long count1 = 0;
+
+    for(char c : s) {
+        if(c == '1') count1++; // count total 1s in the str
+    }
+
+    return (count1 * (count1 - 1)) / 2; // number of substrings starting and ending with '1'
 }
 
 int main() {
@@ -26,3 +33,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
