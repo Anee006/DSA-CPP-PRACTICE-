@@ -20,6 +20,20 @@ Since 23 is not divisible by the sum (2 + 3 = 5) plus product (2 * 3 = 6) of its
 using namespace std;
 
 bool checkDivisibility(int n) {
+    int original = n; // to save the given number
+
+    int sum = 0, prod = 1;
+
+    while( n != 0) {
+        int digits = n % 10; // find digit of the given num
+
+        sum += digits; // sum of digits
+        prod *= digits; // product of digits
+
+        n /= 10;
+    }
+
+    return (original % (sum + prod) == 0) ? true : false;
 }
 
 int main() {
@@ -29,3 +43,8 @@ int main() {
 
     return 0;
 }
+
+// If n has d digits, the loop runs d times. And the number of digits in n is: d = (log n + 1).
+// TC = O(log n)
+
+// SC = O(1)
