@@ -16,6 +16,13 @@ The multiples of k = 5 are 5, 10, 15, 20... and the smallest multiple missing fr
 using namespace std;
 
 int missingMultiple(vector<int>& nums, int k) {
+    unordered_set<int> s(nums.begin(), nums.end()); // put every element in a set
+
+    int multiple = k; // start from k
+
+    while(s.count(multiple)) multiple += k; // keep checking for multiples of k in the set
+
+    return multiple; // as soon as a multiple is found that is not in the set, return it
 }
 
 int main() {
@@ -26,3 +33,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
