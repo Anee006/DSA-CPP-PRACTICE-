@@ -14,6 +14,16 @@ Output: true
 using namespace std;
 
 bool containsNearbyDuplicate(vector<int>& nums, int k) {
+    unordered_map<int, int> m; // {latest index, val}
+
+    for(int i = 0; i < nums.size(); i++) {
+        if(m.find(nums[i]) != m.end()) { // found a duplicate
+            if(abs(i - m[nums[i]]) <= k) return true;
+        }
+
+        m[nums[i]] = i; // update latest index of the duplicate
+    }
+    return false;
 }
 
 int main() {
@@ -25,3 +35,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
