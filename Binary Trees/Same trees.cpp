@@ -1,4 +1,5 @@
 // LeetCode 100
+// Identical trees (in geeksforgeeks)
 // NOTE: NOT the same as isMirror Q
 
 // Given the roots of two binary trees p and q, write a function to check if they are the same or not.
