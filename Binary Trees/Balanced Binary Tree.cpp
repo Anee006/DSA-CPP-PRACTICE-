@@ -47,9 +47,21 @@ Node* buildBT(vector<int>& pre) {
 }
 
 int checkHeight(Node* root) {
+    if(root == NULL) return 0;
+
+    int leftHt = checkHeight(root->left);
+    if(leftHt == -1) return -1; // -1 is used to indicate that the tree is unbalanced
+
+    int rightHt = checkHeight(root->right);
+    if(rightHt == -1) return -1;
+
+    if(abs(leftHt - rightHt) > 1) return -1;
+
+    return max(leftHt, rightHt) + 1; // returns height of BT
 }
 
 bool isBalanced(Node* root) {
+    return checkHeight(root) != -1;
 }
 
 int main() {
@@ -61,3 +73,7 @@ int main() {
 
     return 0;
 }
+
+// for both checkHeight() and isBalanced():
+// TC = O(n)
+// SC = O(h) , where h = height of tree
