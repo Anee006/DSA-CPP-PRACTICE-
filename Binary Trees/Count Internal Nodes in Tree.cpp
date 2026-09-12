@@ -38,7 +38,17 @@ Node* buildBT(vector<int>& pre) {
 }
 
 int countNonLeafNodes(Node* root) {
+    if(root == NULL) return 0;
+
+    // a non-leaf node has atleast one child (hence used || operator)
+    if(root->left || root->right) {
+        return 1 + countNonLeafNodes(root->left) + countNonLeafNodes(root->right);
+    }
+
+    return 0; // if it has no children, it is a leaf node
 }
+// TC = O(n)
+// SC = O(h), where h is the height of the tree
 
 int main() {
     vector<int> pre = {1, 2, 4, -1, -1, 5, -1, -1, -1, 3};
