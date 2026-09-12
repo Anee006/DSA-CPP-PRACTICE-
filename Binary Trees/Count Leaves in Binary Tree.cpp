@@ -42,10 +42,17 @@ Node* buildBT(vector<int>& pre) {
 }
 
 int countLeaves(Node* root) {
+    if(root == NULL) return 0;
+
+    if(root->left == NULL && root->right == NULL) return 1;
+
+    return countLeaves(root->left) + countLeaves(root->right);
 }
+// TC = O(n)
+// SC = O(n)
 
 int main() {
-    vector<int> pre = {1, 10, 5, -1, -1, -1, -1, 39, -1, -1};
+    vector<int> pre = {1, 10, 5, -1, -1, -1, 39, -1, -1};
 
     Node* root = buildBT(pre);
 
@@ -53,5 +60,3 @@ int main() {
 
     return 0;
 }
-
-
