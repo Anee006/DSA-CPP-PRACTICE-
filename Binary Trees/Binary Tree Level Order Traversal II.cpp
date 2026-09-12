@@ -6,9 +6,15 @@
 // Input: root = [3,9,20,null,null,15,7]
 // Output: [[15,7],[9,20],[3]]
 
+// LOGIC:
+// Do normal level-order traversal using a queue. Store each level in vector<int> level.
+// Store all levels in vector<vector<int>> result.
+// Reverse the levels to get leaf -> root order i.e, bottom-up order.
+
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
 class Node {
@@ -39,7 +45,34 @@ Node* buildBT(vector<int>& pre) {
 }
 
 vector<vector<int>> levelOrderBottom(Node* root) {
+    vector<vector<int>> result;
+
+    if(root == NULL) return result; // base case
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        int size = q.size();
+        vector<int> level; // stores current level
+
+        for(int i = 0; i < size; i++) { // process 1 level
+            Node* curr = q.front();
+            q.pop();
+
+            level.push_back(curr->data);
+
+            if(curr->left) q.push(curr->left);
+            if(curr->right) q.push(curr->right);
+        }
+        result.push_back(level);
+    }
+    reverse(result.begin(), result.end());
+
+    return result;
 }
+// TC = O(n)
+// SC = O(n)
 
 int main() {
     vector<int> pre = {3, 9, -1, -1, 20, 15, -1, -1, 7, -1, -1};
