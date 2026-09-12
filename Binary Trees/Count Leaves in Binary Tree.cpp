@@ -49,7 +49,7 @@ int countLeaves(Node* root) {
     return countLeaves(root->left) + countLeaves(root->right);
 }
 // TC = O(n)
-// SC = O(n)
+// SC = O(h) , where h = height of tree
 
 int main() {
     vector<int> pre = {1, 10, 5, -1, -1, -1, 39, -1, -1};
