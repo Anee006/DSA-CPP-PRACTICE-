@@ -48,12 +48,51 @@ Node* buildBT(vector<int> pre) {
     return root;
 }
 
-vector<vector<int>> pathSum(Node* root, int targetSum) {
+// helper fn
+void dfs(Node* root, int targetSum, vector<int>& path, vector<vector<int>>& result) {
+    if(root == NULL) return;
 
+    path.push_back(root->data); // add current node to path
+
+    // check if current node is a leaf node
+    if(root->left == NULL && root->right == NULL) {
+        // check if path sum equals the targetSum
+        if(root->data == targetSum) result.push_back(path);
+    }
+
+    else {
+        dfs(root->left, targetSum - root->data, path, result); // explore left subtree
+        dfs(root->right, targetSum - root->data , path, result); // explore right subtree
+    }
+
+    path.pop_back(); // backtracking
+}
+
+vector<vector<int>> pathSum(Node* root, int targetSum) {
+    vector<vector<int>> result;
+    vector<int> path;
+
+    dfs(root, targetSum, path, result);
+
+    return result;
 }
 
 int main() {
-    vector<int> pre = {5, 4, 11, 7, 2, -1, 8, 13, 4, 5, 1};
+    vector<int> pre = {5, 4, 11, 7, -1, -1, 2, -1, -1, -1, 8, 13, -1, -1, 4, 5, -1, -1, 1, -1, -1};
+    int targetSum = 22;
+
+    Node* root = buildBT(pre);
+    vector<vector<int>> result = pathSum(root, targetSum);
+
+    for(int i = 0; i < result.size(); i++) {
+        for(int j = 0; j < result[i].size(); j++) {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }
+
+// TC = O(N × H) , where N = no. of nodes in the tree, H is the tree height
+// SC = O(H)
