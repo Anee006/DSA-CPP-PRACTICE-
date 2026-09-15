@@ -17,6 +17,20 @@ So even index = 1, odd indices = 2
 using namespace std;
 
 vector<int> evenOddBit(int n) {
+    int even = 0, odd = 0, idx = 0;
+
+    while(n > 0) {
+        if(n % 2 == 1) { // check if current bit is 1
+            if(idx % 2 == 0) even++;
+
+            else odd++;
+        }
+
+        n /= 2; // move to the next bit
+
+        idx++;
+    }
+    return {even, odd};
 }
 
 int main() {
@@ -28,3 +42,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(log n)
+// SC = O(1)
