@@ -40,7 +40,30 @@ Node* buildBT(vector<int>& pre) {
     return root;
 }
 
+int countPaths(Node* root, int targetSum) {
+    if(root == NULL) return 0;
+
+    int count = 0;
+
+    if(root->data == targetSum) count++; // if current path equals target
+
+    // continue the path downwards
+    count += countPaths(root->left, targetSum - root->data);
+    count += countPaths(root->right, targetSum - root->data);
+
+    return count;
+}
+
 int pathSum(Node* root, int targetSum) {
+    if(root == NULL) return 0;
+
+    int count = countPaths(root, targetSum); // count paths starting from current root
+
+    count += pathSum(root->left, targetSum); // paths starting somewhere in the left subtree
+    count += pathSum(root->right, targetSum); // paths starting somewhere in the right subtree
+
+    return count;
+
 }
 
 int main() {
@@ -53,3 +76,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n*n)
+// SC = O(H), where H = tree height
