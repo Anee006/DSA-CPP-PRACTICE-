@@ -51,8 +51,29 @@ Node* buildBT(vector<int>& pre) {
     return root;
 }
 
-int maxPathSum(Node* root) {
+int maxSum = 0; // global max
 
+int maxGain(Node* root) {
+    if(root == NULL) return 0; // base case
+
+    int leftGain = max(0, maxGain(root->left)); // max gain from left subtree
+    // using 0 here bcoz, use the left subtree only if it contributes something positive
+
+    int rightGain = max(0, maxGain(root->right)); // max gain from right subtree
+
+    int currSum = root->data + leftGain + rightGain; // max path passing through current node
+
+    maxSum = max(maxSum, currSum);
+
+    return root->data + max(leftGain, rightGain); // can only choose 1 path out of left and right subtrees
+}
+
+int maxPathSum(Node* root) {
+    maxSum = INT_MIN; // path must be non-empty (INT_MIN handles trees containing -ve values)
+
+    maxGain(root);
+    
+    return maxSum;
 }
 
 int main() {
@@ -64,3 +85,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n) , where n = no. of nodes
+// SC = O(h) , where h = height of tree
