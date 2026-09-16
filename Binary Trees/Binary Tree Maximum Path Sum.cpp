@@ -65,7 +65,7 @@ int maxGain(Node* root) {
 
     maxSum = max(maxSum, currSum);
 
-    return root->data + max(leftGain, rightGain); // can only choose 1 path out of left and right subtrees
+    return root->data + max(leftGain, rightGain); // gain returned to parent
 }
 
 int maxPathSum(Node* root) {
