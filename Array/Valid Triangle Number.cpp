@@ -13,7 +13,6 @@ Explanation: Valid combinations are:
 2,2,3
 */
 
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -22,13 +21,12 @@ using namespace std;
 int triangleNumber(vector<int>& nums) {
     sort(nums.begin(), nums.end());
 
-    int n = nums.size();
+    int n = nums.size(); // number of elements present in the array
     int count = 0;
 
     // i --> smallest side of triangle
     // j --> middle side of triangle
     // k --> largest side of triangle
-    // n --> number of elements present in the array
 
     for(int k = n-1; k >= 2; k--) {
         int i = 0;
