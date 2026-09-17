@@ -13,12 +13,37 @@ Explanation: Valid combinations are:
 2,2,3
 */
 
+
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int triangleNumber(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
 
+    int n = nums.size();
+    int count = 0;
+
+    // i --> smallest side of triangle
+    // j --> middle side of triangle
+    // k --> largest side of triangle
+    // n --> number of elements present in the array
+
+    for(int k = n-1; k >= 2; k--) {
+        int i = 0;
+        int j = k-1;
+
+        while(i < j) {
+            if(nums[i] + nums[j] > nums[k]) { // check triangle condition
+                count += j-i; // all values b/w i & j (i.e, from i to j-1) can also form valid triangles
+                j--;
+            }
+
+            else i++; // need a larger smallest side for the triangle
+        }
+    }
+    return count;
 }
 
 int main() {
@@ -28,3 +53,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n^2)
+// SC = O(1)
