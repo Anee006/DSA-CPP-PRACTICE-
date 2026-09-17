@@ -18,17 +18,31 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 using namespace std;
 
 int removeElement(vector<int>& nums, int val) {
+    int k = 0; // keeps track of where to put the next element that is not equal to val
+
+    for(int i = 0; i < nums.size(); i++) {
+        if(nums[i] != val) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+    return k;
 }
 
 int main() {
     vector<int> nums = {3, 2, 2, 3};
     int val = 3;
 
-    cout << "k = " << removeElement(nums, val) << endl;
+    int k = removeElement(nums, val);
 
-    cout << "\nArray after removing " << val << ": ";
+    cout << "k = " << k << endl;
 
-    for(int x : nums) cout << x << " ";
+    cout << "\nFirst " << k << " elements of array are: ";
+
+    for(int i = 0; i < k; i++) cout << nums[i] << " ";
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
