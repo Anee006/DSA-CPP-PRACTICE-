@@ -10,9 +10,34 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int threeSumClosest(vector<int>& nums, int target) {
+    sort(nums.begin(), nums.end());
+    int n = nums.size();
+
+    int closest = nums[0] + nums[1] + nums[2]; // set initial closest sum
+
+    // i --> represents the 1st no. we need to find. Fix i and find other 2 numbers using 2 pointer approach
+    for(int i = 0; i < n-2; i++) {
+        int left = i + 1; // left ptr
+        int right = n - 1; // right ptr
+
+        while(left < right) {
+            int sum = nums[i] + nums[left] + nums[right]; // find current sum
+
+            if(abs(sum - target) < abs(closest - target)) closest = sum; // update closest sum
+
+            if(sum == target) return sum;
+
+            if(sum < target) left++; // find a larger sum
+
+            else right--; // find smaller sum
+        }
+    }
+
+    return closest;
 }
 
 int main() {
