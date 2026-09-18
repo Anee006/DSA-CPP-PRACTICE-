@@ -53,7 +53,7 @@ int widthOfTree(Node* root) {
             q.pop(); // we will pop the parent and then add its left and right child with their indexes
 
             if(curr.first->left) {
-                q.push({curr.first->left, curr.second*2+1}); //c urr.second*2+1 is the idx
+                q.push({curr.first->left, curr.second*2+1}); // curr.second*2+1 is the idx
             }
             if(curr.first->right) {
                 q.push({curr.first->right, curr.second*2+2}); // curr.second*2+2 is the idx
