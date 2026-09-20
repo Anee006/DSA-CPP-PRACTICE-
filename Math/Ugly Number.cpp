@@ -37,3 +37,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(log n)
+// SC = O(1)
