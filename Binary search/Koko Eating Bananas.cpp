@@ -11,9 +11,33 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int minEatingSpeed(vector<int>& piles, int h) {
+    int low = 1; // min possible eating speed
+    int high = *max_element(piles.begin(), piles.end()); // max possible eating speed
+
+    int ans = high;
+
+    while(low <= high) {
+        int k = low + (high - low) / 2; // find middle eating speed
+
+        long long hours = 0; // calculate no. of hours req at speed k // calculate exactly how many hours Koko needs
+
+        for(int bananas: piles) {
+            hours += (bananas + k - 1) / k;  // is equivalent to: ceil((double)bananas / k)
+        }
+
+        if(hours <= h) { // if Koko can finish within h hours
+            ans = k; // k is a possible ans
+
+            high = k - 1; // try a smaller speed (as we need to find the min speed)
+        }
+
+        else low = k + 1; // speed is too slow, increase it
+    }
+    return ans;
 }
 
 int main() {
@@ -25,3 +49,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(log n)
+// SC = O(1)
