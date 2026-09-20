@@ -19,6 +19,16 @@ The reversed degree is 26 + 50 + 72 = 148.
 using namespace std;
 
 int reverseDegree(string s) {
+    int sum = 0;
+
+    for(int i = 0; i < s.length(); i++) {
+        int revPos = 'z' - s[i] + 1; // calc position of char in reversed alphabet
+
+        int currPos = i + 1; // position of char in string (1-based index, hence added +1)
+
+        sum += currPos * revPos;
+    }
+    return sum;
 }
 
 int main() {
@@ -28,3 +38,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
