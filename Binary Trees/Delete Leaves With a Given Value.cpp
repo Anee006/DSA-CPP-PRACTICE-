@@ -50,6 +50,7 @@ void levelOrder(Node* root) {
     }
 }
 
+// use postorder DFS
 Node* removeLeafNodes(Node* root, int target) {
     if(root == NULL) return NULL;
 
