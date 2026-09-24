@@ -51,6 +51,18 @@ void levelOrder(Node* root) {
 }
 
 Node* removeLeafNodes(Node* root, int target) {
+    if(root == NULL) return NULL;
+
+    // delete target leaves from left and right subtrees
+    root->left = removeLeafNodes(root->left, target);
+    root->right = removeLeafNodes(root->right, target);
+
+    // check if current node became NULL
+    if(root->left == NULL && root->right == NULL && root->data == target) {
+        return NULL; // delete target node
+    }
+
+    return root;
 }
 
 int main() {
@@ -70,7 +82,8 @@ int main() {
 
     cout << "\nModified Tree Level Order Traversal:\n";
     levelOrder(newRoot);
-
-
     return 0;
 }
+
+// TC = O(n)
+// SC = O(h)
