@@ -12,6 +12,9 @@ Explanation: From the left child of the root, we move two coins to the root [tak
 Then, we move one coin from the root of the tree to the right child.
 */
 
+// LOGIC:
+// Use postorder traversal. For every node, calculate how many coins need to be moved out of or into that subtree.
+
 #include <iostream>
 using namespace std;
 
@@ -27,7 +30,25 @@ public:
     }
 };
 
+// returns the excess coins of this subtree
+int dfs(Node* root, int& moves) {
+    if(root == NULL) return 0;
+
+    // get excess/deficit from left and right subtrees
+    int left = dfs(root->left, moves);
+    int right = dfs(root->right, moves);
+
+    moves += abs(left) + abs(right); // coins crossing the edges
+
+    // return excess coins to parent
+    return root->data + left + right - 1; // we do -1 here because the current node needs 1 coin for itself
+}
+
 int distributeCoins(Node* root) {
+    int moves = 0;
+    dfs(root, moves);
+
+    return moves;
 }
 
 int main() {
@@ -35,5 +56,10 @@ int main() {
     root->left = new Node(3);
     root->right = new Node(0);
 
+    cout << distributeCoins(root);
+
     return 0;
 }
+
+// TC = O(n)
+// SC = O(h)
