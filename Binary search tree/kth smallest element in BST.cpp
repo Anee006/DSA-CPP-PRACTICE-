@@ -6,55 +6,47 @@
 // Input: root = [5,3,6,2,4,null,null,1], k = 3
 // Output: 3
 
-// STEPS:
-// 1. sort the bst --> using inorder traversal
-// 2. track the order or the sequence in which each val occurs in the bst. (1 based indexing)
-// 3. create a global variable prevOrder = 0.  Do (order + 1) for each node to get the idx/order of each node.
-// 4. when prevOrder == k, we will get the ans.
+// LOGIC:
+// Use inorder traversal to find kth smallest element.
+// left --> root --> right => gives nodes in ascending order (we get 1st smallest, 2nd smallest... kth smallest)
 
 #include <iostream>
 using namespace std;
 
-class Node
-{
-    public:     
-        int data;
-        Node* left;
-        Node* right;
+class Node {
+public:     
+    int data;
+    Node* left;
+    Node* right;
 
-        Node(int val)
-        {
-            data = val;
-            left = right = NULL;
-        }
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
 };
 
-int prevOrder = 0; // to track the order of each node in the bst
+int count = 0, ans = -1; // ans = -1 indicates haven't found the ans yet
+
+void inorder(Node* root, int k) {
+    if(root == NULL) return;
+
+    inorder(root->left, k);
+
+    count++; // visit current node
+
+    if(count == k) {
+        ans = root->data;
+        return;
+    }
+
+    inorder(root->right, k);
+}
 
 int kthSmallest(Node* root, int k) {
-    if(root == NULL) return -1;  // to indicate kth smallest is not yet found
+    inorder(root, k);
 
-    // left
-    if(root->left) {
-        int leftAns =  kthSmallest(root->left, k);
-        if(leftAns != -1) return leftAns; // means we have found the kth smallest el
-
-    }
-
-    // root
-    if(prevOrder + 1 == k) return root->data; // doing (prevOrder+1) bcoz we need 1-based indexing
-
-    prevOrder = prevOrder + 1; // updation
-
-    // right
-    if(root->right) {
-        int rightAns = kthSmallest(root->right, k);
-        if(rightAns != -1) return rightAns;
-    }
-
-    return -1; // if kth smallest el is not found
+    return ans;
 }
-// TC = O(n)
 
 int main() {
     Node* root = new Node(5);
@@ -65,7 +57,10 @@ int main() {
     root->left->left->left = new Node(1);
 
     int k = 3;
-    cout << k << "rd smallest element: " << kthSmallest(root, k) << endl;
+    cout << kthSmallest(root, k) << endl;
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(h)
