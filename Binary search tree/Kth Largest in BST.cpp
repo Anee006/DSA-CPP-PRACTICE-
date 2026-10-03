@@ -6,6 +6,12 @@
 // Output: 4
 // Explanation: The second largest element is 4.
 
+// LOGIC:
+// Use reverse inorder
+// Inorder: Left -> Root -> Right => gives elements in ascending order.
+// Reverse inorder: Right -> Root -> Left => gives elements in descending order.
+// (the nodes are visited as: 1st largest, 2nd largest... k-th largest)
+
 #include <iostream>
 using namespace std;
 
@@ -21,8 +27,27 @@ public:
     }
 };
 
-int kthLargest(Node *root, int k) {
+int count = 0, ans = 0;
 
+void reverseInorder(Node* root, int k) {
+    if(root == NULL) return;
+
+    reverseInorder(root->right, k);
+
+    count++; // visit current node
+
+    if(count == k) { // found req kth largest element
+        ans = root->data;
+        return;
+    }
+
+    reverseInorder(root->left, k);
+}
+
+int kthLargest(Node *root, int k) {
+    reverseInorder(root, k);
+
+    return ans;
 }
 
 int main() {
@@ -35,3 +60,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(H + k) , where H = height of tree
+// SC= O(H)
