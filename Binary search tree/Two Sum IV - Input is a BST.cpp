@@ -26,7 +26,33 @@ public:
     }
 };
 
+// store BST elements in a sorted order
+void inorder(Node* root, vector<int>& arr) {
+    if(root == NULL) return;
+
+    inorder(root->left, arr);
+    arr.push_back(root->data);
+    inorder(root->right, arr);
+}
+
 bool findTarget(Node* root, int k) {
+    vector<int> arr;
+
+    inorder(root, arr); // convert BST into a sorted array
+
+    // Use Two-Pointer approach
+    int left = 0, right = arr.size()-1;
+
+    while(left < right) {
+        int sum = arr[left] + arr[right];
+
+        if(sum == k) return true;
+
+        else if (sum < k) left++;
+
+        else right--;
+    }
+    return false;
 }
 
 int main() {
@@ -43,3 +69,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
