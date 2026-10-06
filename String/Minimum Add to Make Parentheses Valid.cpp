@@ -28,7 +28,20 @@ So the answer is: 2
 using namespace std;
 
 int minAddToMakeValid(string s) {
-    
+    int balance = 0, insertions = 0;
+
+    for(char ch : s) {
+        if(ch == '(') balance++;
+
+        else { // ch == ')'
+            if(balance > 0) balance--;
+
+            else insertions++;  // there is no matching '(' for ')'
+        }
+    }
+    insertions += balance; // remaining '(' need ')'
+
+    return insertions;
 }
  
 int main() {
@@ -38,3 +51,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(1)
