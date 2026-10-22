@@ -23,6 +23,16 @@ public:
 };
 
 int rangeSumBST(Node* root, int low, int high) {
+    if(root == NULL) return 0;
+
+    // if curr val is smaller than low, search in right subtree
+    if(root->data < low) return rangeSumBST(root->right, low, high);
+
+    // if curr val is greater than high, search in left subtree
+    if(root->data > high) return rangeSumBST(root->left, low, high);
+
+    // if curr val lies in [low, high]
+    return root->data + rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
 }
 
 int main() {
@@ -39,3 +49,6 @@ int main() {
     
     return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
