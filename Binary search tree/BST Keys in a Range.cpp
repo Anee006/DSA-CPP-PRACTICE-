@@ -23,7 +23,22 @@ public:
     }
 };
 
+void inorder(Node* root, int low, int high, vector<int>& ans) {
+    if(root == NULL) return;
+
+    inorder(root->left, low, high, ans);
+
+    if(root->data >= low && root->data <= high) ans.push_back(root->data);
+
+    inorder(root->right, low, high, ans);
+}
+
 vector<int> nodesInRange(Node *root, int low, int high) {
+    vector<int> ans;
+
+    inorder(root, low, high, ans);
+    
+    return ans;
 }
 
 int main() {
@@ -41,3 +56,6 @@ int main() {
 
     return 0;
 }
+
+// TC = O(n)
+// SC = O(n)
