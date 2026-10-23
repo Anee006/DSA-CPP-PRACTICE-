@@ -23,6 +23,18 @@ public:
 };
 
 int findMaxFork(Node* root, int k) {
+    int ans = -1;
+
+    while(root != NULL) {
+        if(root->data <= k) {
+            ans = root->data;
+            root = root->right; // as we need to find the largest no. <= k, go to right subtree of BST
+        }
+
+        else root = root->left;
+    }
+
+    return ans;
 }
 
 int main() {
@@ -40,3 +52,6 @@ int main() {
     
     return 0;
 }
+
+// TC = O(h) , where h = height of tree
+// SC = O(1)
