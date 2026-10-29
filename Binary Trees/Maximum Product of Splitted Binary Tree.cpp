@@ -20,7 +20,40 @@ public:
     }
 };
 
+long long totalSum = 0;
+long long bestProduct = 0;
+
+// find sum of all nodes in a tree using DFS
+long long findSum(Node* root){
+    if(root == NULL) return 0;
+    
+    return root->data + findSum(root->left) + findSum(root->right);
+}
+
+long long findMaxProduct(Node* root) {
+    if(root == NULL) return 0;
+
+    // calc every subtree sum using postorder traversal
+    long long leftSum = findMaxProduct(root->left);
+    long long rightSum = findMaxProduct(root->right);
+
+    long long subtreeSum = root->data + leftSum + rightSum;
+
+    // cutting the edge above this subtree gives: subtreeSum & (totalSum - subtreeSum)
+
+    long long product = subtreeSum * (totalSum - subtreeSum);
+
+    bestProduct = max(bestProduct, product);
+
+    return subtreeSum;
+}
+
 int maxProduct(Node* root) {
+    totalSum = findSum(root);
+
+    findMaxProduct(root);
+
+    return bestProduct % 1000000007; // apply modulo
 }
 
 int main() {
@@ -35,3 +68,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n)
+// SC: O(h)
