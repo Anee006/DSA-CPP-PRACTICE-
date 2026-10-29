@@ -5,6 +5,8 @@
 // Output: 110
 // Explanation: Remove the red edge and get 2 binary trees with sum 11 and 10. Their product is 110 (11*10)
 
+// LOGIC: Use two DFS traversals- one for the total tree sum and another for subtree sums
+
 #include <iostream>
 using namespace std;
 
