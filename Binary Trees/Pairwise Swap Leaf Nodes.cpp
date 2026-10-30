@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 
 class Node {
@@ -35,14 +36,34 @@ void levelOrder(Node* root) {
         Node* curr = q.front();
         q.pop();
 
-        cout << curr->data;
+        cout << curr->data << " ";
 
         if(curr->left) q.push(curr->left);
         if(curr->right) q.push(curr->right);
     }
 }
 
+// find leaf nodes using dfs
+void findLeaves(Node* root, vector<Node*>& leaves) {
+    if(root == NULL) return;
+
+    // check if current node is a leaf node
+    if(root->left == NULL && root->right == NULL) leaves.push_back(root);
+
+    findLeaves(root->left, leaves);
+    findLeaves(root->right, leaves);
+}
+
 void pairwiseSwap(Node *root) {
+    if(root == NULL) return;
+
+    vector<Node*> leaves;
+
+    findLeaves(root, leaves);
+
+    for(int i = 0; i + 1 < leaves.size(); i += 2) {
+        swap(leaves[i]->data , leaves[i+1]->data); // swap pairwise
+    }
 }
 
 int main() {
@@ -58,8 +79,11 @@ int main() {
 
     pairwiseSwap(root);
 
-    cout << "After swapping:\n";
+    cout << "\nAfter swapping:\n";
     levelOrder(root);
 
     return 0;
 }
+
+// TC: O(n) , where n = no. of nodes
+// SC: O(L + h) , where L = no. of leaf nodes , h = tree height
