@@ -24,7 +24,62 @@
 using namespace std;
 
 bool validateBinaryTreeNodes(int n, vector<int>& leftChild, vector<int>& rightChild) {
-}
+    vector<int> indegree(n, 0); // stores indegree of each node
+
+    // calc indegree of each node
+    for(int i = 0; i < n; i++) {
+        if(leftChild[i] != -1) indegree[leftChild[i]]++;
+        if(rightChild[i] != -1) indegree[rightChild[i]]++;
+    }
+
+    // find root node (has indegree = 0)
+    int root = -1;
+
+    for(int i = 0; i < n; i++) {
+        if(indegree[i] == 0) {
+            if(root != -1) return false; // can't have more than 1 root in a valid binary tree
+
+            root = i; // else, current node is the root node
+        }
+    }
+
+    if(root == -1) return false; // no root found, hence invalid binary tree
+
+    // perform BFS traversal starting from root
+    queue<int> q;
+    vector<bool> vis(n, false); // visited vector
+
+    q.push(root);
+    vis[root] = true;
+
+    int count = 0; // tracks how many nodes are visited in the BFS traversal of the tree
+
+    while(!q.empty()) {
+        int curr = q.front();
+        q.pop();
+
+        count++;
+
+        if(leftChild[curr] != -1) { // visit left child
+            int child = leftChild[curr];
+
+            if(vis[child]) return false;
+
+            vis[child] = true;
+            q.push(child);
+        }
+
+        if(rightChild[curr] != -1) { // visit right child
+            int child = rightChild[curr];
+
+            if(vis[child]) return false;
+
+            vis[child] = true;
+            q.push(child);
+        }
+    }
+    return count == n; // if it is a valid binary tree, all nodes must be visited by now
+} 
 
 int main() {
     int n = 4;
@@ -35,3 +90,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n)
+// SC: O(n)
