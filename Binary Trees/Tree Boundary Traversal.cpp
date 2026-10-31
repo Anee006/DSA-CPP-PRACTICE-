@@ -10,6 +10,8 @@
 // Input: root = [1, 2, 3, 4, 5, 6, 7, N, N, 8, 9, N, N, N, N]
 // Output: [1, 2, 4, 8, 9, 6, 7, 3]
 
+// LOGIC: use DFS
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -26,7 +28,70 @@ public:
     }
 };
 
-vector<int> boundaryTraversal(Node *root) {
+// check whether a node is a leaf node
+bool isLeaf(Node* root) {
+    return (root->left == NULL && root->right == NULL);
+}
+
+// add leaf nodes from left to right
+void addLeaves(Node* root, vector<int>& ans) {
+    if (root == NULL) return;
+    
+    if(isLeaf(root)) ans.push_back(root->data);
+    
+    addLeaves(root->left, ans);
+    addLeaves(root->right, ans);
+}
+
+// add left boundary (excluding leaf nodes)
+void addLeft(Node* root, vector<int>& ans) {
+    Node* curr = root->left;
+    
+    while(curr != NULL) {
+        if(!isLeaf(curr)) ans.push_back(curr->data);
+        
+        if(curr->left != NULL) curr = curr->left;
+        else curr = curr->right;
+    }
+}
+
+// add right boundary (excluding leaf nodes)
+void addRight(Node* root, vector<int>& ans) {
+    Node* curr = root->right;
+    vector<int> temp; // store the traversal from top to bottom
+    
+    while(curr != NULL) {
+        if(!isLeaf(curr)) temp.push_back(curr->data);
+        
+        if(curr->right != NULL) curr = curr->right;
+        else curr = curr->left;
+    }
+    
+    // add right boundary in reverse (from bottom to top)
+    for(int i = temp.size()-1; i >= 0; i--) {
+        ans.push_back(temp[i]);
+    }
+}
+
+vector<int> boundaryTraversal(Node* root) {
+    vector<int> ans;
+		
+    if(root == NULL) return ans;
+    
+    if(!isLeaf(root)) ans.push_back(root->data); // add root (only once)
+    
+    else {
+        ans.push_back(root->data);
+        return ans;
+    }
+    
+    addLeft(root, ans); // 1. Left boundary
+    
+    addLeaves(root, ans); // 2. Leaf nodes
+    
+    addRight(root, ans); // 3. Reverse right boundary
+    
+    return ans;
 }
 
 int main() {
@@ -46,3 +111,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n)
+// SC : O(n)
