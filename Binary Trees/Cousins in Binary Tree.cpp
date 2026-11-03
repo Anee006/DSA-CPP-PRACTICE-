@@ -24,6 +24,51 @@ public:
 };
 
 bool isCousins(Node* root, int x, int y) {
+    if(root == NULL) return false;
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        int n = q.size();
+        bool foundX = false, foundY = false;
+
+        for(int i = 0; i < n; i++) {
+            Node* curr = q.front();
+            q.pop();
+
+            if(curr->left != NULL && curr->right != NULL) { // check if x and y are siblings
+                // if have same parents --> can't be cousins
+                if ((curr->left->data == x && curr->right->data == y) || (curr->left->data == y && curr->right->data == x)) return false;
+            }
+
+            // check x
+            if(curr->left != NULL) {
+                if(curr->left->data == x) foundX = true;
+
+                q.push(curr->left);
+            }
+
+            if(curr->right != NULL) {
+                if(curr->right->data == x) foundX = true;
+
+                q.push(curr->right);
+            }
+
+            // check y
+            if(curr->left != NULL) {
+                if(curr->left->data == y) foundY = true;
+            }
+
+            if(curr->right != NULL) {
+                if(curr->right->data == y) foundY = true;
+            }
+        }
+        if(foundX && foundY) return true; // both found at same level --> are cousins
+
+        if(foundX || foundY) return false; // if only found one at this level --> not cousins
+    }
+    return false;
 }
 
 int main() {
@@ -39,3 +84,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n)
+// SC: O(n)
