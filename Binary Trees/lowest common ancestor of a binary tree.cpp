@@ -34,7 +34,7 @@ Node* LCA(Node* root, Node* p, Node* q)
     
     if (root->data == p->data || root->data == q->data) return root; // if have found the nodes p and q, then assume, that node is LCA
 
-    //vtry to find p and q nodes in the left and right subtree
+    // try to find p and q nodes in the left and right subtree
     Node* leftLCA = LCA(root->left, p , q);
     Node* rightLCA = LCA(root->right, p , q);
     
