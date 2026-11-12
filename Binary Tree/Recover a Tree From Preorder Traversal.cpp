@@ -26,6 +26,45 @@ public:
 };
 
 Node* recoverFromPreorder(string traversal) {
+    stack<Node*> s; // to keep track of the current path from root to current node
+    int i = 0;
+    int n = traversal.length();
+
+    while(i < n) {
+        // count no. of dashes (depth)
+        int depth = 0;
+
+        while(i < n && traversal[i] == '-') {
+            depth++;
+            i++;
+        }
+
+        // extract node value
+        int val = 0;
+
+        // read all consecutive digits to get the complete node value (also handles multi-digit values)
+        while(i < n && isdigit(traversal[i])) {
+            val = val * 10 + (traversal[i] - '0');
+            i++;
+        }
+
+        Node* node = new Node(val); // create a new node
+
+        // before inserting a node at depth D, pop nodes from the stack while its size is greater than D
+        while(s.size() > depth) s.pop(); // remove nodes until stack size matches depth
+
+        // attach node to its parent (top element represents the parent of the new node)
+        if(!s.empty()) {
+            if(s.top()->left == NULL) s.top()->left = node; // if parent's left child is empty, attach the new node as its left child
+
+            else s.top()->right = node;
+        }
+        s.push(node); // push current node in stack
+    }
+
+    while(s.size() > 1) s.pop(); // root node is at bottom, so pop all nodes except root 
+
+    return s.top();
 }
 
 void preorder(Node* root) {
@@ -41,8 +80,11 @@ int main() {
 
     Node* root = recoverFromPreorder(traversal);
 
-    preorder(root); // verify the tree created
+    preorder(root); // verify the tree created (should print the same preorder as given)
 
     return 0;
 }
+
+// TC: O(n)
+// SC: O(n)
 
