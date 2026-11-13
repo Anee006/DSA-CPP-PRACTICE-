@@ -9,8 +9,8 @@
 
 // LOGIC:
 // To convert the given BST into a balanced BST, use:
-// 1. Inorder Traversal: Traverse the BST and store all node values in a sorted array. 
-// 2. Build Balanced BST: Choose the middle element as the root and recursively construct the left and right subtrees.
+//   1. Inorder Traversal: Traverse the BST and store all node values in a sorted array. 
+//   2. Build Balanced BST: Choose the middle element as the root and recursively construct the left and right subtrees.
 // This ensures that the heights of the left and right subtrees remain as balanced as possible.
 
 #include <iostream>
@@ -30,7 +30,33 @@ public:
     }
 };
 
+vector<int> arr;
+
+void inorder(Node* root) {
+    if(root == NULL) return;
+
+    inorder(root->left);
+    arr.push_back(root->data);
+    inorder(root->right);
+}
+
+Node* buildBST(int left, int right) {
+    if(left > right) return NULL;
+
+    int mid = left + (right - left)/2;
+
+    Node* root = new Node(arr[mid]);
+
+    root->left = buildBST(left, mid - 1);
+    root->right = buildBST(mid + 1, right);
+
+    return root;
+}
+
 Node* balanceBST(Node* root) {
+    inorder(root);
+
+    return buildBST(0, arr.size() - 1);
 }
 
 void levelOrder(Node* root) {
@@ -66,3 +92,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n)
+// SC: O(n)
