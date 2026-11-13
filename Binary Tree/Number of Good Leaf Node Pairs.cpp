@@ -7,6 +7,13 @@
 // Output: 2
 // Explanation: The good pairs are [4,5] and [6,7] with shortest path = 2. 
 
+// LOGIC:
+// If the current node is a leaf node, return a vector containing distance 1.
+// Recursively find the distances of leaf nodes in the left and right subtrees.
+// Compare every distance from the left subtree with every distance from the right subtree.
+// If the sum of the two distances is less than or equal to distance, increment the count.
+// Return the updated distances to the parent node.
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -23,7 +30,42 @@ public:
     }
 };
 
+int ans = 0;
+
+vector<int> dfs(Node* root, int distance) {
+    if(root == NULL) return {};
+
+    // if leaf node --> return distance 1
+    if(root->left == NULL && root->right == NULL) return {1};
+
+    vector<int> left = dfs(root->left, distance);
+    vector<int> right = dfs(root->right, distance);
+
+    // check all leaf pairs
+    for(int l : left) {
+        for(int r : right) {
+            if(l + r <= distance) ans++;
+        }
+    }
+
+    // return distances to parent
+    vector<int> res;
+
+    for(int i : left) {
+        if(i + 1 < distance) res.push_back(i + 1);
+    }
+
+    for(int i : right) {
+        if(i + 1 < distance) res.push_back(i + 1);
+    }
+
+    return res;
+}
+
 int countPairs(Node* root, int distance) {
+    dfs(root, distance);
+
+    return ans;
 }
 
 int main() {
@@ -41,3 +83,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n * d^d)
+// SC: O(n * d)
