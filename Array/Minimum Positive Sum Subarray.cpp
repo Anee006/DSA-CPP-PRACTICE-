@@ -5,7 +5,6 @@
 
 /*
 Input: nums = [3, -2, 1, 4], l = 2, r = 3
-
 Output: 1
 
 Explanation:
@@ -22,6 +21,25 @@ Out of these, the subarray [3, -2] has a sum of 1, which is the smallest positiv
 using namespace std;
 
 int minimumSumSubarray(vector<int>& nums, int l, int r) {
+    int n = nums.size();
+    int ans = INT_MAX;
+
+    for(int i = 0; i < n; i++) { // select starting idx
+        int sum = 0;
+
+        for(int j = i; j < n; j++) { // extend subarray
+            sum += nums[j];
+
+            int len = j - i + 1;
+
+            if(len >= l && len <= r && sum > 0) ans = min(ans, sum);
+
+            if(len >= r) break;
+        }
+    }
+    if(ans == INT_MAX) return -1;
+
+    return ans;
 }
 
 int main() {
@@ -32,3 +50,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n * r)
+// SC: O(1)
