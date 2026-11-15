@@ -23,6 +23,24 @@ Explanation: All subarrays are [[1],[1,3],[1,3,5],[3],[3,5],[5]]. All sub-arrays
 using namespace std;
 
 int numOfSubarrays(vector<int>& arr) {
+    int even = 1; // empty prefix has sum 0
+    int odd = 0;
+    int ans = 0, sum = 0, mod = 1000000007;
+
+    for(int i = 0; i < arr.size(); i++) {
+        sum += arr[i];
+
+        if(sum % 2 == 0) { // sum is even
+            ans = (ans + odd) % mod; // add odd to ans
+            even++;
+        }
+
+        else { // sum is odd
+            ans = (ans + even) % mod; // add even to ans
+            odd++;
+        }
+    }
+    return ans;
 }
 
 int main() {
@@ -32,3 +50,6 @@ int main() {
 
     return 0;
 }
+
+// TC: O(n)
+// SC: O(1)
